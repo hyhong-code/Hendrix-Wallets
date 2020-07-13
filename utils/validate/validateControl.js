@@ -104,7 +104,7 @@ exports.checkCategory = (name, description) => {
 
 /**
  * Checks whether given name, description, price, and discount are valid.
- * @function checkCategory
+ * @function checkItem
  * @param {string} name - item name to be validated
  * @param {string} description - item description to be validated
  * @param {integer} price - item price to be validated
@@ -135,6 +135,15 @@ exports.checkItem = (name, description, price, discount) => {
   return { errors, isValid: !Object.keys(errors).length };
 };
 
+/**
+ * Checks whether given email, name, phone, and address are valid.
+ * @function checkOrder
+ * @param {string} name - order recipient's name to be validated
+ * @param {string} email - order recipient's email to be validated
+ * @param {string} phone - order recipient's phone number to be validated
+ * @param {string} address - order recipient's address number to be validated
+ * @returns {object} whether given parameters are valid, and errors
+ */
 exports.checkOrder = (email, name, phone, address) => {
   const errors = {};
   if (!email) {
