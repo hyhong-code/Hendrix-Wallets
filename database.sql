@@ -1,11 +1,7 @@
 CREATE TABLE users(
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    email VARCHAR(50) NOT NULL UNIQUE CHECK (
-        email ~ '^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$'
-    ),
-    name VARCHAR(50) NOT NULL CHECK (
-        name ~ '^([a-zA-Z0-9]+|[a-zA-Z0-9]+\s{1}[a-zA-Z0-9]{1,}|[a-zA-Z0-9]+\s{1}[a-zA-Z0-9]{3,}\s{1}[a-zA-Z0-9]{1,})$'
-    ),
+    email VARCHAR(50) NOT NULL UNIQUE,
+    name VARCHAR(50) NOT NULL,
     password VARCHAR(150) NOT NULL,
     role VARCHAR(50) NOT NULL DEFAULT 'user' CHECK (role IN ('user', 'admin')),
     created_at TIMESTAMP DEFAULT NOW()
@@ -15,9 +11,7 @@ CREATE TABLE profiles(
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     user_id UUID NOT NULL REFERENCES users(id) UNIQUE,
     photo VARCHAR(150) DEFAULT 'default.jpeg',
-    phone VARCHAR(150) CHECK (
-        phone ~ '(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?'
-    ),
+    phone VARCHAR(150),
     address VARCHAR(255),
     created_at TIMESTAMP DEFAULT NOW()
 );
@@ -39,9 +33,24 @@ CREATE TABLE items(
     created_at TIMESTAMP DEFAULT NOW()
 );
 
+CREATE TABLE carts(
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    user_id UUID NOT NULL REFERENCES users(id),
+    created_at TIMESTAMP DEFAULT NOW(),
+    is_order BOOLEAN DEFAULT FALSE
+);
+
+CREATE TABLE cart_items(
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    cart_id UUID NOT NULL REFERENCES carts(id),
+    item_id UUID NOT NULL REFERENCES items(id),
+    quantity INT NOT NULL CHECK (quantity > 0)
+);
+
 CREATE TABLE orders(
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     user_id UUID NOT NULL REFERENCES users(id),
+    cart_id UUID NOT NULL REFERENCES carts(id) UNIQUE,
     instructions VARCHAR(255),
     status VARCHAR(50) DEFAULT 'pending' CHECK (
         status IN ('pending', 'shipped', 'delivered', 'canceled')
@@ -50,11 +59,4 @@ CREATE TABLE orders(
     shipped_at TIMESTAMP,
     delivered_at TIMESTAMP,
     canceled_at TIMESTAMP
-);
-
-CREATE TABLE order_items(
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    order_id UUID NOT NULL REFERENCES orders(id),
-    item_id UUID NOT NULL REFERENCES items(id),
-    quantity INT NOT NULL CHECK (quantity > 0)
 );
