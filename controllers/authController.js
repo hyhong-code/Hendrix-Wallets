@@ -69,5 +69,13 @@ exports.login = async (req, res, next) => {
 // @route   /api/auth/loadme
 // @access  Private
 exports.loadMe = async (req, res, next) => {
-  res.status(200).json({ user: req.user });
+  try {
+    const user = await pool.query(
+      `SELECT users.id, name, email, photo, phone, address FROM users
+       JOIN profiles ON users.id = profiles.user_id
+       WHERE users.id = $1 ;`,
+      [req.user.id]
+    );
+    res.json({ user: user.rows[0] });
+  } catch (error) {}
 };

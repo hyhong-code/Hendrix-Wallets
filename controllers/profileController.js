@@ -13,7 +13,7 @@ exports.updateProfile = async (req, res, next) => {
       `UPDATE users SET
         name = COALESCE($1, name),
         email = COALESCE($2, email)
-        WHERE id = $3 RETURNING email, name ;`,
+        WHERE id = $3 RETURNING id, email, name ;`,
       [nullifyEmptyStr(name), nullifyEmptyStr(email), req.user.id]
     );
 
