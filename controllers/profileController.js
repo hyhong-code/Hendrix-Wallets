@@ -4,11 +4,10 @@ const { checkProfile } = require("../utils/validate/validateControl");
 const nullifyEmptyStr = require("../utils/nullifyEmptyStr");
 
 exports.updateProfile = async (req, res, next) => {
+  let { phone, address, email, name } = req.body;
+  const { isValid, errors } = checkProfile(phone, email, name);
+  if (!isValid) return sendError(res, 400, errors);
   try {
-    let { phone, address, email, name } = req.body;
-    const { isValid, errors } = checkProfile(phone, email, name);
-    if (!isValid) return sendError(res, 400, errors);
-
     const user = await pool.query(
       `UPDATE users SET
         name = COALESCE($1, name),
