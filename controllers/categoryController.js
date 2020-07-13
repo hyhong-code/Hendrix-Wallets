@@ -19,7 +19,10 @@ exports.createCategory = async (req, res, next) => {
     res.status(201).json({ category: category.rows[0] });
   } catch (error) {
     console.error(error);
-    if (error.code === "23505" && error.constraint === "category_name_unique") {
+    if (
+      error.code === "23505" &&
+      error.constraint === "item_categories_name_key"
+    ) {
       return sendError(res, 400, { name: "Category name already exists" });
     }
     sendError(res);

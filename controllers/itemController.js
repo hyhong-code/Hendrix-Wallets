@@ -32,10 +32,8 @@ exports.createItem = async (req, res, next) => {
     res.status(201).json({ item: item.rows[0] });
   } catch (error) {
     console.error(error);
-    if (error.code === "22P02") {
-      sendError(res, 400, {
-        category: `Category id ${req.params.categoryId} is invalid`,
-      });
+    if (error.code === "23505" && error.constraint === "items_name_key") {
+      sendError(res, 400, { message: "Item name already exists" });
     }
   }
 };

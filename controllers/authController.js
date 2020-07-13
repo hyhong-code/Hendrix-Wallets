@@ -25,11 +25,14 @@ exports.register = async (req, res, next) => {
     await pool.query("INSERT INTO profiles(user_id) VALUES($1);", [
       user.rows[0].id,
     ]);
+    await pool.query("INSERT INTO carts(user_id) VALUES($1);", [
+      user.rows[0].id,
+    ]);
     sendJwtToken(user.rows[0], 201, res);
   } catch (error) {
     console.log(error);
     if (error.code === "23505") {
-      return sendError(res, 400, { email: "Email already in use" });
+      return sendError(res, 400, { message: "Email already in use" });
     } else {
       sendError(res);
     }
@@ -71,11 +74,15 @@ exports.login = async (req, res, next) => {
 exports.loadMe = async (req, res, next) => {
   try {
     const user = await pool.query(
-      `SELECT users.id, name, email, photo, phone, address FROM users
+      `SELECT users.id, name, email, photo, phone, address, carts.id AS cart_id FROM users
        JOIN profiles ON users.id = profiles.user_id
+       JOIN carts ON users.id = carts.user_id
        WHERE users.id = $1 ;`,
       [req.user.id]
     );
     res.json({ user: user.rows[0] });
-  } catch (error) {}
+  } catch (error) {
+    console.error(error);
+    sendError(res);
+  }
 };
