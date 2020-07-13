@@ -82,7 +82,7 @@ exports.checkProfile = (phone, email, name) => {
 };
 
 /**
- * Checks whether given phone, email, and password are valid.
+ * Checks whether given name and description are valid.
  * @function checkCategory
  * @param {string} name - category name to be validated
  * @param {string} description - category description to be validated
@@ -97,6 +97,39 @@ exports.checkCategory = (name, description) => {
 
   if (!description) {
     errors.description = `A category description is required`;
+  }
+
+  return { errors, isValid: !Object.keys(errors).length };
+};
+
+/**
+ * Checks whether given name, description, price, and discount are valid.
+ * @function checkCategory
+ * @param {string} name - item name to be validated
+ * @param {string} description - item description to be validated
+ * @param {integer} price - item price to be validated
+ * @param {integer} discount - item discount to be validated
+ * @returns {object} whether given parameters are valid, and errors
+ */
+exports.checkItem = (name, description, price, discount) => {
+  const errors = {};
+
+  if (!name) {
+    errors.name = `An item name is required`;
+  }
+
+  if (!description) {
+    errors.description = `An item description is required`;
+  }
+
+  if (!price) {
+    errors.price = `Price is required`;
+  } else if (!validators.checkPrice(price)) {
+    errors.price = `Price must be in cents and greater than 0`;
+  }
+
+  if (!validators.checkDiscount(discount, price)) {
+    errors.discount = `Discount must be a positive number and smaller than price`;
   }
 
   return { errors, isValid: !Object.keys(errors).length };

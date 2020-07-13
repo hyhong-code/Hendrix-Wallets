@@ -10,3 +10,11 @@ exports.checkPassword = (password) => password.length >= 6;
 
 exports.checkPhone = (phone) =>
   /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(phone);
+
+exports.checkPrice = (price) => parseInt(price) && parseInt(price) > 0;
+
+exports.checkDiscount = (discount, price) =>
+  discount === undefined ||
+  (parseInt(discount) &&
+    parseInt(discount) >= 0 &&
+    parseInt(discount) < parseInt(price));

@@ -31,11 +31,11 @@ CREATE TABLE item_categories(
 
 CREATE TABLE items(
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    name VARCHAR(50) NOT NULL,
+    name VARCHAR(50) NOT NULL UNIQUE,
     category_id UUID NOT NULL REFERENCES item_categories(id),
     description VARCHAR(150) NOT NULL,
-    price BIGINT NOT NULL,
-    discount BIGINT CHECK (discount < price),
+    price BIGINT NOT NULL CHECK (price > 0),
+    discount BIGINT DEFAULT 0 CHECK (discount < price),
     created_at TIMESTAMP DEFAULT NOW()
 );
 
