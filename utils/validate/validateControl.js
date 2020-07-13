@@ -1,5 +1,13 @@
 const validators = require("./validators");
 
+/**
+ * Checks whether given email, name, and password are valid.
+ * @function checkRegister
+ * @param {string} email - email to be validated
+ * @param {string} name - name to be validated
+ * @param {string} password - password to be validated
+ * @returns {object} whether given parameters are valid, and errors
+ */
 exports.checkRegister = (email, name, password) => {
   const errors = {};
   if (!email) {
@@ -23,6 +31,13 @@ exports.checkRegister = (email, name, password) => {
   return { errors, isValid: !Object.keys(errors).length };
 };
 
+/**
+ * Checks whether given email, and password are valid.
+ * @function checkRegister
+ * @param {string} email - email to be validated
+ * @param {string} password - password to be validated
+ * @returns {object} whether given parameters are valid, and errors
+ */
 exports.checkLogin = (email, password) => {
   const errors = {};
   if (!email) {

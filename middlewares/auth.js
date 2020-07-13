@@ -3,7 +3,13 @@ const pool = require("../config/postgres");
 
 const sendError = require("../utils/sendError");
 
-module.exports = auth = async (req, res, next) => {
+/**
+ * Authenticate a request, if successful attaches user to request body
+ * @param {object} req - express request object
+ * @param {object} res - express response object
+ * @param {function} next - express next() function
+ */
+module.exports = async (req, res, next) => {
   let token;
   if (
     req.headers.authorization &&
