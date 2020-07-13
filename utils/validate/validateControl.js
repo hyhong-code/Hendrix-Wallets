@@ -134,3 +134,30 @@ exports.checkItem = (name, description, price, discount) => {
 
   return { errors, isValid: !Object.keys(errors).length };
 };
+
+exports.checkOrder = (email, name, phone, address) => {
+  const errors = {};
+  if (!email) {
+    errors.email = `Email is required`;
+  } else if (!validators.checkEmail(email)) {
+    errors.email = `${email} is not a valid email address`;
+  }
+
+  if (!name) {
+    errors.name = `Name is required`;
+  } else if (!validators.checkFullName(name)) {
+    errors.name = `${name} is not a valid fullname`;
+  }
+
+  if (!phone) {
+    errors.phone = `A phone number is required`;
+  } else if (!validators.checkPhone(phone)) {
+    errors.phone = `${phone} is not a valid phone number`;
+  }
+
+  if (!address) {
+    errors.address = `An address is required`;
+  }
+
+  return { errors, isValid: !Object.keys(errors).length };
+};

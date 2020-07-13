@@ -51,10 +51,15 @@ CREATE TABLE orders(
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     user_id UUID NOT NULL REFERENCES users(id),
     cart_id UUID NOT NULL REFERENCES carts(id) UNIQUE,
+    email VARCHAR(50) NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    phone VARCHAR(150) NOT NULL,
+    address VARCHAR(255) NOT NULL,
     instructions VARCHAR(255),
     status VARCHAR(50) DEFAULT 'pending' CHECK (
         status IN ('pending', 'shipped', 'delivered', 'canceled')
     ),
+    total_price BIGINT NOT NULL CHECK (total_price > 0),
     created_at TIMESTAMP DEFAULT NOW(),
     shipped_at TIMESTAMP,
     delivered_at TIMESTAMP,

@@ -1,32 +1,8 @@
 const pool = require("../config/postgres");
 const sendError = require("../utils/sendError");
 
-/**
- * Returns given user's cart id
- * @function getCartId
- * @param {number} userId - user id from request
- * @returns {number} cartId - cart id of user
- */
-const getCartId = async (userId) =>
-  (await pool.query("SELECT * FROM carts WHERE user_id = $1 ;", [userId]))
-    .rows[0].id;
-
-/**
- * Helps find all cart items in user's cart
- * @function getCartItemsHelper
- * @param {number} cartId - id of user's cart
- * @returns {array} user's all cart items
- */
-const getCartItemsHelper = async (cartId) =>
-  (
-    await pool.query(
-      `SELECT cart_id, cart_items.id AS cart_item_id, quantity, item_id,
-          name, description, price, discount
-          FROM cart_items JOIN items ON item_id = items.id
-          WHERE cart_id = $1 ;`,
-      [cartId]
-    )
-  ).rows;
+const getCartItemsHelper = require("../utils/getCartItemsHelper");
+const getCartId = require("../utils/getCartId");
 
 // @desc    Add an item to cart
 // @route   POST /api/item/:itemId/cart/add
