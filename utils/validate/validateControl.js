@@ -57,7 +57,7 @@ exports.checkLogin = (email, password) => {
 
 /**
  * Checks whether given phone, email, and password are valid.
- * @function checkRegister
+ * @function checkProfile
  * @param {string} phone - phone number to be validated
  * @param {string} email - email to be validated
  * @param {string} name - name to be validated
@@ -76,6 +76,27 @@ exports.checkProfile = (phone, email, name) => {
 
   if (name && !validators.checkFullName(name)) {
     errors.name = `${name} is not a valid full name`;
+  }
+
+  return { errors, isValid: !Object.keys(errors).length };
+};
+
+/**
+ * Checks whether given phone, email, and password are valid.
+ * @function checkCategory
+ * @param {string} name - category name to be validated
+ * @param {string} description - category description to be validated
+ * @returns {object} whether given parameters are valid, and errors
+ */
+exports.checkCategory = (name, description) => {
+  const errors = {};
+
+  if (!name) {
+    errors.name = `A category name is required`;
+  }
+
+  if (!description) {
+    errors.description = `A category description is required`;
   }
 
   return { errors, isValid: !Object.keys(errors).length };

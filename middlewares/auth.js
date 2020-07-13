@@ -31,7 +31,7 @@ module.exports = async (req, res, next) => {
 
   try {
     const user = await pool.query(
-      `SELECT users.id, name, photo FROM users 
+      `SELECT users.id, name, photo, role FROM users 
          JOIN profiles ON users.id = profiles.user_id 
          WHERE users.id = $1 ;`,
       [decoded.id]

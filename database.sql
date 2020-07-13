@@ -24,7 +24,8 @@ CREATE TABLE profiles(
 
 CREATE TABLE item_categories(
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    name VARCHAR(50) NOT NULL,
+    name VARCHAR(50) NOT NULL UNIQUE,
+    description VARCHAR(150) NOT NULL,
     created_at TIMESTAMP DEFAULT NOW()
 );
 

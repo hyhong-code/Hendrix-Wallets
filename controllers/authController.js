@@ -9,7 +9,7 @@ const sendError = require("../utils/sendError");
 const sendJwtToken = require("../utils/sendJwtToken");
 
 // @desc    Register a user
-// @route   /api/auth/register
+// @route   POST /api/auth/register
 // @access  Public
 exports.register = async (req, res, next) => {
   try {
@@ -37,7 +37,7 @@ exports.register = async (req, res, next) => {
 };
 
 // @desc    Log in a user
-// @route   /api/auth/login
+// @route   POST /api/auth/login
 // @access  Public
 exports.login = async (req, res, next) => {
   try {
@@ -66,7 +66,7 @@ exports.login = async (req, res, next) => {
 };
 
 // @desc    Load current logged in user
-// @route   /api/auth/loadme
+// @route   GET /api/auth/loadme
 // @access  Private
 exports.loadMe = async (req, res, next) => {
   try {

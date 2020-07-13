@@ -3,6 +3,9 @@ const sendError = require("../utils/sendError");
 const { checkProfile } = require("../utils/validate/validateControl");
 const nullifyEmptyStr = require("../utils/nullifyEmptyStr");
 
+// @desc    Update current logged in user's profile
+// @route   PATCH /api/profile
+// @access  Private
 exports.updateProfile = async (req, res, next) => {
   let { phone, address, email, name } = req.body;
   const { isValid, errors } = checkProfile(phone, email, name);
