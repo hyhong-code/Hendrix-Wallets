@@ -54,3 +54,29 @@ exports.checkLogin = (email, password) => {
 
   return { errors, isValid: !Object.keys(errors).length };
 };
+
+/**
+ * Checks whether given phone, email, and password are valid.
+ * @function checkRegister
+ * @param {string} phone - phone number to be validated
+ * @param {string} email - email to be validated
+ * @param {string} name - name to be validated
+ * @returns {object} whether given parameters are valid, and errors
+ */
+exports.checkProfile = (phone, email, name) => {
+  const errors = {};
+
+  if (phone && !validators.checkPhone(phone)) {
+    errors.phone = `${phone} is not a valid phone number`;
+  }
+
+  if (email && !validators.checkEmail(email)) {
+    errors.email = `${email} is not a valid email address`;
+  }
+
+  if (name && !validators.checkFullName(name)) {
+    errors.name = `${name} is not a valid full name`;
+  }
+
+  return { errors, isValid: !Object.keys(errors).length };
+};

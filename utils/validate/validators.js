@@ -4,6 +4,9 @@ exports.checkEmail = (email) =>
   );
 
 exports.checkFullName = (fullName) =>
-  /^[a-z]([-']?[a-z]+)*( [a-z]([-']?[a-z]+)*)+$/.test(fullName);
+  /^[a-z]([-']?[a-z]+)*( [a-z]([-']?[a-z]+)*)+$/i.test(fullName);
 
 exports.checkPassword = (password) => password.length >= 6;
+
+exports.checkPhone = (phone) =>
+  /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(phone);

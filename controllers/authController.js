@@ -1,6 +1,6 @@
-const pool = require("../config/postgres");
 const bcrypt = require("bcryptjs");
 
+const pool = require("../config/postgres");
 const {
   checkRegister,
   checkLogin,

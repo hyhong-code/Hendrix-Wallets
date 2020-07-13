@@ -4,6 +4,7 @@ const pool = require("./config/postgres");
 const morgan = require("morgan");
 
 const authRouter = require("./routes/authRouter");
+const profileRouter = require("./routes/profileRouter");
 
 // Middlewares
 const app = express();
@@ -17,6 +18,7 @@ app.get("/", async (req, res, next) => {
 
 // Mount Routers
 app.use("/api/auth", authRouter);
+app.use("/api/profile", profileRouter);
 
 const port = process.env.PORT || 5000;
 app.listen(port, console.log(`Server up on port ${port}`));
