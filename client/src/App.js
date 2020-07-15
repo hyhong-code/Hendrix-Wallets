@@ -1,4 +1,5 @@
-import React, { Fragment } from "react";
+import React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import Navbar from "./components/layout/Navbar";
 import Topbar from "./components/layout/Topbar";
@@ -8,12 +9,14 @@ import "./App.scss";
 
 const App = () => {
   return (
-    <Fragment>
+    <BrowserRouter>
       <Topbar />
       <Navbar />
-      <Home />
+      <Switch>
+        <Route exact path="/" component={Home} />
+      </Switch>
       <Footer />
-    </Fragment>
+    </BrowserRouter>
   );
 };
 

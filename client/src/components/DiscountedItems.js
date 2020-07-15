@@ -4,10 +4,10 @@ import ItemCard from "./ItemCard";
 
 const DiscountedItems = () => {
   return (
-    <section class="discount bg-dark text-light py-6">
-      <div class="container">
-        <h3 class="text-center mb-5">DISCOUNT STOCKS</h3>
-        <div class="row">
+    <section className="discount bg-dark text-light py-6">
+      <div className="container">
+        <h3 className="text-center mb-5">DISCOUNT STOCKS</h3>
+        <div className="row">
           <ItemCard />
           <ItemCard />
           <ItemCard />

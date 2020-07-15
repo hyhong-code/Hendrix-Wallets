@@ -1,5 +1,6 @@
 import React from "react";
 
+import logo from "../../assets/logo.png";
 import ShoppingCart from "../ShoppingCart";
 
 const Navbar = () => {
@@ -7,22 +8,22 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary text-light sticky-top py-2">
       <div className="container d-flex">
         <a className="navbar-brand d-flex align-items-center" href="#">
-          <img src="img/logo.png" className="logo" alt="" />
+          <img src={logo} className="logo" alt="" />
           <span className="ml-2">Hendrix</span>
         </a>
         <button
           className="navbar-toggler"
           type="button"
           data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
+          data-target="#mainNavbar"
+          aria-controls="mainNavbar"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <div className="collapse navbar-collapse" id="mainNavbar">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
               <a className="nav-link" href="#">

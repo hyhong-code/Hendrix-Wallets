@@ -18,7 +18,6 @@ body {
 }
 
 @mixin overlay($color, $transparency) {
-  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -32,8 +31,10 @@ body {
   padding-bottom: 5rem;
 }
 
-.social-icon {
-  font-size: 1.2rem;
+.topbar {
+  .social-icon {
+    font-size: 1.2rem;
+  }
 }
 
 .navbar {
@@ -50,69 +51,71 @@ body {
   .nav-link {
     font-size: 1rem;
   }
-}
 
-.banner {
-  height: 30rem;
-  background: linear-gradient(rgba(#f69e7b, 0.5), rgba(#f69e7b, 0.9)),
-    url("https://images.unsplash.com/photo-1567016627485-de3bcbecdbb2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80")
-      no-repeat center center/cover;
+  .cart-dropdown {
+    .list-group {
+      min-height: 15rem;
+      max-height: 25rem;
+      width: 15rem;
+      overflow: scroll;
+    }
 
-  p.lead {
-    font-size: 2rem;
+    .list-group-item {
+      padding: 0.2rem;
+    }
+
+    img {
+      width: 60px;
+      border-radius: 3px;
+    }
+  }
+
+  .signin {
+    &:hover {
+      background-color: lighten($color-secondary, 5%);
+      color: white;
+    }
   }
 }
 
-.carousel-overlay {
-  @include overlay(#000, 0.4);
-}
+#home {
+  .home-banner {
+    height: 30rem;
+    background: linear-gradient(rgba(#f69e7b, 0.5), rgba(#f69e7b, 0.9)),
+      url("https://images.unsplash.com/photo-1567016627485-de3bcbecdbb2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80")
+        no-repeat center center/cover;
 
-.collection-card {
-  position: relative;
-
-  &::before {
-    @include overlay(#000, 0.3);
+    p.lead {
+      font-size: 2rem;
+    }
   }
 
-  .badge {
-    position: absolute;
-    left: 1rem;
-    top: 1rem;
-    opacity: 0.9;
-    background-color: darken($color-primary, 10%);
-    color: $color-light;
-    font-size: 1rem;
-  }
-}
-
-.discount {
-  .discount-text {
-    text-decoration: line-through;
-    font-size: 0.8rem;
-  }
-}
-
-.cart-dropdown {
-  .list-group {
-    min-height: 15rem;
-    max-height: 25rem;
-    width: 15rem;
-    overflow: scroll;
+  .carousel-overlay {
+    @include overlay(#000, 0.4);
   }
 
-  .list-group-item {
-    padding: 0.2rem;
+  .collection-card {
+    position: relative;
+
+    &::before {
+      @include overlay(#000, 0.3);
+    }
+
+    .badge {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      opacity: 0.9;
+      background-color: darken($color-primary, 10%);
+      color: $color-light;
+      font-size: 1rem;
+    }
   }
 
-  img {
-    width: 60px;
-    border-radius: 3px;
-  }
-}
-
-.signin {
-  &:hover {
-    background-color: lighten($color-secondary, 5%);
-    color: white;
+  .discount {
+    .discount-text {
+      text-decoration: line-through;
+      font-size: 0.8rem;
+    }
   }
 }

@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-import Banner from "../layout/Banner";
+import HomeBanner from "../layout/HomeBanner";
 import Showcase from "../Showcase";
 import DiscountedItems from "../DiscountedItems";
 import About from "../About";
@@ -8,10 +8,12 @@ import About from "../About";
 const Home = () => {
   return (
     <Fragment>
-      <Banner />
-      <Showcase />
-      <DiscountedItems />
-      <About />
+      <section id="home">
+        <HomeBanner />
+        <Showcase />
+        <DiscountedItems />
+        <About />
+      </section>
     </Fragment>
   );
 };
