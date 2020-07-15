@@ -1,68 +1,79 @@
 import React from "react";
 
-import pic1 from "../assets/1.jpg";
-import pic2 from "../assets/2.jpg";
-import pic3 from "../assets/3.jpg";
-import pic4 from "../assets/4.jpg";
-
 const Carousel = () => {
   return (
-    <div id="carousel" className="carousel slide" data-ride="carousel">
+    <div
+      id="carouselExampleCaptions"
+      className="carousel slide"
+      data-ride="carousel"
+    >
       <ol className="carousel-indicators">
-        <li data-target="#carousel" data-slide-to="0" className="active"></li>
-        <li data-target="#carousel" data-slide-to="1"></li>
-        <li data-target="#carousel" data-slide-to="2"></li>
-        <li data-target="#carousel" data-slide-to="3"></li>
+        <li
+          data-target="#carouselExampleCaptions"
+          data-slide-to="0"
+          className="active"
+        ></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
       </ol>
       <div className="carousel-inner">
+        <div className="carousel-item">
+          <div className="carousel-overlay"></div>
+          <img
+            src="https://images.unsplash.com/photo-1576616074021-f6b73bbabde4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80"
+            className="d-block w-100"
+            alt="..."
+          />
+
+          <div className="carousel-caption d-none d-md-block">
+            <div className="d-flex flex-column align-items-start text-left">
+              <h5>$12.99</h5>
+              <p className="my-2">
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+              </p>
+              <button className="btn btn-secondary btn-sm">Learn more</button>
+            </div>
+          </div>
+        </div>
         <div className="carousel-item active">
           <div className="carousel-overlay"></div>
-          <img src={pic1} className="d-block w-100" alt="..." />
-          <div className="carousel-caption d-none d-md-block text-left">
-            <h5>$29.99</h5>
-            <p>TEXTURED EVERYDAY SUIT JACKET</p>
-            <a href="" className="btn btn-outline-light btn-sm">
-              Learn more
-            </a>
+          <img
+            src="https://images.unsplash.com/photo-1530185657381-2668451ca7e0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80"
+            className="d-block w-100"
+            alt="..."
+          />
+
+          <div className="carousel-caption d-none d-md-block">
+            <div className="d-flex flex-column align-items-start text-left">
+              <h5>$12.99</h5>
+              <p className="my-2">
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+              </p>
+              <button className="btn btn-secondary btn-sm">Learn more</button>
+            </div>
           </div>
         </div>
         <div className="carousel-item">
           <div className="carousel-overlay"></div>
-          <img src={pic2} className="d-block w-100" alt="..." />
-          <div className="carousel-caption d-none d-md-block text-left">
-            <h5>$29.99</h5>
-            <p>TEXTURED EVERYDAY SUIT JACKET</p>
-            <a href="" className="btn btn-outline-light btn-sm">
-              Learn more
-            </a>
-          </div>
-        </div>
-        <div className="carousel-item">
-          <div className="carousel-overlay"></div>
-          <img src={pic3} className="d-block w-100" alt="..." />
-          <div className="carousel-caption d-none d-md-block text-left">
-            <h5>$29.99</h5>
-            <p>TEXTURED EVERYDAY SUIT JACKET</p>
-            <a href="" className="btn btn-outline-light btn-sm">
-              Learn more
-            </a>
-          </div>
-        </div>
-        <div className="carousel-item">
-          <div className="carousel-overlay"></div>
-          <img src={pic4} className="d-block w-100" alt="..." />
-          <div className="carousel-caption d-none d-md-block text-left">
-            <h5>$29.99</h5>
-            <p>TEXTURED EVERYDAY SUIT JACKET</p>
-            <a href="" className="btn btn-outline-light btn-sm">
-              Learn more
-            </a>
+          <img
+            src="https://images.unsplash.com/photo-1512358958014-b651a7ee1773?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80"
+            className="d-block w-100"
+            alt="..."
+          />
+          <div className="carousel-caption d-none d-md-block">
+            <div className="d-flex flex-column align-items-start text-left">
+              <h5>$12.99</h5>
+              <p className="my-2">
+                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+              </p>
+              <button className="btn btn-secondary btn-sm">Learn more</button>
+            </div>
           </div>
         </div>
       </div>
       <a
         className="carousel-control-prev"
-        href="#carousel"
+        href="#carouselExampleCaptions"
         role="button"
         data-slide="prev"
       >
@@ -71,7 +82,7 @@ const Carousel = () => {
       </a>
       <a
         className="carousel-control-next"
-        href="#carousel"
+        href="#carouselExampleCaptions"
         role="button"
         data-slide="next"
       >
