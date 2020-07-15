@@ -1,0 +1,18 @@
+$color-primary: #4c5475;
+$color-secondary: #f69e7b;
+$color-dark: #1d202d;
+$color-light: #fcf8f6;
+
+$theme-colors: (
+  "primary": $color-primary,
+  "secondary": $color-secondary,
+  "dark": $color-dark,
+  "light": $color-light,
+);
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap");
+
+body {
+  font-family: "sora", sans-serif;
+}

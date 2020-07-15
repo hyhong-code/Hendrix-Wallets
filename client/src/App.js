@@ -1,12 +1,14 @@
-import React from "react";
-import "./App.css";
+import React, { Fragment } from "react";
 
-function App() {
+import Navbar from "./components/layout/Navbar";
+import "./App.scss";
+
+const App = () => {
   return (
-    <div className="App">
-      <h1>Hello</h1>
-    </div>
+    <Fragment>
+      <Navbar />
+    </Fragment>
   );
-}
+};
 
 export default App;
