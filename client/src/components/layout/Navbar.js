@@ -8,7 +8,11 @@ const Navbar = () => {
           HENDRIX
         </a>
 
-        <button className="navbar-toggler" data-toggle="mainNavbar">
+        <button
+          className="navbar-toggler"
+          data-toggle="collapse"
+          data-target="#mainNavbar"
+        >
           <span className="navbar-toggler-icon"></span>
         </button>
 
@@ -30,6 +34,11 @@ const Navbar = () => {
             <li className="nav-item">
               <a href="" className="nav-link">
                 PROFILE
+              </a>
+            </li>
+            <li className="nav-item">
+              <a href="" className="nav-link">
+                CART
               </a>
             </li>
             <li className="nav-item">

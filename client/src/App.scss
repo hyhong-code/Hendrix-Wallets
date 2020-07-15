@@ -15,4 +15,32 @@ $theme-colors: (
 
 body {
   font-family: "sora", sans-serif;
+  font-weight: 300;
+}
+
+.py-6 {
+  padding: 5rem 0;
+}
+
+.topbar {
+  .topbar-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0.2rem 0;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    font-weight: 400;
+
+    a {
+      color: inherit;
+      font-size: 1.2rem;
+
+      &:not(:first-child) {
+        margin-left: 0.5rem;
+      }
+    }
+  }
 }
