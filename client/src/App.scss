@@ -82,3 +82,33 @@ body {
     }
   }
 }
+
+// Home page
+.home-page {
+  .showcase {
+    min-height: 25rem;
+    background: linear-gradient(
+        to right bottom,
+        rgba($color-secondary, 0.9),
+        rgba($color-secondary, 0.3)
+      ),
+      url(https://images.unsplash.com/photo-1504593811423-6dd665756598?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80)
+        no-repeat center center/cover;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+      text-align: center;
+      span {
+        display: block;
+
+        &:last-child {
+          font-size: 2rem;
+          margin-top: 2rem;
+        }
+      }
+    }
+  }
+}

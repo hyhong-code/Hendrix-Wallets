@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 
 import Navbar from "./components/layout/Navbar";
 import Topbar from "./components/layout/Topbar";
+import Home from "./components/pages/Home";
 import "./App.scss";
 
 const App = () => {
@@ -9,6 +10,7 @@ const App = () => {
     <Fragment>
       <Topbar />
       <Navbar />
+      <Home />
     </Fragment>
   );
 };
