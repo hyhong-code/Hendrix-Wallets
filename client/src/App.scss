@@ -79,9 +79,13 @@ body {
 }
 
 #home {
+  min-height: 85vh;
   .home-banner {
-    height: 30rem;
-    background: linear-gradient(rgba(#f69e7b, 0.5), rgba(#f69e7b, 0.9)),
+    min-height: 30rem;
+    background: linear-gradient(
+        rgba($color-secondary, 0.5),
+        rgba($color-secondary, 0.9)
+      ),
       url("https://images.unsplash.com/photo-1567016627485-de3bcbecdbb2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80")
         no-repeat center center/cover;
 
@@ -117,5 +121,22 @@ body {
       text-decoration: line-through;
       font-size: 0.8rem;
     }
+  }
+}
+
+#itemsList {
+  min-height: 85vh;
+  .itemslist-banner {
+    min-height: 25vh;
+    background: linear-gradient(
+        rgba($color-secondary, 0.5),
+        rgba($color-secondary, 0.9)
+      ),
+      url(https://images.unsplash.com/photo-1510681491618-3cb3e5bb6bf6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80)
+        no-repeat center center/cover;
+  }
+
+  .card {
+    box-shadow: 0 2px 10px rgba($color-dark, 0.1);
   }
 }

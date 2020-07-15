@@ -2,7 +2,7 @@ import React from "react";
 
 const ItemCard = () => {
   return (
-    <div className="col-md-3 mb-4">
+    <div className="col-md-6 col-lg-3 mb-4">
       <div className="card text-dark">
         <img
           src="https://images.unsplash.com/photo-1570549667552-8a73ebf96469?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2397&q=80"
