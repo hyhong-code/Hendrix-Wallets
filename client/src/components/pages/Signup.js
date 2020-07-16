@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-const Signup = () => {
+import { signup } from "../../actions/authActions";
+
+const Signup = ({ signup }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,12 +21,16 @@ const Signup = () => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     console.log(formData);
-    setFormData({
-      name: "",
-      email: "",
-      password: "",
-      passwordConfirm: "",
-    });
+
+    if (password === passwordConfirm) {
+      signup(formData);
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+        passwordConfirm: "",
+      });
+    }
   };
 
   return (
@@ -108,4 +115,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default connect(null, { signup })(Signup);
