@@ -17,6 +17,7 @@ const Carousel = ({ categories }) => {
         ></li>
         {categories.slice(0, categories.length - 1).map((_, idx) => (
           <li
+            key={idx}
             data-target="#carouselExampleCaptions"
             data-slide-to={`${idx + 1}`}
           ></li>

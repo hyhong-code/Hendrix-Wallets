@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { getCategories } from "./actions/categoryActions";
+import { getItems } from "./actions/itemActions";
 import Navbar from "./components/layout/Navbar";
 import Topbar from "./components/layout/Topbar";
 import Home from "./components/pages/Home";
@@ -14,16 +15,18 @@ import Orders from "./components/pages/Orders";
 import OrderDetail from "./components/pages/OrderDetail";
 import "./App.scss";
 
-const App = ({ getCategories }) => {
+const App = ({ getCategories, getItems }) => {
   // Get all categories
   useEffect(() => {
     let isMounted = true;
     if (isMounted) {
       getCategories();
+      getItems();
     }
     return () => {
       isMounted = false;
     };
+    // eslint-disable-next-line
   }, []);
   return (
     <BrowserRouter>
@@ -42,4 +45,4 @@ const App = ({ getCategories }) => {
   );
 };
 
-export default connect(null, { getCategories })(App);
+export default connect(null, { getCategories, getItems })(App);

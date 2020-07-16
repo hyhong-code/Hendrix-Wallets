@@ -42,8 +42,16 @@ exports.createItem = async (req, res, next) => {
 // @route   POST /api/category/:categoryId/item
 // @access  Admin role
 exports.getItems = async (req, res, next) => {
+  console.log(req.query);
+  let items;
   try {
-    const items = await pool.query(`SELECT * FROM items ;`);
+    if (req.query && req.query.discount && req.query.discount === "true") {
+      items = await pool.query(`SELECT * FROM items WHERE discount > $1 ;`, [
+        0,
+      ]);
+    } else {
+      items = await pool.query(`SELECT * FROM items ;`);
+    }
     res.status(200).json({ items: items.rows });
   } catch (error) {
     console.error(error);
