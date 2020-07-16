@@ -1,23 +1,47 @@
 import React from "react";
+import { connect } from "react-redux";
 
-const CartItem = () => {
+import { addItemToCart } from "../actions/cartActions";
+
+const CartItem = ({ cartItem, addItemToCart }) => {
   return (
-    <a className="list-group-item bg-light">
-      <div className="d-flex align-items-center justify-content-between">
-        <img
-          src="https://images.unsplash.com/photo-1532033375034-a29004ea9769?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2200&q=80"
-          alt=""
-          className="img-fluid"
-        />
-        <div className="mr-1">
-          <p className="m-0">
-            <strong>ATTIC </strong>x 2
-          </p>
-          <small className="text-muted float-right">$30</small>
+    <li className="list-group-item bg-light">
+      <div className="row no-gutters">
+        <div className="col-3">
+          <img
+            src={cartItem.photo}
+            alt={`cart item ${cartItem.name}`}
+            className="img-fluid"
+          />
+        </div>
+        <div className="col-4">
+          <div className="h-100 d-flex align-items-center justify-content-end text-primary">
+            <span className="p-2 cart-item-action-arr">
+              <i className="fas fa-chevron-left"></i>
+            </span>
+
+            <span className="text-dark">{cartItem.quantity}</span>
+            <span
+              onClick={() => addItemToCart(cartItem.item_id)}
+              className="p-2 cart-item-action-arr"
+            >
+              <i className="fas fa-chevron-right"></i>
+            </span>
+          </div>
+        </div>
+        <div className="col-5">
+          <div className="h-100 d-flex flex-column align-items-end justify-content-center mr-1">
+            <p className="m-0 item-name">
+              <strong>{cartItem.name} </strong>
+            </p>
+            <small className="text-muted float-right">
+              ${(cartItem.price - cartItem.discount) / 100} / pc
+            </small>
+          </div>
         </div>
       </div>
-    </a>
+    </li>
   );
 };
 
-export default CartItem;
+export default connect(null, { addItemToCart })(CartItem);

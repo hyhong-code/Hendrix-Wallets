@@ -77,6 +77,21 @@ body {
 
     .list-group-item {
       padding: 0.2rem;
+
+      .cart-item-action-arr {
+        cursor: pointer;
+        display: inline-block;
+        transition: all 0.2s ease-out;
+
+        &:hover {
+          color: $color-secondary;
+          transform: scale(1.2);
+        }
+      }
+
+      .item-name {
+        font-size: 1rem;
+      }
     }
 
     img {
