@@ -409,6 +409,8 @@ body {
   }
 
   .form {
+    @include card-shadow();
+
     .form-group {
       margin-bottom: 1.3rem;
       label {
