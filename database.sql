@@ -10,7 +10,7 @@ CREATE TABLE users(
 CREATE TABLE profiles(
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     user_id UUID NOT NULL REFERENCES users(id) UNIQUE,
-    photo VARCHAR(150) DEFAULT 'default.jpeg',
+    photo VARCHAR(150) DEFAULT 'https://haiyanghongnewbucket.s3-us-west-2.amazonaws.com/hendrix/user/default-user.png',
     phone VARCHAR(150),
     address VARCHAR(255),
     created_at TIMESTAMP DEFAULT NOW()

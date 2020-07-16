@@ -22,7 +22,7 @@ export default (state = INITIAL_STATE, action) => {
       setTokenHeader(payload.token);
       return { ...state, isAuthenticated: true };
     case USER_LOADED:
-      return { ...state, isAuthenticated: true, user: payload };
+      return { ...state, isAuthenticated: true, ...payload };
     case LOGIN_FAILED:
     case SIGNUP_FAILED:
     case AUTH_ERROR:

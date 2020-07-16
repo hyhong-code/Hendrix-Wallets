@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 import { getCategories } from "./actions/categoryActions";
 import { getItems } from "./actions/itemActions";
+import { loadUser } from "./actions/authActions";
 import Navbar from "./components/layout/Navbar";
 import Topbar from "./components/layout/Topbar";
 import Home from "./components/pages/Home";
@@ -17,10 +18,11 @@ import Signup from "./components/pages/Signup";
 import Login from "./components/pages/Login";
 import "./App.scss";
 
-const App = ({ getCategories, getItems }) => {
+const App = ({ getCategories, getItems, loadUser }) => {
   useEffect(() => {
     let isMounted = true;
     if (isMounted) {
+      loadUser();
       getCategories();
       getItems();
     }
@@ -48,4 +50,4 @@ const App = ({ getCategories, getItems }) => {
   );
 };
 
-export default connect(null, { getCategories, getItems })(App);
+export default connect(null, { getCategories, getItems, loadUser })(App);
