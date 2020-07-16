@@ -17,6 +17,8 @@ const ItemList = ({ match, categories, items }) => {
     ) {
       setCheckedboxes([match.params.category]);
     } else if (match.params.category.startsWith("search-")) {
+      setCheckedboxes([]);
+      setDiscountOnly(false);
       setSearchText(match.params.category.split("-")[1]);
     }
   }, [match.params.category]);

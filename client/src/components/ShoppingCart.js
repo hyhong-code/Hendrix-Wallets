@@ -18,7 +18,7 @@ const ShoppingCart = () => {
         My Cart
       </a>
       <div
-        className="dropdown-menu p-0 text-dark bg-light"
+        className="dropdown-menu dropdown-menu-right p-0 text-dark bg-light"
         aria-labelledby="navbarDropdown"
       >
         <div className="cart-dropdown">

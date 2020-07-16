@@ -1,12 +1,41 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { connect } from "react-redux";
 
 import logo from "../../assets/logo.png";
 import ShoppingCart from "../ShoppingCart";
 import Avartar from "../Avartar";
 import SearchForm from "../SearchForm";
 
-const Navbar = () => {
+const Navbar = ({ auth: { isAuthenticated, user } }) => {
+  const authLinks = () => (
+    <Fragment>
+      <ShoppingCart />
+      <li className="nav-item d-lg-none">
+        <NavLink exact to="/checkout" className="nav-link">
+          My Cart
+        </NavLink>
+      </li>
+      <Avartar />
+    </Fragment>
+  );
+
+  const guestLinks = () => (
+    <Fragment>
+      <li className="nav-item">
+        <NavLink exact to="/signup" className="nav-link">
+          SignUp
+        </NavLink>
+      </li>
+      <li className="nav-item">
+        <NavLink exact to="/login" className="nav-link">
+          LogIn
+        </NavLink>
+      </li>
+      <SearchForm />
+    </Fragment>
+  );
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary text-light sticky-top py-2">
       <div className="container d-flex">
@@ -38,28 +67,11 @@ const Navbar = () => {
                 EXPLORE
               </NavLink>
             </li>
-            <SearchForm />
+            {isAuthenticated && <SearchForm />}
           </ul>
 
           <ul className="navbar-nav ml-auto align-items-center">
-            <li className="nav-item d-lg-none">
-              <NavLink exact to="/checkout" className="nav-link">
-                My Cart
-              </NavLink>
-            </li>
-            <ShoppingCart />
-            <li className="nav-item">
-              <NavLink exact to="/signup" className="nav-link">
-                SignUp
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink exact to="/login" className="nav-link">
-                LogIn
-              </NavLink>
-            </li>
-            {/* <SearchForm /> */}
-            <Avartar />
+            {isAuthenticated ? authLinks() : guestLinks()}
           </ul>
         </div>
       </div>
@@ -67,4 +79,6 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+const mapStateToProps = ({ auth }) => ({ auth });
+
+export default connect(mapStateToProps)(Navbar);
