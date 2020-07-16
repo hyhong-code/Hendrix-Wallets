@@ -11,6 +11,8 @@ export default (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
   switch (type) {
     case CART_FETCHED:
+    case ADDED_TO_CART:
+    case REMOVED_FROM_CART:
       return payload;
     case CART_ERROR:
       return INITIAL_STATE;

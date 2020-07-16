@@ -10,11 +10,20 @@ import {
 export const getCartItems = () => async (dispatch) => {
   try {
     const res = await axios.get("/api/cart");
-
-    console.log(res.data);
-
     dispatch({
       type: CART_FETCHED,
+      payload: res.data.cart,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const addItemToCart = (itemId) => async (dispatch) => {
+  try {
+    const res = await axios.post(`/api/item/${itemId}/cart/`);
+    dispatch({
+      type: ADDED_TO_CART,
       payload: res.data.cart,
     });
   } catch (error) {

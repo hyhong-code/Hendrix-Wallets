@@ -1,6 +1,9 @@
 import React from "react";
+import { connect } from "react-redux";
 
-const ItemCard = ({ item }) => {
+import { addItemToCart } from "../actions/cartActions";
+
+const ItemCard = ({ item, addItemToCart }) => {
   const pricing = () =>
     item.discount > 0 ? (
       <h5 className="card-title mb-1 text-secondary">
@@ -27,7 +30,10 @@ const ItemCard = ({ item }) => {
           <a href="#!" className="btn btn-sm btn-outline-primary ">
             <i className="fas fa-info-circle"></i>
           </a>
-          <button href="#!" className="btn btn-sm btn-outline-secondary ml-2">
+          <button
+            onClick={() => addItemToCart(item.id)}
+            className="btn btn-sm btn-outline-secondary ml-2"
+          >
             <i className="fas fa-cart-plus"></i>
           </button>
         </div>
@@ -36,4 +42,4 @@ const ItemCard = ({ item }) => {
   );
 };
 
-export default ItemCard;
+export default connect(null, { addItemToCart })(ItemCard);
