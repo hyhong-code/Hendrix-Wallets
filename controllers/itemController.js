@@ -37,3 +37,16 @@ exports.createItem = async (req, res, next) => {
     }
   }
 };
+
+// @desc    Create a item
+// @route   POST /api/category/:categoryId/item
+// @access  Admin role
+exports.getItems = async (req, res, next) => {
+  try {
+    const items = await pool.query(`SELECT * FROM items ;`);
+    res.status(200).json({ items: items.rows });
+  } catch (error) {
+    console.error(error);
+    sendError(res);
+  }
+};
