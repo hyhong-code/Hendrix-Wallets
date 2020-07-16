@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
 
+import { getCategories } from "./actions/categoryActions";
 import Navbar from "./components/layout/Navbar";
 import Topbar from "./components/layout/Topbar";
 import Home from "./components/pages/Home";
@@ -12,7 +14,16 @@ import Orders from "./components/pages/Orders";
 import OrderDetail from "./components/pages/OrderDetail";
 import "./App.scss";
 
-const App = () => {
+const App = ({ getCategories }) => {
+  useEffect(() => {
+    let isMounted = true;
+    if (isMounted) {
+      getCategories();
+    }
+    return () => {
+      isMounted = false;
+    };
+  }, []);
   return (
     <BrowserRouter>
       <Topbar />
@@ -30,4 +41,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default connect(null, { getCategories })(App);
