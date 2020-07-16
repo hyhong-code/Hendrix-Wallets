@@ -70,7 +70,9 @@ body {
     }
 
     img {
+      object-fit: cover;
       width: 60px;
+      height: 60px;
       border-radius: 3px;
     }
   }
@@ -155,6 +157,14 @@ body {
       text-decoration: line-through;
       font-size: 0.8rem;
     }
+
+    .card {
+      img {
+        width: 100%;
+        height: 8rem;
+        object-fit: cover;
+      }
+    }
   }
 }
 
@@ -217,6 +227,12 @@ body {
   .card {
     @include card-shadow();
 
+    img {
+      width: 100%;
+      height: 8rem;
+      object-fit: cover;
+    }
+
     .discount-text {
       text-decoration: line-through;
       font-size: 0.8rem;
@@ -257,6 +273,7 @@ body {
     @include card-shadow();
     .checkout-card-img {
       object-fit: cover;
+      width: 100%;
       height: 9rem;
     }
 
@@ -302,6 +319,12 @@ body {
 
   .card {
     @include card-shadow();
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 9rem;
+    }
   }
 
   .orderlist-item {
