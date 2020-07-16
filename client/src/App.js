@@ -13,10 +13,11 @@ import Checkout from "./components/pages/Checkout";
 import Profile from "./components/pages/Profile";
 import Orders from "./components/pages/Orders";
 import OrderDetail from "./components/pages/OrderDetail";
+import Signup from "./components/pages/Signup";
+import Login from "./components/pages/Login";
 import "./App.scss";
 
 const App = ({ getCategories, getItems }) => {
-  // Get all categories
   useEffect(() => {
     let isMounted = true;
     if (isMounted) {
@@ -39,6 +40,8 @@ const App = ({ getCategories, getItems }) => {
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/orders" component={Orders} />
         <Route exact path="/orderDetail" component={OrderDetail} />
+        <Route exact path="/signup" component={Signup} />
+        <Route exact path="/login" component={Login} />
       </Switch>
       <Footer />
     </BrowserRouter>

@@ -49,13 +49,13 @@ const Navbar = () => {
             </li>
             <ShoppingCart />
             <li className="nav-item">
-              <NavLink exact to="signup" className="nav-link">
-                Sign Up
+              <NavLink exact to="/signup" className="nav-link">
+                SignUp
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink exact to="login" className="nav-link">
-                Log In
+              <NavLink exact to="/login" className="nav-link">
+                LogIn
               </NavLink>
             </li>
             {/* <SearchForm /> */}
