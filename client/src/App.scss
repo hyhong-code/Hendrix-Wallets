@@ -18,6 +18,7 @@ body {
 }
 
 @mixin overlay($color, $transparency) {
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -92,7 +93,7 @@ body {
     .form-control {
       display: inline-block;
       width: 10rem;
-      height: 2.2rem;
+      height: 2rem;
       font-size: 0.8rem;
     }
   }
@@ -114,12 +115,24 @@ body {
     }
   }
 
-  .carousel-overlay {
-    @include overlay(#000, 0.4);
+  .carousel {
+    border-radius: 8px;
+    overflow: hidden;
+
+    .carousel-overlay {
+      @include overlay(#000, 0.4);
+    }
   }
 
   .collection-card {
+    border-radius: 5px;
+    overflow: hidden;
     position: relative;
+
+    .collection-img {
+      object-fit: cover;
+      width: 100%;
+    }
 
     &::before {
       @include overlay(#000, 0.3);

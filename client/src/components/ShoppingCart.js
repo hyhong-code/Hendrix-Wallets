@@ -15,7 +15,7 @@ const ShoppingCart = () => {
         aria-haspopup="true"
         aria-expanded="false"
       >
-        Cart
+        My Cart
       </a>
       <div
         className="dropdown-menu p-0 text-dark bg-light"

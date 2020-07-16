@@ -12,7 +12,7 @@ const Showcase = () => {
             <Carousel />
           </div>
           <div className="col-md-5">
-            <h3 className="text-center">SHOP COLLECTIONS</h3>
+            <h3 className="text-center mb-3">SHOP COLLECTIONS</h3>
             <div className="row">
               <CollectionCard />
               <CollectionCard />

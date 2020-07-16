@@ -3,6 +3,8 @@ import { Link, NavLink } from "react-router-dom";
 
 import logo from "../../assets/logo.png";
 import ShoppingCart from "../ShoppingCart";
+import Avartar from "../Avartar";
+import SearchForm from "../SearchForm";
 
 const Navbar = () => {
   return (
@@ -36,66 +38,28 @@ const Navbar = () => {
                 EXPLORE
               </NavLink>
             </li>
-            <form action="" className="form-inline my-2 my-lg-0 ml-0 ml-lg-2">
-              <input
-                type="search"
-                placeholder="Search Products..."
-                className="form-control mr-2 bg-light"
-              />
-              <button className="btn btn-outline-light my-2 my-sm-0">
-                <fas className="fas fa-search"></fas>
-              </button>
-            </form>
+            <SearchForm />
           </ul>
 
           <ul className="navbar-nav ml-auto align-items-center">
             <li className="nav-item d-lg-none">
-              <a className="nav-link" href="#">
-                Cart
-              </a>
+              <NavLink exact to="/checkout" className="nav-link">
+                My Cart
+              </NavLink>
             </li>
             <ShoppingCart />
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown2"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Signin
-              </a>
-              <div
-                className="dropdown-menu text-dark bg-light"
-                aria-labelledby="navbarDropdown2"
-              >
-                <a className="dropdown-item signin" href="#">
-                  Login
-                </a>
-                <a className="dropdown-item signin" href="#">
-                  Signup
-                </a>
-              </div>
+            <li className="nav-item">
+              <NavLink exact to="signup" className="nav-link">
+                Sign Up
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a href="" className="nav-link">
-                Order
-              </a>
+              <NavLink exact to="login" className="nav-link">
+                Log In
+              </NavLink>
             </li>
-            <li className="nav-item my-lg-0 ml-0 ml-lg-2">
-              {/* <a href="" className="nav-link">
-                Profile
-              </a> */}
-              <a className="nav-link p-0" href="">
-                <img
-                  src="https://mobirise.com/bootstrap-template/profile-template/assets/images/timothy-paul-smith-256424-1200x800.jpg"
-                  alt=""
-                  className="img-fluid rounded-circle d-inline-block profile-pic"
-                />
-              </a>
-            </li>
+            {/* <SearchForm /> */}
+            <Avartar />
           </ul>
         </div>
       </div>
