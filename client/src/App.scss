@@ -79,7 +79,7 @@ body {
     object-fit: cover;
     width: 45px;
     height: 45px;
-    border: 1px solid $color-secondary;
+    border: 2px solid $color-secondary;
   }
 
   .signin {
@@ -234,6 +234,27 @@ body {
       &:hover {
         background-color: lighten($color-secondary, 15%);
         color: $color-dark;
+      }
+    }
+  }
+}
+
+#order-detail {
+  .order-summary-panel {
+    @include card-shadow();
+  }
+
+  .order-detail-item {
+    @include card-shadow();
+    .order-detail-item-img {
+      object-fit: cover;
+      height: 9rem;
+    }
+
+    .text-price {
+      font-size: 1.1rem;
+      .text-normal-price {
+        text-decoration: line-through;
       }
     }
   }

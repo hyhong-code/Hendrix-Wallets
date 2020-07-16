@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import CollectionCard from "./CollectionCard";
 import Carousel from "./Carousel";
@@ -19,9 +20,9 @@ const Showcase = () => {
               <CollectionCard />
               <CollectionCard />
             </div>
-            <a href="#!" className="btn btn-primary btn-block mt-4">
+            <Link to="/items" className="btn btn-primary btn-block mt-4">
               Browse All
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -9,21 +9,24 @@ const Orders = () => {
         <h1 className="display-4 text-center text-primary">ORDERS</h1>
         <hr />
         <div className="row">
-          <div className="col-md-8 offset-md-2">
+          <div className="col-md-10 offset-md-1">
             <div className="card">
               <div className="card-body">
                 <div className="row orderlist-head">
-                  <div className="col-4 d-none d-md-block">
+                  <div className="col-4 d-none d-lg-block p-0 ">
                     <strong>Order No.</strong>
                   </div>
-                  <div className="col-8 col-lg-4">
+                  <div className="col-5 col-lg-2 p-0 ">
                     <strong>Order Date</strong>
                   </div>
-                  <div className="col-2 d-none d-lg-block">
+                  <div className="col-2 d-none d-lg-block p-0 ">
                     <strong>Item Qty</strong>
                   </div>
-                  <div className="col-4 col-lg-2">
+                  <div className="col-4 col-lg-2 p-0">
                     <strong>Total</strong>
+                  </div>
+                  <div className="col-3 col-lg-2 p-0">
+                    <strong>Status</strong>
                   </div>
                 </div>
                 <ul className="list-group list-group-flush">
