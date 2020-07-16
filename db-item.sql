@@ -93,3 +93,167 @@ VALUES
     '1899',
     '200'
   );
+
+-- --------------------------------------------------------------------
+INSERT INTO
+  items(
+    name,
+    category_id,
+    description,
+    photo,
+    price,
+    discount
+  )
+VALUES
+  (
+    'KONIRY',
+    '583af0af-4630-4e14-8a21-4bce684e6f5b',
+    'suspendisse faucibus interdum posuere lorem ipsum dolor sit amet consectetur adipiscing elit duis tristique sollicitudin',
+    'https://haiyanghongnewbucket.s3-us-west-2.amazonaws.com/hendrix/item/koniry.jpg',
+    '1699',
+    '300'
+  );
+
+INSERT INTO
+  items(
+    name,
+    category_id,
+    description,
+    photo,
+    price
+  )
+VALUES
+  (
+    'FEXTY',
+    '583af0af-4630-4e14-8a21-4bce684e6f5b',
+    'pellentesque pulvinar pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas',
+    'https://haiyanghongnewbucket.s3-us-west-2.amazonaws.com/hendrix/item/fexty.jpg',
+    '1699'
+  );
+
+INSERT INTO
+  items(
+    name,
+    category_id,
+    description,
+    photo,
+    price
+  )
+VALUES
+  (
+    'HEYINZ',
+    '583af0af-4630-4e14-8a21-4bce684e6f5b',
+    'habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus',
+    'https://haiyanghongnewbucket.s3-us-west-2.amazonaws.com/hendrix/item/heyinz.jpg',
+    '1699'
+  );
+
+INSERT INTO
+  items(
+    name,
+    category_id,
+    description,
+    photo,
+    price
+  )
+VALUES
+  (
+    'SYNATY',
+    '583af0af-4630-4e14-8a21-4bce684e6f5b',
+    'aliquam nulla facilisi cras fermentum odio eu feugiat pretium nibh ipsum consequat nisl vel pretium',
+    'https://haiyanghongnewbucket.s3-us-west-2.amazonaws.com/hendrix/item/synaty.jpg',
+    '999'
+  );
+
+-- --------------------------------------------------------------------
+INSERT INTO
+  items(
+    name,
+    category_id,
+    description,
+    photo,
+    price,
+    discount
+  )
+VALUES
+  (
+    'GRIVETY',
+    'f4fb464d-fcda-4e17-ba79-17357982c13a',
+    'posuere morbi leo urna molestie at elementum eu facilisis sed odio morbi quis commodo odio',
+    'https://haiyanghongnewbucket.s3-us-west-2.amazonaws.com/hendrix/item/grivety.jpg',
+    '1699',
+    '300'
+  );
+
+INSERT INTO
+  items(
+    name,
+    category_id,
+    description,
+    photo,
+    price,
+    discount
+  )
+VALUES
+  (
+    'LIGGLO',
+    'f4fb464d-fcda-4e17-ba79-17357982c13a',
+    'porta lorem mollis aliquam ut porttitor leo a diam sollicitudin tempor id eu nisl nunc',
+    'https://haiyanghongnewbucket.s3-us-west-2.amazonaws.com/hendrix/item/ligglo.jpg',
+    '1799',
+    '200'
+  );
+
+-- --------------------------------------------------------------------
+INSERT INTO
+  items(
+    name,
+    category_id,
+    description,
+    photo,
+    price
+  )
+VALUES
+  (
+    'HIOTY',
+    'c6ba7bc5-2ac8-4641-8dab-18931db46cb8',
+    'enim tortor at auctor urna nunc id cursus metus aliquam eleifend mi in nulla posuere',
+    'https://haiyanghongnewbucket.s3-us-west-2.amazonaws.com/hendrix/item/hioty.jpg',
+    '1299'
+  );
+
+INSERT INTO
+  items(
+    name,
+    category_id,
+    description,
+    photo,
+    price,
+    discount
+  )
+VALUES
+  (
+    'WOZTY',
+    'c6ba7bc5-2ac8-4641-8dab-18931db46cb8',
+    'elit pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas integer',
+    'https://haiyanghongnewbucket.s3-us-west-2.amazonaws.com/hendrix/item/wozty.jpg',
+    '1499',
+    '250'
+  );
+
+INSERT INTO
+  items(
+    name,
+    category_id,
+    description,
+    photo,
+    price
+  )
+VALUES
+  (
+    'DONICY',
+    'c6ba7bc5-2ac8-4641-8dab-18931db46cb8',
+    'malesuada proin libero nunc consequat interdum varius sit amet mattis vulputate enim nulla aliquet porttitor',
+    'https://haiyanghongnewbucket.s3-us-west-2.amazonaws.com/hendrix/item/donicy.jpg',
+    '999'
+  );
