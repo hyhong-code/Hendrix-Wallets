@@ -7,12 +7,19 @@ import ItemFilter from "../ItemFilter";
 const ItemList = ({ match, categories, items }) => {
   const [checkedboxes, setCheckedboxes] = useState([]);
   const [discountOnly, setDiscountOnly] = useState(false);
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
-    if (match.params.category !== "all") {
+    if (
+      categories
+        .map((category) => category.name)
+        .includes(match.params.category)
+    ) {
       setCheckedboxes([match.params.category]);
+    } else if (match.params.category.startsWith("search-")) {
+      setSearchText(match.params.category.split("-")[1]);
     }
-  }, []);
+  }, [match.params.category]);
 
   return (
     <section id="itemsList" className="bg-light text-dark">
@@ -48,6 +55,22 @@ const ItemList = ({ match, categories, items }) => {
                     .filter((item) => {
                       if (discountOnly) {
                         if (item.discount > 0) {
+                          return item;
+                        }
+                      } else {
+                        return item;
+                      }
+                    })
+                    .filter((item) => {
+                      if (searchText) {
+                        if (
+                          item.name
+                            .toLowerCase()
+                            .includes(searchText.toLowerCase()) ||
+                          item.description
+                            .toLowerCase()
+                            .includes(searchText.toLowerCase())
+                        ) {
                           return item;
                         }
                       } else {
