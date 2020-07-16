@@ -1,41 +1,29 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import ItemCard from "./ItemCard";
 
-const DiscountedItems = () => {
+const DiscountedItems = ({ items }) => {
   return (
     <section className="discount bg-dark text-light py-6">
       <div className="container">
         <h3 className="text-center mb-5">DISCOUNT STOCKS</h3>
         <div className="row">
-          <div className=" col-6 col-lg-3 mb-4">
-            <ItemCard />
-          </div>
-          <div className=" col-6 col-lg-3 mb-4">
-            <ItemCard />
-          </div>
-          <div className=" col-6 col-lg-3 mb-4">
-            <ItemCard />
-          </div>
-          <div className=" col-6 col-lg-3 mb-4">
-            <ItemCard />
-          </div>
-          <div className=" col-6 col-lg-3 mb-4">
-            <ItemCard />
-          </div>
-          <div className=" col-6 col-lg-3 mb-4">
-            <ItemCard />
-          </div>
-          <div className=" col-6 col-lg-3 mb-4">
-            <ItemCard />
-          </div>
-          <div className=" col-6 col-lg-3 mb-4">
-            <ItemCard />
-          </div>
+          {items
+            ? items
+                .filter((item) => item.discount > 0)
+                .map((item) => (
+                  <div key={item.id} className=" col-6 col-lg-3 mb-4">
+                    <ItemCard item={item} />
+                  </div>
+                ))
+            : null}
         </div>
       </div>
     </section>
   );
 };
 
-export default DiscountedItems;
+const mapStateToProps = ({ items }) => ({ items });
+
+export default connect(mapStateToProps)(DiscountedItems);
