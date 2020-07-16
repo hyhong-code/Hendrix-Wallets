@@ -20,6 +20,7 @@ CREATE TABLE item_categories(
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     name VARCHAR(50) NOT NULL UNIQUE,
     description VARCHAR(150) NOT NULL,
+    photo VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT NOW()
 );
 
@@ -28,6 +29,7 @@ CREATE TABLE items(
     name VARCHAR(50) NOT NULL UNIQUE,
     category_id UUID NOT NULL REFERENCES item_categories(id),
     description VARCHAR(150) NOT NULL,
+    photo VARCHAR(255) NOT NULL,
     price BIGINT NOT NULL CHECK (price > 0),
     discount BIGINT DEFAULT 0 CHECK (discount < price),
     created_at TIMESTAMP DEFAULT NOW()
@@ -56,9 +58,16 @@ CREATE TABLE orders(
     phone VARCHAR(150) NOT NULL,
     address VARCHAR(255) NOT NULL,
     instructions VARCHAR(255),
-    status VARCHAR(50) DEFAULT 'pending' CHECK (
-        status IN ('pending', 'shipped', 'delivered', 'canceled')
+    status VARCHAR(50) DEFAULT 'Unpaid' CHECK (
+        status IN (
+            'Unpaid',
+            'Processing',
+            'Shipped',
+            'Delivered',
+            'Canceled'
+        )
     ),
+    stripe_token VARCHAR(255),
     total_price BIGINT NOT NULL CHECK (total_price > 0),
     created_at TIMESTAMP DEFAULT NOW(),
     shipped_at TIMESTAMP,

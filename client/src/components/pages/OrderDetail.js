@@ -14,7 +14,7 @@ const OrderDetail = () => {
       <div className="container">
         <div className="py-3">
           <div className="row">
-            <div className="col-md-8 order-1 order-lg-0">
+            <div className="col-lg-8 order-1 order-lg-0">
               <OrderDetailItem />
               <OrderDetailItem />
               <OrderDetailItem />

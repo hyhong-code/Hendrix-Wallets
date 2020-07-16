@@ -28,3 +28,16 @@ exports.createCategory = async (req, res, next) => {
     sendError(res);
   }
 };
+
+// @desc    Get all categories
+// @route   GET /api/category
+// @access  Public
+exports.getCategories = async (req, res, next) => {
+  try {
+    const categories = await pool.query("SELECT * FROM item_categories ;");
+    res.status(200).json({ categories: categories.rows });
+  } catch (error) {
+    console.error(error);
+    sendError(res);
+  }
+};
