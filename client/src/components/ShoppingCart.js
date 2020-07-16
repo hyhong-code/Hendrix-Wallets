@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import CartItem from "./CartItem";
 
@@ -30,9 +31,12 @@ const ShoppingCart = () => {
               <CartItem />
               <CartItem />
             </div>
-            <a href="" className="mt-1 btn btn-secondary btn-block text-white">
+            <Link
+              to="/checkout"
+              className="mt-1 btn btn-secondary btn-block text-white"
+            >
               Checkout
-            </a>
+            </Link>
           </div>
         </div>
       </div>

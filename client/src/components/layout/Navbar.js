@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, NavLink } from "react-router-dom";
 
 import logo from "../../assets/logo.png";
 import ShoppingCart from "../ShoppingCart";
@@ -7,10 +8,10 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary text-light sticky-top py-2">
       <div className="container d-flex">
-        <a className="navbar-brand d-flex align-items-center" href="#">
+        <Link exact to="/" className="navbar-brand d-flex align-items-center">
           <img src={logo} className="logo" alt="" />
-          <span className="ml-2">Hendrix</span>
-        </a>
+          <span className="ml-2">HENDRIX</span>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -25,29 +26,19 @@ const Navbar = () => {
 
         <div className="collapse navbar-collapse" id="mainNavbar">
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item active">
-              <a className="nav-link" href="#">
+            <li className="nav-item">
+              <NavLink exact to="/" className="nav-link">
                 Home
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Link
-              </a>
+              <NavLink exact to="/items" className="nav-link">
+                EXPLORE
+              </NavLink>
             </li>
           </ul>
 
           <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Home
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Link
-              </a>
-            </li>
             <li className="nav-item d-lg-none">
               <a className="nav-link" href="#">
                 Cart
@@ -78,8 +69,18 @@ const Navbar = () => {
                 </a>
               </div>
             </li>
+            <li className="nav-item">
+              <a href="" className="nav-link">
+                Order
+              </a>
+            </li>
+            <li className="nav-item">
+              <a href="" className="nav-link">
+                Profile
+              </a>
+            </li>
           </ul>
-          <form action="" className="form-inline my-2 my-lg-0">
+          <form action="" className="form-inline my-2 my-lg-0 ml-0 ml-lg-1">
             <input
               type="search"
               placeholder="Search Product..."
