@@ -8,14 +8,30 @@ const DiscountedItems = () => {
       <div className="container">
         <h3 className="text-center mb-5">DISCOUNT STOCKS</h3>
         <div className="row">
-          <ItemCard />
-          <ItemCard />
-          <ItemCard />
-          <ItemCard />
-          <ItemCard />
-          <ItemCard />
-          <ItemCard />
-          <ItemCard />
+          <div className=" col-6 col-lg-3 mb-4">
+            <ItemCard />
+          </div>
+          <div className=" col-6 col-lg-3 mb-4">
+            <ItemCard />
+          </div>
+          <div className=" col-6 col-lg-3 mb-4">
+            <ItemCard />
+          </div>
+          <div className=" col-6 col-lg-3 mb-4">
+            <ItemCard />
+          </div>
+          <div className=" col-6 col-lg-3 mb-4">
+            <ItemCard />
+          </div>
+          <div className=" col-6 col-lg-3 mb-4">
+            <ItemCard />
+          </div>
+          <div className=" col-6 col-lg-3 mb-4">
+            <ItemCard />
+          </div>
+          <div className=" col-6 col-lg-3 mb-4">
+            <ItemCard />
+          </div>
         </div>
       </div>
     </section>

@@ -101,6 +101,7 @@ body {
 
 #home {
   min-height: 85vh;
+
   .home-banner {
     height: 30rem;
     background: linear-gradient(
@@ -157,6 +158,51 @@ body {
   }
 }
 
+@media screen and (max-width: 768px) {
+  #home {
+    .home-banner {
+      height: 20rem;
+
+      h1 {
+        font-size: 3rem;
+      }
+      p.lead {
+        font-size: 2rem;
+      }
+    }
+
+    .showcase {
+      padding: 3rem 0;
+
+      .carousel {
+        margin-bottom: 1rem;
+      }
+    }
+
+    .discount {
+      padding: 3rem 0;
+    }
+
+    .about {
+      padding: 3rem 0;
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  #home {
+    .home-banner {
+      h1 {
+        font-size: 2rem;
+      }
+
+      p.lead {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+
 #itemsList {
   min-height: 85vh;
   .itemslist-banner {
@@ -171,6 +217,11 @@ body {
 
   .card {
     @include card-shadow();
+
+    .discount-text {
+      text-decoration: line-through;
+      font-size: 0.8rem;
+    }
   }
 }
 

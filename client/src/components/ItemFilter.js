@@ -9,7 +9,7 @@ const ItemFilter = () => {
           <div className="custom-control custom-checkbox mb-3 w-75">
             <input
               type="checkbox"
-              class=" custom-control-input"
+              className=" custom-control-input"
               id="customCheck1"
             />
             <label htmlFor="customCheck1" className="custom-control-label">
@@ -19,7 +19,7 @@ const ItemFilter = () => {
           <div className="custom-control custom-checkbox mb-3 w-75">
             <input
               type="checkbox"
-              class=" custom-control-input"
+              className=" custom-control-input"
               id="customCheck2"
             />
             <label htmlFor="customCheck2" className="custom-control-label">
@@ -29,7 +29,7 @@ const ItemFilter = () => {
           <div className="custom-control custom-checkbox mb-3 w-75">
             <input
               type="checkbox"
-              class=" custom-control-input"
+              className=" custom-control-input"
               id="customCheck3"
             />
             <label htmlFor="customCheck3" className="custom-control-label">
@@ -39,7 +39,7 @@ const ItemFilter = () => {
           <div className="custom-control custom-checkbox mb-3 w-75">
             <input
               type="checkbox"
-              class=" custom-control-input"
+              className=" custom-control-input"
               id="customCheck4"
             />
             <label htmlFor="customCheck4" className="custom-control-label">
@@ -53,7 +53,7 @@ const ItemFilter = () => {
           <div className="custom-control custom-checkbox mb-3 w-75">
             <input
               type="checkbox"
-              class=" custom-control-input"
+              className=" custom-control-input"
               id="customCheck5"
             />
             <label htmlFor="customCheck5" className="custom-control-label">

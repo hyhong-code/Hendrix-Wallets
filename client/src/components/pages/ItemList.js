@@ -16,11 +16,21 @@ const ItemList = () => {
           </div>
           <div className="col-md-9">
             <div className="row items-container">
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
+              <div className="col-6 col-md-4 mb-4">
+                <ItemCard />
+              </div>
+              <div className="col-6 col-md-4 mb-4">
+                <ItemCard />
+              </div>
+              <div className="col-6 col-md-4 mb-4">
+                <ItemCard />
+              </div>
+              <div className="col-6 col-md-4 mb-4">
+                <ItemCard />
+              </div>
+              <div className="col-6 col-md-4 mb-4">
+                <ItemCard />
+              </div>
             </div>
           </div>
         </div>
