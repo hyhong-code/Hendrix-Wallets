@@ -12,7 +12,7 @@ const OrderDetail = () => {
       </div>
 
       <div className="container">
-        <div className="py-5">
+        <div className="py-3">
           <div className="row">
             <div className="col-md-8 order-1 order-lg-0">
               <OrderDetailItem />

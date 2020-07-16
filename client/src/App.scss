@@ -203,6 +203,15 @@ body {
 
   .subtotal-panel {
     @include card-shadow();
+    .order-info-modal-form {
+      position: relative;
+
+      .use-profile-btn {
+        position: absolute;
+        right: 0;
+        top: -7px;
+      }
+    }
   }
 }
 

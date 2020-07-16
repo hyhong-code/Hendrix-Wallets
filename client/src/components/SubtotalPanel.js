@@ -1,5 +1,7 @@
 import React from "react";
 
+import OrderInfoModal from "../components/OrderInfoModal";
+
 const SubtotalPanel = () => {
   return (
     <div className="card subtotal-panel mx-3">
@@ -26,9 +28,7 @@ const SubtotalPanel = () => {
           <div className="col-6 mb-2 text-primary">Final Total:</div>
           <div className="col-6 mb-2">$59.4</div>
         </div>
-        <button className="btn btn-primary d-block mx-auto mt-4">
-          Confirm Order
-        </button>
+        <OrderInfoModal />
       </div>
     </div>
   );

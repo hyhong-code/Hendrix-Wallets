@@ -11,7 +11,7 @@ const Checkout = () => {
       </div>
       <div className="container">
         <div className="py-5">
-          <h2 className="mb-4 text-primary">Your Cart:</h2>
+          <h2 className="text-primary mb-4 text-center">YOUR CART</h2>
           <div className="row">
             <div className="col-md-8 order-1 order-lg-0">
               <CheckoutItem />
