@@ -408,7 +408,7 @@ body {
     }
   }
 
-  .form {
+  form {
     @include card-shadow();
 
     .form-group {

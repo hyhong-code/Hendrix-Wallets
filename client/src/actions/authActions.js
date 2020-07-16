@@ -29,3 +29,18 @@ export const signup = (formData) => async (dispatch) => {
     });
   }
 };
+
+export const login = (formData) => async (dispatch) => {
+  try {
+    const res = await axios.post("/api/auth/login", formData, config);
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: res.data,
+    });
+  } catch (error) {
+    console.error(error.response);
+    dispatch({
+      type: LOGIN_FAILED,
+    });
+  }
+};
