@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { getCategories } from "./actions/categoryActions";
 import { getItems } from "./actions/itemActions";
 import { loadUser } from "./actions/authActions";
+import { getCartItems } from "./actions/cartActions";
 import GuestRoute from "./routes/GuestRoute";
 import Navbar from "./components/layout/Navbar";
 import Topbar from "./components/layout/Topbar";
@@ -19,8 +20,15 @@ import Signup from "./components/pages/Signup";
 import Login from "./components/pages/Login";
 import "./App.scss";
 
-const App = ({ getCategories, getItems, loadUser }) => {
+const App = ({
+  isAuthenticated,
+  getCategories,
+  getItems,
+  loadUser,
+  getCartItems,
+}) => {
   useEffect(() => {
+    // Load user, Fetch item categories, Fetch items
     let isMounted = true;
     if (isMounted) {
       loadUser();
@@ -32,6 +40,19 @@ const App = ({ getCategories, getItems, loadUser }) => {
     };
     // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    // Load user's cart items
+    let isMounted = true;
+    if (isMounted) {
+      getCartItems();
+    }
+    return () => {
+      isMounted = false;
+    };
+    // eslint-disable-next-line
+  }, [isAuthenticated]);
+
   return (
     <BrowserRouter>
       <Topbar />
@@ -51,4 +72,13 @@ const App = ({ getCategories, getItems, loadUser }) => {
   );
 };
 
-export default connect(null, { getCategories, getItems, loadUser })(App);
+const mapStateToProps = ({ auth: { isAuthenticated } }) => ({
+  isAuthenticated,
+});
+
+export default connect(mapStateToProps, {
+  getCategories,
+  getItems,
+  loadUser,
+  getCartItems,
+})(App);

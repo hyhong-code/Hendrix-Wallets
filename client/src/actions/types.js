@@ -12,3 +12,8 @@ export const SIGNUP_FAILED = "SIGNUP_FAILED";
 
 export const USER_LOADED = "USER_LOADED";
 export const AUTH_ERROR = "AUTH_ERROR";
+
+export const CART_FETCHED = "CART_FETCHED";
+export const ADDED_TO_CART = "ADDED_TO_CART";
+export const REMOVED_FROM_CART = "REMOVED_FROM_CART";
+export const CART_ERROR = "CART_ERROR";
