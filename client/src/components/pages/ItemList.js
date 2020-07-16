@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 
 import ItemCard from "../ItemCard";
 import ItemFilter from "../ItemFilter";
 
 const ItemList = ({ categories, items }) => {
+  const [checkedboxes, setCheckedboxes] = useState([]);
+  const [discountOnly, setDiscountOnly] = useState(false);
+
   return (
     <section id="itemsList" className="bg-light text-dark">
       <div className="itemslist-banner text-light d-flex align-items-center justify-content-center">
@@ -13,16 +16,43 @@ const ItemList = ({ categories, items }) => {
       <div className="container py-6">
         <div className="row">
           <div className="col-lg-3">
-            {categories ? <ItemFilter categories={categories} /> : null}
+            {categories ? (
+              <ItemFilter
+                setCheckedboxes={setCheckedboxes}
+                checkedboxes={checkedboxes}
+                discountOnly={discountOnly}
+                setDiscountOnly={setDiscountOnly}
+                categories={categories}
+              />
+            ) : null}
           </div>
           <div className="col-lg-9">
             <div className="row items-container">
               {items
-                ? items.map((item) => (
-                    <div key={item.id} className="col-6 col-md-4 mb-4">
-                      <ItemCard item={item} />
-                    </div>
-                  ))
+                ? items
+                    .filter((item) => {
+                      if (!checkedboxes.length) {
+                        return item;
+                      } else {
+                        if (checkedboxes.includes(item.category_name)) {
+                          return item;
+                        }
+                      }
+                    })
+                    .filter((item) => {
+                      if (discountOnly) {
+                        if (item.discount > 0) {
+                          return item;
+                        }
+                      } else {
+                        return item;
+                      }
+                    })
+                    .map((item) => (
+                      <div key={item.id} className="col-6 col-md-4 mb-4">
+                        <ItemCard item={item} />
+                      </div>
+                    ))
                 : null}
             </div>
           </div>

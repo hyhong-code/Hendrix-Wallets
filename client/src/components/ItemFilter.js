@@ -1,6 +1,33 @@
 import React from "react";
 
-const ItemFilter = ({ categories }) => {
+const ItemFilter = ({
+  categories,
+  checkedboxes,
+  setCheckedboxes,
+  discountOnly,
+  setDiscountOnly,
+}) => {
+  const handleCheckboxChange = (evt) => {
+    const { name } = evt.target;
+    setCheckedboxes((prev) => {
+      if (prev.includes(name)) {
+        return prev.filter((category) => category !== name);
+      } else {
+        return [...prev, name];
+      }
+    });
+  };
+
+  const handleClear = () => {
+    setCheckedboxes([]);
+    setDiscountOnly(false);
+  };
+
+  const handleCheckAll = () => {
+    setDiscountOnly(true);
+    setCheckedboxes(categories.map((category) => category.name));
+  };
+
   return (
     <div className="card mb-3 mb-lg-0">
       <div className="card-body">
@@ -14,9 +41,15 @@ const ItemFilter = ({ categories }) => {
               <input
                 type="checkbox"
                 className=" custom-control-input"
-                id="customCheck1"
+                id={`check ${category.id}`}
+                checked={checkedboxes.includes(category.name)}
+                onChange={handleCheckboxChange}
+                name={category.name}
               />
-              <label htmlFor="customCheck1" className="custom-control-label">
+              <label
+                htmlFor={`check ${category.id}`}
+                className="custom-control-label"
+              >
                 {category.name}
               </label>
             </div>
@@ -29,9 +62,14 @@ const ItemFilter = ({ categories }) => {
             <input
               type="checkbox"
               className=" custom-control-input"
-              id="customCheck5"
+              id="customCheckDiscount"
+              onChange={() => setDiscountOnly((prev) => !prev)}
+              checked={discountOnly}
             />
-            <label htmlFor="customCheck5" className="custom-control-label">
+            <label
+              htmlFor="customCheckDiscount"
+              className="custom-control-label"
+            >
               DISCOUNT
             </label>
           </div>
@@ -39,8 +77,18 @@ const ItemFilter = ({ categories }) => {
         <hr className="my-1 my-lg-3" />
         <div className="d-flex flex-column align-items-center">
           <div className="mt-3">
-            <button className="btn btn-outline-primary">All</button>
-            <button className="btn btn-outline-secondary ml-3">Clear</button>
+            <button
+              className="btn btn-outline-primary"
+              onClick={handleCheckAll}
+            >
+              All
+            </button>
+            <button
+              className="btn btn-outline-secondary ml-3"
+              onClick={handleClear}
+            >
+              Clear
+            </button>
           </div>
         </div>
       </div>
