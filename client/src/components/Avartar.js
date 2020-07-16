@@ -6,10 +6,10 @@ const Avartar = () => {
     <li className="nav-item my-lg-0 ml-0 ml-lg-2 dropdown">
       <a
         className="nav-link p-0 "
-        href="#"
+        href="#!"
         data-toggle="dropdown"
         role="button"
-        id="navbarDropdown3"
+        id="avartarDropdown"
         aria-haspopup="true"
         aria-expanded="false"
       >
@@ -21,7 +21,7 @@ const Avartar = () => {
       </a>
       <div
         className="dropdown-menu dropdown-menu-right text-dark bg-light"
-        aria-labelledby="navbarDropdown3"
+        aria-labelledby="avartarDropdown"
       >
         <Link to="/profile" className="dropdown-item signin">
           My Profile

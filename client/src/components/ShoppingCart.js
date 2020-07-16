@@ -8,7 +8,7 @@ const ShoppingCart = () => {
     <li className="nav-item dropdown d-none d-lg-block">
       <a
         className="nav-link dropdown-toggle"
-        href="#"
+        href="#!"
         id="navbarDropdown"
         role="button"
         data-toggle="dropdown"

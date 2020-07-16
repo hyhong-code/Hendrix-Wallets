@@ -2,7 +2,7 @@ import React from "react";
 
 const CartItem = () => {
   return (
-    <a href="#" className="list-group-item list-group-item-action bg-light">
+    <a href="#!" className="list-group-item list-group-item-action bg-light">
       <div className="d-flex align-items-center justify-content-between">
         <img
           src="https://images.unsplash.com/photo-1532033375034-a29004ea9769?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2200&q=80"

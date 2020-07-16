@@ -94,7 +94,7 @@ body {
       display: inline-block;
       width: 10rem;
       height: 2rem;
-      font-size: 0.8rem;
+      font-size: 0.9rem;
     }
   }
 }
@@ -203,5 +203,38 @@ body {
 
   .subtotal-panel {
     @include card-shadow();
+  }
+}
+
+#orders {
+  min-height: 85vh;
+  .orderlist-head {
+    padding: 0.5rem 1rem;
+    color: $color-primary;
+    border-bottom: 2px solid $color-secondary;
+    margin-bottom: 1rem;
+  }
+
+  .card {
+    @include card-shadow();
+  }
+
+  .orderlist-item {
+    padding: 0.2rem 0;
+
+    a {
+      text-decoration: none;
+
+      display: block;
+      height: 100%;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      transition: all 0.2s ease-out;
+
+      &:hover {
+        background-color: lighten($color-secondary, 15%);
+        color: $color-dark;
+      }
+    }
   }
 }

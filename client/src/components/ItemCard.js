@@ -15,7 +15,7 @@ const ItemCard = () => {
             $8.99
           </h5>
           <p className="card-text mb-1 text-primary">FARREN</p>
-          <a href="#" className="btn btn-sm btn-outline-primary float-right">
+          <a href="#!" className="btn btn-sm btn-outline-primary float-right">
             Learn more
           </a>
         </div>

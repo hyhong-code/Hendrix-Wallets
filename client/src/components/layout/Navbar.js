@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary text-light sticky-top py-2">
       <div className="container d-flex">
-        <Link exact to="/" className="navbar-brand d-flex align-items-center">
+        <Link to="/" className="navbar-brand d-flex align-items-center">
           <img src={logo} className="logo" alt="" />
           <span className="ml-2">HENDRIX</span>
         </Link>

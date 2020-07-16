@@ -19,7 +19,7 @@ const Showcase = () => {
               <CollectionCard />
               <CollectionCard />
             </div>
-            <a href="" className="btn btn-primary btn-block mt-4">
+            <a href="#!" className="btn btn-primary btn-block mt-4">
               Browse All
             </a>
           </div>
