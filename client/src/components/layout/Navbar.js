@@ -16,7 +16,7 @@ const Navbar = ({ auth: { isAuthenticated, user } }) => {
           My Cart
         </NavLink>
       </li>
-      <Avartar />
+      {user && <Avartar user={user} />}
     </Fragment>
   );
 

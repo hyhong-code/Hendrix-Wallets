@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Avartar = () => {
+const Avartar = ({ user }) => {
   return (
     <li className="nav-item my-lg-0 ml-0 ml-lg-2 dropdown">
       <a
@@ -14,8 +14,8 @@ const Avartar = () => {
         aria-expanded="false"
       >
         <img
-          src="https://mobirise.com/bootstrap-template/profile-template/assets/images/timothy-paul-smith-256424-1200x800.jpg"
-          alt=""
+          src={user.photo}
+          alt="user profile photo"
           className="img-fluid rounded-circle d-inline-block profile-pic"
         />
       </a>

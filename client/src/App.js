@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { getCategories } from "./actions/categoryActions";
 import { getItems } from "./actions/itemActions";
 import { loadUser } from "./actions/authActions";
+import GuestRoute from "./routes/GuestRoute";
 import Navbar from "./components/layout/Navbar";
 import Topbar from "./components/layout/Topbar";
 import Home from "./components/pages/Home";
@@ -42,8 +43,8 @@ const App = ({ getCategories, getItems, loadUser }) => {
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/orders" component={Orders} />
         <Route exact path="/orderDetail" component={OrderDetail} />
-        <Route exact path="/signup" component={Signup} />
-        <Route exact path="/login" component={Login} />
+        <GuestRoute exact path="/signup" component={Signup} />
+        <GuestRoute exact path="/login" component={Login} />
       </Switch>
       <Footer />
     </BrowserRouter>
