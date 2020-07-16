@@ -74,10 +74,26 @@ body {
     }
   }
 
+  img.profile-pic {
+    object-fit: cover;
+    width: 45px;
+    height: 45px;
+    border: 1px solid $color-secondary;
+  }
+
   .signin {
     &:hover {
       background-color: lighten($color-secondary, 5%);
       color: white;
+    }
+  }
+
+  form {
+    .form-control {
+      display: inline-block;
+      width: 10rem;
+      height: 2.2rem;
+      font-size: 0.8rem;
     }
   }
 }

@@ -25,7 +25,7 @@ const Navbar = () => {
         </button>
 
         <div className="collapse navbar-collapse" id="mainNavbar">
-          <ul className="navbar-nav mr-auto">
+          <ul className="navbar-nav mr-auto align-items-center">
             <li className="nav-item">
               <NavLink exact to="/" className="nav-link">
                 Home
@@ -36,9 +36,19 @@ const Navbar = () => {
                 EXPLORE
               </NavLink>
             </li>
+            <form action="" className="form-inline my-2 my-lg-0 ml-0 ml-lg-2">
+              <input
+                type="search"
+                placeholder="Search Products..."
+                className="form-control mr-2 bg-light"
+              />
+              <button className="btn btn-outline-light my-2 my-sm-0">
+                <fas className="fas fa-search"></fas>
+              </button>
+            </form>
           </ul>
 
-          <ul className="navbar-nav ml-auto">
+          <ul className="navbar-nav ml-auto align-items-center">
             <li className="nav-item d-lg-none">
               <a className="nav-link" href="#">
                 Cart
@@ -74,22 +84,19 @@ const Navbar = () => {
                 Order
               </a>
             </li>
-            <li className="nav-item">
-              <a href="" className="nav-link">
+            <li className="nav-item my-lg-0 ml-0 ml-lg-2">
+              {/* <a href="" className="nav-link">
                 Profile
+              </a> */}
+              <a className="nav-link p-0" href="">
+                <img
+                  src="https://mobirise.com/bootstrap-template/profile-template/assets/images/timothy-paul-smith-256424-1200x800.jpg"
+                  alt=""
+                  className="img-fluid rounded-circle d-inline-block profile-pic"
+                />
               </a>
             </li>
           </ul>
-          <form action="" className="form-inline my-2 my-lg-0 ml-0 ml-lg-1">
-            <input
-              type="search"
-              placeholder="Search Product..."
-              className="form-control mr-sm-2 bg-light"
-            />
-            <button className="btn btn-outline-light my-2 my-sm-0">
-              <fas className="fas fa-search"></fas>
-            </button>
-          </form>
         </div>
       </div>
     </nav>
