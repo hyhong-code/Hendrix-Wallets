@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { addItemToCart } from "../actions/cartActions";
+import { addItemToCart, removeItemFromCart } from "../actions/cartActions";
 
-const CartItem = ({ cartItem, addItemToCart }) => {
+const CartItem = ({ cartItem, addItemToCart, removeItemFromCart }) => {
   return (
     <li className="list-group-item bg-light">
       <div className="row no-gutters">
@@ -16,7 +16,12 @@ const CartItem = ({ cartItem, addItemToCart }) => {
         </div>
         <div className="col-4">
           <div className="h-100 d-flex align-items-center justify-content-end text-primary">
-            <span className="p-2 cart-item-action-arr">
+            <span
+              onClick={() =>
+                removeItemFromCart(cartItem.item_id, cartItem.cart_item_id)
+              }
+              className="p-2 cart-item-action-arr"
+            >
               <i className="fas fa-chevron-left"></i>
             </span>
 
@@ -44,4 +49,4 @@ const CartItem = ({ cartItem, addItemToCart }) => {
   );
 };
 
-export default connect(null, { addItemToCart })(CartItem);
+export default connect(null, { addItemToCart, removeItemFromCart })(CartItem);

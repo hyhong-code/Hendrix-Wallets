@@ -67,6 +67,22 @@ body {
     font-size: 1rem;
   }
 
+  .dropdown-menu {
+    position: relative;
+  }
+
+  .badge {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease-out;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
   .cart-dropdown {
     .list-group {
       min-height: 15rem;

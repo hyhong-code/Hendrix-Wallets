@@ -30,3 +30,18 @@ export const addItemToCart = (itemId) => async (dispatch) => {
     console.error(error);
   }
 };
+
+export const removeItemFromCart = (itemId, cartItemId) => async (dispatch) => {
+  try {
+    const res = await axios.delete("/api/cart", {
+      data: { itemId, cartItemId },
+    });
+
+    dispatch({
+      type: REMOVED_FROM_CART,
+      payload: res.data.cart,
+    });
+  } catch (error) {
+    console.error(error.response);
+  }
+};

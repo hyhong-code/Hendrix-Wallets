@@ -48,6 +48,7 @@ exports.addItemToCard = async (req, res, next) => {
 // @access  Private - User role
 exports.removeItemFromCart = async (req, res, next) => {
   const { itemId, cartItemId } = req.body;
+
   if (!(itemId && cartItemId)) {
     return sendError(res, 400, {
       message: "itemId and cartItemId are required",
