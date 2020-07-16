@@ -29,60 +29,60 @@ const ItemList = ({ match, categories, items }) => {
       <div className="container py-6">
         <div className="row">
           <div className="col-lg-3">
-            {categories ? (
+            {categories && (
               <ItemFilter
                 setCheckedboxes={setCheckedboxes}
                 checkedboxes={checkedboxes}
                 discountOnly={discountOnly}
                 setDiscountOnly={setDiscountOnly}
                 categories={categories}
+                setSearchText={setSearchText}
               />
-            ) : null}
+            )}
           </div>
           <div className="col-lg-9">
             <div className="row items-container">
-              {items
-                ? items
-                    .filter((item) => {
-                      if (!checkedboxes.length) {
-                        return item;
-                      } else {
-                        if (checkedboxes.includes(item.category_name)) {
-                          return item;
-                        }
-                      }
-                    })
-                    .filter((item) => {
-                      if (discountOnly) {
-                        if (item.discount > 0) {
-                          return item;
-                        }
-                      } else {
+              {items &&
+                items
+                  .filter((item) => {
+                    if (!checkedboxes.length) {
+                      return item;
+                    } else {
+                      if (checkedboxes.includes(item.category_name)) {
                         return item;
                       }
-                    })
-                    .filter((item) => {
-                      if (searchText) {
-                        if (
-                          item.name
-                            .toLowerCase()
-                            .includes(searchText.toLowerCase()) ||
-                          item.description
-                            .toLowerCase()
-                            .includes(searchText.toLowerCase())
-                        ) {
-                          return item;
-                        }
-                      } else {
+                    }
+                  })
+                  .filter((item) => {
+                    if (discountOnly) {
+                      if (item.discount > 0) {
                         return item;
                       }
-                    })
-                    .map((item) => (
-                      <div key={item.id} className="col-6 col-md-4 mb-4">
-                        <ItemCard item={item} />
-                      </div>
-                    ))
-                : null}
+                    } else {
+                      return item;
+                    }
+                  })
+                  .filter((item) => {
+                    if (searchText) {
+                      if (
+                        item.name
+                          .toLowerCase()
+                          .includes(searchText.toLowerCase()) ||
+                        item.description
+                          .toLowerCase()
+                          .includes(searchText.toLowerCase())
+                      ) {
+                        return item;
+                      }
+                    } else {
+                      return item;
+                    }
+                  })
+                  .map((item) => (
+                    <div key={item.id} className="col-6 col-md-4 mb-4">
+                      <ItemCard item={item} />
+                    </div>
+                  ))}
             </div>
           </div>
         </div>

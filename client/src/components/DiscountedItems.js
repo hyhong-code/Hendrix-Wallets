@@ -9,15 +9,14 @@ const DiscountedItems = ({ items }) => {
       <div className="container">
         <h3 className="text-center mb-5">DISCOUNT STOCKS</h3>
         <div className="row">
-          {items
-            ? items
-                .filter((item) => item.discount > 0)
-                .map((item) => (
-                  <div key={item.id} className=" col-6 col-lg-3 mb-4">
-                    <ItemCard item={item} />
-                  </div>
-                ))
-            : null}
+          {items &&
+            items
+              .filter((item) => item.discount > 0)
+              .map((item) => (
+                <div key={item.id} className=" col-6 col-lg-3 mb-4">
+                  <ItemCard item={item} />
+                </div>
+              ))}
         </div>
       </div>
     </section>

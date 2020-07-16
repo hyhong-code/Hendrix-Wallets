@@ -6,9 +6,11 @@ const ItemFilter = ({
   setCheckedboxes,
   discountOnly,
   setDiscountOnly,
+  setSearchText,
 }) => {
   const handleCheckboxChange = (evt) => {
     const { name } = evt.target;
+    setSearchText("");
     setCheckedboxes((prev) => {
       if (prev.includes(name)) {
         return prev.filter((category) => category !== name);
@@ -19,11 +21,13 @@ const ItemFilter = ({
   };
 
   const handleClear = () => {
+    setSearchText("");
     setCheckedboxes([]);
     setDiscountOnly(false);
   };
 
   const handleCheckAll = () => {
+    setSearchText("");
     setDiscountOnly(true);
     setCheckedboxes(categories.map((category) => category.name));
   };
