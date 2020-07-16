@@ -24,7 +24,7 @@ const Showcase = ({ categories }) => {
                   <CollectionCard key={category.id} category={category} />
                 ))}
               </div>
-              <Link to="/items" className="btn btn-primary btn-block mt-4">
+              <Link to="/items/all" className="btn btn-primary btn-block mt-4">
                 Explore All
               </Link>
             </div>

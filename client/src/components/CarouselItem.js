@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const CarouselItem = ({ category, idx }) => {
   return (
@@ -10,7 +11,12 @@ const CarouselItem = ({ category, idx }) => {
         <div className="d-flex flex-column align-items-start text-left">
           <h5 className="mb-0 text-secondary">{category.name}</h5>
           <p className="my-1">{category.description}</p>
-          <button className="btn btn-outline-light btn-sm">Discover</button>
+          <Link
+            to={`/items/${category.name}`}
+            className="btn btn-outline-light btn-sm"
+          >
+            Discover
+          </Link>
         </div>
       </div>
     </div>

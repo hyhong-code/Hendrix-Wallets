@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
 import ItemCard from "../ItemCard";
 import ItemFilter from "../ItemFilter";
 
-const ItemList = ({ categories, items }) => {
+const ItemList = ({ match, categories, items }) => {
   const [checkedboxes, setCheckedboxes] = useState([]);
   const [discountOnly, setDiscountOnly] = useState(false);
+
+  useEffect(() => {
+    if (match.params.category !== "all") {
+      setCheckedboxes([match.params.category]);
+    }
+  }, []);
 
   return (
     <section id="itemsList" className="bg-light text-dark">

@@ -34,7 +34,7 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink exact to="/items" className="nav-link">
+              <NavLink exact to="/items/all" className="nav-link">
                 EXPLORE
               </NavLink>
             </li>

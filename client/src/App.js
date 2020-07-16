@@ -34,7 +34,7 @@ const App = ({ getCategories, getItems }) => {
       <Navbar />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/items" component={ItemList} />
+        <Route exact path="/items/:category" component={ItemList} />
         <Route exact path="/checkout" component={Checkout} />
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/orders" component={Orders} />
