@@ -225,6 +225,15 @@ body {
   }
 }
 
+@media screen and (max-width: 768px) {
+  #itemsList {
+    .container {
+      padding-top: 3rem;
+      padding-top: 3rem;
+    }
+  }
+}
+
 #checkout {
   min-height: 85vh;
   .checkout-banner {

@@ -2,11 +2,11 @@ import React from "react";
 
 const ItemFilter = () => {
   return (
-    <div className="card">
+    <div className="card mb-3 mb-lg-0">
       <div className="card-body">
-        <p className="lead">Collections</p>
-        <div className="d-flex flex-column align-items-center">
-          <div className="custom-control custom-checkbox mb-3 w-75">
+        <p className="lead text-primary mb-1 mb-lg-3">Collections</p>
+        <div className="d-flex flex-row flex-wrap flex-wrap flex-lg-column align-items-start">
+          <div className="custom-control custom-checkbox mb-1 mb-lg-3 mr-3 mr-lg-0 ">
             <input
               type="checkbox"
               className=" custom-control-input"
@@ -16,7 +16,7 @@ const ItemFilter = () => {
               AROMA
             </label>
           </div>
-          <div className="custom-control custom-checkbox mb-3 w-75">
+          <div className="custom-control custom-checkbox mb-1 mb-lg-3 mr-3 mr-lg-0 ">
             <input
               type="checkbox"
               className=" custom-control-input"
@@ -26,7 +26,7 @@ const ItemFilter = () => {
               ESSENSE
             </label>
           </div>
-          <div className="custom-control custom-checkbox mb-3 w-75">
+          <div className="custom-control custom-checkbox mb-1 mb-lg-3 mr-3 mr-lg-0 ">
             <input
               type="checkbox"
               className=" custom-control-input"
@@ -36,7 +36,7 @@ const ItemFilter = () => {
               MYSTIC
             </label>
           </div>
-          <div className="custom-control custom-checkbox mb-3 w-75">
+          <div className="custom-control custom-checkbox mb-1 mb-lg-3 mr-3 mr-lg-0 ">
             <input
               type="checkbox"
               className=" custom-control-input"
@@ -47,10 +47,10 @@ const ItemFilter = () => {
             </label>
           </div>
         </div>
-        <hr />
-        <p className="lead">Promotion</p>
-        <div className="d-flex flex-column align-items-center">
-          <div className="custom-control custom-checkbox mb-3 w-75">
+        <hr className="my-1 my-lg-3" />
+        <p className="lead text-primary mb-1 mb-lg-3">Promotion</p>
+        <div className="d-flex flex-row flex-wrap flex-lg-column align-items-start">
+          <div className="custom-control custom-checkbox mb-1 mb-lg-3 mr-3 mr-lg-0 ">
             <input
               type="checkbox"
               className=" custom-control-input"
@@ -61,9 +61,9 @@ const ItemFilter = () => {
             </label>
           </div>
         </div>
-        <hr />
+        <hr className="my-1 my-lg-3" />
         <div className="d-flex flex-column align-items-center">
-          <div className="w-75 mt-3">
+          <div className="mt-3">
             <button className="btn btn-outline-primary">All</button>
             <button className="btn btn-outline-secondary ml-3">Clear</button>
           </div>

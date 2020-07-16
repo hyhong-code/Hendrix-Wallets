@@ -11,10 +11,10 @@ const ItemList = () => {
       </div>
       <div className="container py-6">
         <div className="row">
-          <div className="col-md-3">
+          <div className="col-lg-3">
             <ItemFilter />
           </div>
-          <div className="col-md-9">
+          <div className="col-lg-9">
             <div className="row items-container">
               <div className="col-6 col-md-4 mb-4">
                 <ItemCard />
