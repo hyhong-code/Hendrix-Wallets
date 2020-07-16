@@ -36,6 +36,16 @@ body {
   padding-bottom: 5rem;
 }
 
+.loading-spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-left: -1.25rem;
+  margin-top: -1.25rem;
+}
+
 .topbar {
   .social-icon {
     font-size: 1.2rem;
@@ -116,6 +126,10 @@ body {
     p.lead {
       font-size: 2rem;
     }
+  }
+
+  .showcase {
+    position: relative;
   }
 
   .carousel {

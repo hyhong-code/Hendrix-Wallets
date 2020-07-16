@@ -15,6 +15,7 @@ import OrderDetail from "./components/pages/OrderDetail";
 import "./App.scss";
 
 const App = ({ getCategories }) => {
+  // Get all categories
   useEffect(() => {
     let isMounted = true;
     if (isMounted) {
