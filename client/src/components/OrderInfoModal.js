@@ -2,7 +2,9 @@ import React, { Fragment, useState } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-const OrderInfoModal = ({ history, user }) => {
+import { createOrder } from "../actions/orderActions";
+
+const OrderInfoModal = ({ history, user, createOrder }) => {
   const [formData, setFormData] = useState({
     name: "",
     address: "",
@@ -28,7 +30,8 @@ const OrderInfoModal = ({ history, user }) => {
   };
 
   const handleClick = () => {
-    history.push("/orderdetail");
+    createOrder(formData, history);
+    // history.push("/orderdetail");
   };
 
   const { name, address, email, phone, instructions } = formData;
@@ -174,4 +177,6 @@ const OrderInfoModal = ({ history, user }) => {
 
 const mapStateToProps = ({ auth: { user } }) => ({ user });
 
-export default connect(mapStateToProps)(withRouter(OrderInfoModal));
+export default connect(mapStateToProps, { createOrder })(
+  withRouter(OrderInfoModal)
+);

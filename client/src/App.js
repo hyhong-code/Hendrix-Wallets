@@ -63,7 +63,7 @@ const App = ({
         <Route exact path="/checkout" component={Checkout} />
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/orders" component={Orders} />
-        <Route exact path="/orderDetail" component={OrderDetail} />
+        <Route exact path="/orderDetail/:orderId" component={OrderDetail} />
         <GuestRoute exact path="/signup" component={Signup} />
         <GuestRoute exact path="/login" component={Login} />
       </Switch>
