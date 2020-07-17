@@ -1,9 +1,10 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import CheckoutItem from "../CheckoutItem";
 import SubtotalPanel from "../SubtotalPanel";
 
-const Checkout = () => {
+const Checkout = ({ cartItems }) => {
   return (
     <section id="checkout" className="bg-light text-dark">
       <div className="checkout-banner text-light d-flex align-items-center justify-content-center">
@@ -14,12 +15,13 @@ const Checkout = () => {
           <h2 className="text-primary mb-4 text-center">YOUR CART</h2>
           <div className="row">
             <div className="col-lg-8 order-1 order-lg-0">
-              <CheckoutItem />
-              <CheckoutItem />
-              <CheckoutItem />
+              {cartItems &&
+                cartItems.map((cartItem) => (
+                  <CheckoutItem cartItem={cartItem} />
+                ))}
             </div>
             <div className="col-lg-4 order-0 mb-4 mb-lg-0">
-              <SubtotalPanel />
+              {cartItems && <SubtotalPanel cartItems={cartItems} />}
             </div>
           </div>
         </div>
@@ -28,4 +30,6 @@ const Checkout = () => {
   );
 };
 
-export default Checkout;
+const mapStateToProps = ({ cartItems }) => ({ cartItems });
+
+export default connect(mapStateToProps)(Checkout);

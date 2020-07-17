@@ -1,35 +1,53 @@
 import React from "react";
+import { connect } from "react-redux";
 
-const CheckoutItem = () => {
+import { addItemToCart, removeItemFromCart } from "../actions/cartActions";
+
+const CheckoutItem = ({ cartItem, addItemToCart, removeItemFromCart }) => {
   return (
     <div className="card checkout-card mb-3">
       <div className="card-body py-3 px-4">
         <div className="row">
           <div className="col-4">
             <img
-              src="https://ae01.alicdn.com/kf/He1a2d422f7314d60b11c8e7d352b3433J.jpg?width=800&height=800&hash=1600"
+              src={cartItem.photo}
               className="card-img checkout-card-img"
-              alt="..."
+              alt={cartItem.name}
             />
           </div>
           <div className="col-8">
             <h5 className="card-title d-flex">
               <span>Monvelli</span>
-              <span className="ml-auto text-secondary text-price">
-                <small className="text-primary text-normal-price mr-2">
-                  $18.99
-                </small>
-                $12.99
-              </span>
+              {cartItem.discount > 0 ? (
+                <span className="ml-auto text-secondary text-price">
+                  <small className="text-primary text-normal-price mr-2">
+                    ${cartItem.price / 100}
+                  </small>
+                  ${(cartItem.price - cartItem.discount) / 100}
+                </span>
+              ) : (
+                <span className="ml-auto text-secondary text-price">
+                  ${cartItem.price / 100}
+                </span>
+              )}
             </h5>
-            <p className="card-text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Exercitationem, quos.
-            </p>
+            <p className="card-text">{cartItem.description}</p>
             <div>
-              <button className="btn btn-outline-dark btn-sm mr-2">-</button>
-              <span>Qty: 2</span>
-              <button className="btn btn-outline-dark btn-sm ml-2">+</button>
+              <button
+                onClick={() =>
+                  removeItemFromCart(cartItem.item_id, cartItem.cart_item_id)
+                }
+                className="btn btn-outline-dark btn-sm mr-2"
+              >
+                -
+              </button>
+              <span>Qty: {cartItem.quantity}</span>
+              <button
+                onClick={() => addItemToCart(cartItem.item_id)}
+                className="btn btn-outline-dark btn-sm ml-2"
+              >
+                +
+              </button>
             </div>
           </div>
         </div>
@@ -38,4 +56,6 @@ const CheckoutItem = () => {
   );
 };
 
-export default CheckoutItem;
+export default connect(null, { addItemToCart, removeItemFromCart })(
+  CheckoutItem
+);

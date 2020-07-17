@@ -11,6 +11,7 @@ const ItemList = ({ match, categories, items }) => {
 
   useEffect(() => {
     if (
+      categories &&
       categories
         .map((category) => category.name)
         .includes(match.params.category)
