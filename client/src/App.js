@@ -9,6 +9,7 @@ import { getCart } from "./actions/cartActions";
 import { getOrders } from "./actions/orderActions";
 import GuestRoute from "./routes/GuestRoute";
 import ProtectedRoute from "./routes/ProtectedRoute";
+import ScrollToTop from "./components/layout/ScrollToTop";
 import Navbar from "./components/layout/Navbar";
 import Topbar from "./components/layout/Topbar";
 import Home from "./components/pages/Home";
@@ -59,6 +60,7 @@ const App = ({
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Topbar />
       <Navbar />
       <Switch>

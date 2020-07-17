@@ -4,6 +4,8 @@ import { withRouter } from "react-router";
 
 import CartItem from "./CartItem";
 
+import { Link } from "react-router-dom";
+
 const ShoppingCart = ({ history, cart }) => {
   const [show, setShow] = useState(false);
 
@@ -14,9 +16,8 @@ const ShoppingCart = ({ history, cart }) => {
 
   return (
     <li className="nav-item dropdown d-none d-lg-block">
-      <a
+      <span
         className="nav-link dropdown-toggle"
-        href="#!"
         id="navbarDropdown"
         role="button"
         aria-haspopup="true"
@@ -24,7 +25,7 @@ const ShoppingCart = ({ history, cart }) => {
         onClick={() => setShow((prev) => !prev)}
       >
         My Cart
-      </a>
+      </span>
       <div
         className={`${
           show && "show"
