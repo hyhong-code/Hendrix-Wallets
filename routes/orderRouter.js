@@ -1,11 +1,14 @@
 const express = require("express");
 
-const { createOrder } = require("../controllers/orderController");
+const { createOrder, getOrders } = require("../controllers/orderController");
 const auth = require("../middlewares/auth");
 const limitTo = require("../middlewares/limitTo");
 
 const router = express.Router();
 
-router.route("/").post(auth, limitTo("user"), createOrder);
+router
+  .route("/")
+  .get(auth, limitTo("user"), getOrders)
+  .post(auth, limitTo("user"), createOrder);
 
 module.exports = router;

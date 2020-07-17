@@ -4,7 +4,6 @@ const getCartItemsHelper = require("../utils/getCartItemsHelper");
 const getUserCart = require("../utils/getUserCart");
 
 const { checkOrder } = require("../utils/validate/validateControl");
-const { getRounds } = require("bcryptjs");
 
 exports.createOrder = async (req, res, next) => {
   const { name, email, phone, address, instructions } = req.body;
@@ -62,6 +61,19 @@ exports.createOrder = async (req, res, next) => {
     order.rows[0].cart = cart.rows[0];
     order.rows[0].cart.cartItems = cartItems;
     res.status(201).json({ order: order.rows[0] });
+  } catch (error) {
+    console.error(error);
+    sendError(res);
+  }
+};
+
+exports.getOrders = async (req, res, next) => {
+  try {
+    const orders = await pool.query(
+      `SELECT * FROM orders WHERE user_id = $1 ORDER BY orders.created_at DESC ;`,
+      [req.user.id]
+    );
+    res.status(200).json({ orders: orders.rows });
   } catch (error) {
     console.error(error);
     sendError(res);
