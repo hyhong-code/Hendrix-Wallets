@@ -1,10 +1,13 @@
 const pool = require("../config/postgres");
+
 const sendError = require("../utils/sendError");
 const getCartItemsHelper = require("../utils/getCartItemsHelper");
 const getUserCart = require("../utils/getUserCart");
-
 const { checkOrder } = require("../utils/validate/validateControl");
 
+// @desc    Create a order using current cart
+// @route   POST /api/order
+// @access  Private - User role
 exports.createOrder = async (req, res, next) => {
   const { name, email, phone, address, instructions } = req.body;
   const { isValid, errors } = checkOrder(email, name, phone, address);
@@ -67,6 +70,9 @@ exports.createOrder = async (req, res, next) => {
   }
 };
 
+// @desc    Get all orders of logged in user
+// @route   GET /api/order
+// @access  Private - User role
 exports.getOrders = async (req, res, next) => {
   try {
     const orders = await pool.query(
@@ -74,6 +80,35 @@ exports.getOrders = async (req, res, next) => {
       [req.user.id]
     );
     res.status(200).json({ orders: orders.rows });
+  } catch (error) {
+    console.error(error);
+    sendError(res);
+  }
+};
+
+// @desc    Get details of an order
+// @route   GET /api/order/:orderId
+// @access  Private - User role
+exports.getOrderDetailsById = async (req, res, next) => {
+  try {
+    const order = await pool.query("SELECT * FROM orders WHERE id = $1 ;", [
+      req.params.orderId,
+    ]);
+
+    // Hanlde order not exists
+    if (!order.rows.length) {
+      return sendError(res, 404, { message: "Order not found" });
+    }
+
+    const cart = await pool.query("SELECT * FROM carts WHERE id = $1 ;", [
+      order.rows[0].cart_id,
+    ]);
+
+    const cartItems = await getCartItemsHelper(cart.rows[0].id);
+
+    order.rows[0].cart = cart.rows[0];
+    order.rows[0].cart.cartItems = cartItems;
+    res.status(200).json({ order: order.rows[0] });
   } catch (error) {
     console.error(error);
     sendError(res);
