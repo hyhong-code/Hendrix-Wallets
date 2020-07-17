@@ -21,6 +21,7 @@ const OrderDetail = ({
     return () => {
       isMounted = false;
     };
+    // eslint-disable-next-line
   }, [isAuthenticated]);
 
   return (

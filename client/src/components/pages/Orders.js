@@ -13,6 +13,7 @@ const Orders = ({ orders, getOrders }) => {
     return () => {
       isMounted = false;
     };
+    // eslint-disable-next-line
   }, []);
 
   return (

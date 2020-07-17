@@ -28,6 +28,7 @@ const ItemList = ({ match, categories, items }) => {
     return () => {
       isMounted = false;
     };
+    // eslint-disable-next-line
   }, [match.params.category]);
 
   return (

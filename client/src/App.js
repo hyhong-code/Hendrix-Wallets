@@ -8,6 +8,7 @@ import { loadUser } from "./actions/authActions";
 import { getCart } from "./actions/cartActions";
 import { getOrders } from "./actions/orderActions";
 import GuestRoute from "./routes/GuestRoute";
+import ProtectedRoute from "./routes/ProtectedRoute";
 import Navbar from "./components/layout/Navbar";
 import Topbar from "./components/layout/Topbar";
 import Home from "./components/pages/Home";
@@ -63,10 +64,14 @@ const App = ({
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/items/:category" component={ItemList} />
-        <Route exact path="/checkout" component={Checkout} />
-        <Route exact path="/profile" component={Profile} />
-        <Route exact path="/orders" component={Orders} />
-        <Route exact path="/orderDetail/:orderId" component={OrderDetail} />
+        <ProtectedRoute exact path="/checkout" component={Checkout} />
+        <ProtectedRoute exact path="/profile" component={Profile} />
+        <ProtectedRoute exact path="/orders" component={Orders} />
+        <ProtectedRoute
+          exact
+          path="/orderDetail/:orderId"
+          component={OrderDetail}
+        />
         <GuestRoute exact path="/signup" component={Signup} />
         <GuestRoute exact path="/login" component={Login} />
       </Switch>
