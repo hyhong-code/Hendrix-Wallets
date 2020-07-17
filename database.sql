@@ -38,6 +38,8 @@ CREATE TABLE items(
 CREATE TABLE carts(
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     user_id UUID NOT NULL REFERENCES users(id),
+    shipping_cost BIGINT NOT NULL DEFAULT 699,
+    tax_rate_pct_basis BIGINT NOT NULL DEFAULT 1000,
     created_at TIMESTAMP DEFAULT NOW(),
     is_order BOOLEAN DEFAULT FALSE
 );
@@ -68,7 +70,7 @@ CREATE TABLE orders(
         )
     ),
     stripe_token VARCHAR(255),
-    total_price BIGINT NOT NULL CHECK (total_price > 0),
+    final_price BIGINT NOT NULL CHECK (final_price > 0),
     created_at TIMESTAMP DEFAULT NOW(),
     shipped_at TIMESTAMP,
     delivered_at TIMESTAMP,
