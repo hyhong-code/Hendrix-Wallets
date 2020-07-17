@@ -50,10 +50,13 @@ const S3_BUCKET = process.env.Bucket;
 // @route   PATCH /api/profile/photo
 // @access  Private
 exports.updateProfilePic = (req, res) => {
-  const s3 = new aws.S3();
-  const fileName = req.body.fileName;
-  const fileType = req.body.fileType;
+  const { fileName, fileType } = req.body;
 
+  if (!(fileName && fileType) || !fileType.startsWith("image")) {
+    return sendError(res, 400, { message: "Please upload a valid image file" });
+  }
+
+  const s3 = new aws.S3();
   const s3Params = {
     Bucket: S3_BUCKET,
     Key: fileName,

@@ -5,14 +5,17 @@ import { updateProfilePic } from "../actions/profileAction";
 
 const ProfilePicUpdate = ({ updateProfilePic }) => {
   const [file, setFile] = useState("");
+  const [fileName, setFileName] = useState("Profile Photo");
 
   const handleChange = (evt) => {
     setFile(evt.target.files[0]);
+    setFileName(evt.target.files[0].name);
   };
 
   const handleClick = (evt) => {
-    console.log(file);
-    updateProfilePic(file);
+    if (file.type.startsWith("image")) {
+      updateProfilePic(file);
+    }
   };
 
   return (
@@ -26,17 +29,17 @@ const ProfilePicUpdate = ({ updateProfilePic }) => {
           onChange={handleChange}
         />
         <label className="custom-file-label" htmlFor="profile-pic">
-          Profile Photo
+          {fileName}
         </label>
       </div>
       <div className="input-group-append">
         <button
-          className="btn btn-outline-secondary"
+          className="btn btn-outline-primary"
           type="button"
           id="inputGroupFileAddon04"
           onClick={handleClick}
         >
-          Upload
+          UPLOAD
         </button>
       </div>
     </div>

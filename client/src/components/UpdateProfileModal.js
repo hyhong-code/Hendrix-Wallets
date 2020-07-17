@@ -1,8 +1,26 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 
 import ProfilePicUpdate from "./ProfilePicUpdate";
 
 const UpdateProfileModal = ({ user }) => {
+  const [formData, setFormData] = useState({
+    name: user.name || "",
+    phone: user.phone || "",
+    email: user.email || "",
+    address: user.address || "",
+  });
+
+  const { name, phone, email, address } = formData;
+
+  const handleChange = (evt) => {
+    const { name, value } = evt.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleClick = (evt) => {
+    console.log(formData);
+  };
+
   return (
     <Fragment>
       <button
@@ -26,7 +44,7 @@ const UpdateProfileModal = ({ user }) => {
       >
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
-            <div className="modal-header">
+            <div className="modal-header border-secondary">
               <h5 className="modal-title text-primary" id="staticBackdropLabel">
                 UPDATE PROFILE
               </h5>
@@ -40,22 +58,70 @@ const UpdateProfileModal = ({ user }) => {
               </button>
             </div>
             <div className="modal-body">
-              <div className="px-3">
+              <div className="px-2 px-md-5">
                 <img
                   src={user.photo}
-                  className="d-block mx-auto mb-3"
+                  className="d-block mx-auto mb-4"
                   alt="user profile photo"
                 />
                 <ProfilePicUpdate />
+                <form>
+                  <div className="form-group mt-3">
+                    <input
+                      placeholder="Name"
+                      type="text"
+                      name="name"
+                      className="form-control"
+                      value={name}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      placeholder="Phone Number"
+                      type="text"
+                      name="phone"
+                      className="form-control"
+                      value={phone}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      placeholder="Email"
+                      type="text"
+                      name="email"
+                      className="form-control"
+                      value={email}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <textarea
+                      placeholder="Address"
+                      type="text"
+                      name="address"
+                      className="form-control"
+                      value={address}
+                      onChange={handleChange}
+                    ></textarea>
+                  </div>
+                </form>
               </div>
             </div>
-            <div className="modal-footer">
-              <button type="button" className="btn btn-secondary">
-                Close
-              </button>
-              <button type="button" className="btn btn-primary">
-                Understood
-              </button>
+            <div className="modal-footer px-2 px-md-5">
+              <div className="px-3">
+                <button type="button" className="btn btn-secondary text-light">
+                  CLOSE
+                </button>
+                <button
+                  onClick={handleClick}
+                  type="button "
+                  className="btn btn-primary ml-2"
+                >
+                  UPDATE
+                </button>
+              </div>
             </div>
           </div>
         </div>
