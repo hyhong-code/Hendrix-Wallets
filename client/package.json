@@ -20,7 +20,8 @@
     "react-tooltip": "^4.2.7",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "uuidv4": "^6.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

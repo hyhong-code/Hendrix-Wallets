@@ -1,8 +1,10 @@
 import React, { Fragment, useState } from "react";
+import { connect } from "react-redux";
 
+import { updateProfile } from "../actions/profileAction";
 import ProfilePicUpdate from "./ProfilePicUpdate";
 
-const UpdateProfileModal = ({ user }) => {
+const UpdateProfileModal = ({ user, updateProfile }) => {
   const [formData, setFormData] = useState({
     name: user.name || "",
     phone: user.phone || "",
@@ -19,6 +21,7 @@ const UpdateProfileModal = ({ user }) => {
 
   const handleClick = (evt) => {
     console.log(formData);
+    updateProfile(formData);
   };
 
   return (
@@ -111,13 +114,18 @@ const UpdateProfileModal = ({ user }) => {
             </div>
             <div className="modal-footer px-2 px-md-5">
               <div className="px-3">
-                <button type="button" className="btn btn-secondary text-light">
+                <button
+                  type="button"
+                  className="btn btn-secondary text-light"
+                  data-dismiss="modal"
+                >
                   CLOSE
                 </button>
                 <button
                   onClick={handleClick}
                   type="button "
                   className="btn btn-primary ml-2"
+                  data-dismiss="modal"
                 >
                   UPDATE
                 </button>
@@ -130,4 +138,4 @@ const UpdateProfileModal = ({ user }) => {
   );
 };
 
-export default UpdateProfileModal;
+export default connect(null, { updateProfile })(UpdateProfileModal);

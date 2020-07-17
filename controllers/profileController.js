@@ -12,21 +12,22 @@ exports.updateProfile = async (req, res, next) => {
   let { phone, address, email, name } = req.body;
   const { isValid, errors } = checkProfile(phone, email, name);
   if (!isValid) return sendError(res, 400, errors);
+
   try {
+    const profile = await pool.query(
+      `UPDATE profiles SET
+        phone = COALESCE($1, phone),
+        address = COALESCE($2, address)
+        WHERE user_id = $3 RETURNING photo, phone, address ;`,
+      [nullifyEmptyStr(phone), nullifyEmptyStr(address), req.user.id]
+    );
+
     const user = await pool.query(
       `UPDATE users SET
         name = COALESCE($1, name),
         email = COALESCE($2, email)
         WHERE id = $3 RETURNING id, email, name ;`,
       [nullifyEmptyStr(name), nullifyEmptyStr(email), req.user.id]
-    );
-
-    const profile = await pool.query(
-      `UPDATE profiles SET
-        phone = COALESCE(phone, $1),
-        address = COALESCE(address, $2)
-        WHERE user_id = $3 RETURNING photo, phone, address ;`,
-      [nullifyEmptyStr(phone), nullifyEmptyStr(address), req.user.id]
     );
 
     res.status(200).json({ profile: { ...user.rows[0], ...profile.rows[0] } });
@@ -42,7 +43,7 @@ exports.updateProfile = async (req, res, next) => {
 aws.config.update({
   region: "us-west-2",
   accessKeyId: process.env.AWSAccessKeyId,
-  secretAccessKey: process.env.AWSSecretKey,
+  secretAccessKey: process.env.secretAccessKey,
 });
 const S3_BUCKET = process.env.Bucket;
 
@@ -68,7 +69,7 @@ exports.updateProfilePic = (req, res) => {
   s3.getSignedUrl("putObject", s3Params, async (err, data) => {
     if (err) {
       console.error(err);
-      res.json({ success: false, error: err });
+      return sendError(res);
     }
 
     const returnData = {
