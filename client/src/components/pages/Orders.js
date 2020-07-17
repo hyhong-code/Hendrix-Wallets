@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
+import { getOrders } from "../../actions/orderActions";
 import OrderListItem from "../OrderListItem";
 
-const Orders = ({ orders }) => {
+const Orders = ({ orders, getOrders }) => {
+  useEffect(() => {
+    let isMounted = true;
+    if (isMounted) {
+      getOrders();
+    }
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   return (
     <section id="orders" className="py-6 bg-light text-dark">
       <div className="container">
@@ -44,4 +55,4 @@ const Orders = ({ orders }) => {
 
 const mapStateToProps = ({ order: { orders } }) => ({ orders });
 
-export default connect(mapStateToProps)(Orders);
+export default connect(mapStateToProps, { getOrders })(Orders);

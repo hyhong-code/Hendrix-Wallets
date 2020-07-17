@@ -21,7 +21,9 @@ const Profile = ({ user }) => {
               <div className="col-4 mb-5 pb-2 border-bottom text-prompt">
                 Name:
               </div>
-              <div className="col-8 mb-5 pb-2 border-bottom">{user.name}</div>
+              {user && (
+                <div className="col-8 mb-5 pb-2 border-bottom">{user.name}</div>
+              )}
               <div className="col-4 mb-5 pb-2 border-bottom text-prompt">
                 Phone Number:
               </div>
@@ -37,7 +39,11 @@ const Profile = ({ user }) => {
               <div className="col-4 mb-5 pb-2 border-bottom text-prompt">
                 Email:
               </div>
-              <div className="col-8 mb-5 pb-2 border-bottom">{user.email}</div>
+              {user && (
+                <div className="col-8 mb-5 pb-2 border-bottom">
+                  {user.email}
+                </div>
+              )}
               <div className="col-4 mb-5 pb-2 text-prompt border-bottom">
                 Address:
               </div>

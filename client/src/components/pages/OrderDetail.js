@@ -12,9 +12,15 @@ const OrderDetail = ({
   getOrderDetail,
 }) => {
   useEffect(() => {
-    if (isAuthenticated) {
-      getOrderDetail(match.params.orderId);
+    let isMounted = true;
+    if (isMounted) {
+      if (isAuthenticated) {
+        getOrderDetail(match.params.orderId);
+      }
     }
+    return () => {
+      isMounted = false;
+    };
   }, [isAuthenticated]);
 
   return (

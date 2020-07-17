@@ -6,6 +6,7 @@ import {
   ORDERS_FETCHED,
   ORDER_DETAIL_FETCHED,
 } from "./types";
+import { getCart } from "./cartActions";
 
 const config = {
   headers: {
@@ -16,12 +17,11 @@ const config = {
 export const createOrder = (formData, history) => async (dispatch) => {
   try {
     const res = await axios.post("/api/order", formData, config);
-
-    console.log(res.data);
     dispatch({
       type: ORDER_CREATED,
       payload: res.data.order,
     });
+    dispatch(getCart());
     history.push(`/orderDetail/${res.data.order.id}`);
   } catch (error) {
     console.error(error);

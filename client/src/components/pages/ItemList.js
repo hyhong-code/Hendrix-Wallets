@@ -10,18 +10,24 @@ const ItemList = ({ match, categories, items }) => {
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
-    if (
-      categories &&
-      categories
-        .map((category) => category.name)
-        .includes(match.params.category)
-    ) {
-      setCheckedboxes([match.params.category]);
-    } else if (match.params.category.startsWith("search-")) {
-      setCheckedboxes([]);
-      setDiscountOnly(false);
-      setSearchText(match.params.category.split("-")[1]);
+    let isMounted = true;
+    if (isMounted) {
+      if (
+        categories &&
+        categories
+          .map((category) => category.name)
+          .includes(match.params.category)
+      ) {
+        setCheckedboxes([match.params.category]);
+      } else if (match.params.category.startsWith("search-")) {
+        setCheckedboxes([]);
+        setDiscountOnly(false);
+        setSearchText(match.params.category.split("-")[1]);
+      }
     }
+    return () => {
+      isMounted = false;
+    };
   }, [match.params.category]);
 
   return (
