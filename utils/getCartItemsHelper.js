@@ -12,7 +12,7 @@ module.exports = async (cartId) =>
       `SELECT cart_id, cart_items.id AS cart_item_id, quantity, item_id,
           name, description, price, discount, photo
           FROM cart_items JOIN items ON item_id = items.id
-          WHERE cart_id = $1 ;`,
+          WHERE cart_id = $1 ORDER BY name ASC;`,
       [cartId]
     )
   ).rows;

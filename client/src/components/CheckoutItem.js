@@ -8,19 +8,19 @@ const CheckoutItem = ({ cartItem, addItemToCart, removeItemFromCart }) => {
     <div className="card checkout-card mb-3">
       <div className="card-body py-3 px-4">
         <div className="row">
-          <div className="col-4">
+          <div className="col-6 col-md-4">
             <img
               src={cartItem.photo}
               className="card-img checkout-card-img"
               alt={cartItem.name}
             />
           </div>
-          <div className="col-8">
+          <div className="col-6 col-md-8">
             <h5 className="card-title d-flex">
               <span>Monvelli</span>
               {cartItem.discount > 0 ? (
                 <span className="ml-auto text-secondary text-price">
-                  <small className="text-primary text-normal-price mr-2">
+                  <small className="text-primary text-normal-price mr-2 d-block d-md-inline mb-1 mb-md-0">
                     ${cartItem.price / 100}
                   </small>
                   ${(cartItem.price - cartItem.discount) / 100}

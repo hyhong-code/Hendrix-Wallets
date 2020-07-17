@@ -1,7 +1,55 @@
 import React from "react";
+import { connect } from "react-redux";
 
-const Profile = () => {
-  return <h1>profile</h1>;
+const Profile = ({ user }) => {
+  return user ? (
+    <section id="profile" className="py-6 text-dark bg-light">
+      <h1 className="display-4 text-center text-primary mb-4">MY PROFILE</h1>
+      <div className="row">
+        <div className="col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+          <div className="card card-body">
+            <img
+              src={user.photo}
+              className="d-block mx-auto mb-5"
+              alt="user profile photo"
+            />
+            <div className="row">
+              <div className="col-4 mb-5 pb-2 border-bottom text-prompt">
+                Name:
+              </div>
+              <div className="col-8 mb-5 pb-2 border-bottom">{user.name}</div>
+              <div className="col-4 mb-5 pb-2 border-bottom text-prompt">
+                Phone Number:
+              </div>
+              {user.phone ? (
+                <div className="col-8 mb-5 pb-2 border-bottom">
+                  {user.phone}
+                </div>
+              ) : (
+                <div className="col-8 mb-5 pb-2 border-bottom text-muted">
+                  <small>NOT ON PROFILE</small>
+                </div>
+              )}
+              <div className="col-4 mb-5 pb-2 border-bottom text-prompt">
+                Email:
+              </div>
+              <div className="col-8 mb-5 pb-2 border-bottom">{user.email}</div>
+              <div className="col-4 text-prompt">Address:</div>
+              {user.address ? (
+                <div className="col-8">{user.address}</div>
+              ) : (
+                <div className="col-8 text-muted">
+                  <small>NOT ON PROFILE</small>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  ) : null;
 };
 
-export default Profile;
+const mapStateToProps = ({ auth: { user } }) => ({ user });
+
+export default connect(mapStateToProps)(Profile);
