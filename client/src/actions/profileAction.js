@@ -2,11 +2,13 @@ import axios from "axios";
 
 import { PROFILE_PIC_UPDATED, PROFILE_ERROR } from "./types";
 
+const defaultProfilePic =
+  "https://haiyanghongnewbucket.s3-us-west-2.amazonaws.com/hendrix/user/default-user.png";
+
 export const updateProfilePic = (file) => async (dispatch, getState) => {
   dispatch({
     type: PROFILE_PIC_UPDATED,
-    payload:
-      "https://haiyanghongnewbucket.s3-us-west-2.amazonaws.com/hendrix/user/default-user.png",
+    payload: defaultProfilePic,
   });
   const folderName = "hendrix/user";
   const fileName = getState().auth.user.id;
