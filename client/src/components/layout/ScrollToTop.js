@@ -4,26 +4,36 @@ import { withRouter } from "react-router-dom";
 const ScrollToTop = ({ location }) => {
   const prevLocation = usePrevious(location);
   useEffect(() => {
-    if (location !== prevLocation) {
-      window.scrollTo(0, 0);
+    let isMounted = true;
+    if (isMounted) {
+      if (location !== prevLocation) {
+        window.scrollTo(0, 0);
+      }
     }
+    return () => {
+      isMounted = false;
+    };
   });
 
   return <Fragment></Fragment>;
 };
 
-// Hook
 function usePrevious(value) {
-  // The ref object is a generic container whose current property is mutable ...
-  // ... and can hold any value, similar to an instance property on a class
   const ref = useRef();
 
   // Store current value in ref
   useEffect(() => {
-    ref.current = value;
+    let isMounted = true;
+    if (isMounted) {
+      ref.current = value;
+    }
+    return () => {
+      isMounted = false;
+    };
+    // eslint-disable-next-line
   }, [value]); // Only re-run if value changes
 
-  // Return previous value (happens before update in useEffect above)
+  // Return previous value
   return ref.current;
 }
 

@@ -10,6 +10,7 @@ import { getOrders } from "./actions/orderActions";
 import GuestRoute from "./routes/GuestRoute";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import ScrollToTop from "./components/layout/ScrollToTop";
+import Refresh from "./components/layout/Refresh";
 import Navbar from "./components/layout/Navbar";
 import Topbar from "./components/layout/Topbar";
 import Home from "./components/pages/Home";
@@ -76,6 +77,7 @@ const App = ({
         />
         <GuestRoute exact path="/signup" component={Signup} />
         <GuestRoute exact path="/login" component={Login} />
+        <Route exact path="/refresh" component={Refresh} />
       </Switch>
       <Footer />
     </BrowserRouter>

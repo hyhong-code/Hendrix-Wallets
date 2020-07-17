@@ -6,10 +6,12 @@ const Topbar = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-4 d-flex justify-content-center justify-content-lg-start align-items-center">
-            <i className="fas fa-phone-alt mr-1"></i>TEL: (206) 696-0214
+            <i className="fas fa-phone-alt mr-1"></i>{" "}
+            <span className="text-contact">TEL: (206) 696-0214</span>
           </div>
           <div className="col-md-4 d-flex justify-content-center align-items-center">
-            <i className="fas fa-envelope mr-1"></i> Email: hong961127@gmail.com
+            <i className="fas fa-envelope mr-1"></i>{" "}
+            <span className="text-contact">Email: hong961127@gmail.com</span>
           </div>
           <div className="col-md-4 d-flex justify-content-center justify-content-lg-end align-items-center">
             <a className="social-icon mr-3" href="#!">
