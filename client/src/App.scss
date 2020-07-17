@@ -534,6 +534,8 @@ body {
 
 @media screen and (max-width: 576px) {
   #profile {
+    min-height: 85vh;
+
     .card.card-body {
       padding: 2rem 1rem;
 

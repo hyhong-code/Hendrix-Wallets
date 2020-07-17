@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import UpdateProfileModal from "../UpdateProfileModal";
+
 const Profile = ({ user }) => {
   return user ? (
     <section id="profile" className="py-6 text-dark bg-light">
@@ -34,15 +36,20 @@ const Profile = ({ user }) => {
                 Email:
               </div>
               <div className="col-8 mb-5 pb-2 border-bottom">{user.email}</div>
-              <div className="col-4 text-prompt">Address:</div>
+              <div className="col-4 mb-5 pb-2 text-prompt border-bottom">
+                Address:
+              </div>
               {user.address ? (
-                <div className="col-8">{user.address}</div>
+                <div className="col-8 mb-5 pb-2 border-bottom">
+                  {user.address}
+                </div>
               ) : (
-                <div className="col-8 text-muted">
+                <div className="col-8 mb-5 pb-2 text-muted border-bottom">
                   <small>NOT ON PROFILE</small>
                 </div>
               )}
             </div>
+            <UpdateProfileModal user={user} />
           </div>
         </div>
       </div>

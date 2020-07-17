@@ -5,6 +5,7 @@ import {
   SIGNUP_FAILED,
   USER_LOADED,
   AUTH_ERROR,
+  PROFILE_PIC_UPDATED,
 } from "../actions/types";
 import setTokenHeader from "../utils/setTokenHeader";
 
@@ -29,6 +30,8 @@ export default (state = INITIAL_STATE, action) => {
       localStorage.removeItem("jwt");
       setTokenHeader(false);
       return INITIAL_STATE;
+    case PROFILE_PIC_UPDATED:
+      return { ...state, user: { ...state.user, photo: payload } };
     default:
       return state;
   }

@@ -17,3 +17,6 @@ export const CART_FETCHED = "CART_FETCHED";
 export const ADDED_TO_CART = "ADDED_TO_CART";
 export const REMOVED_FROM_CART = "REMOVED_FROM_CART";
 export const CART_ERROR = "CART_ERROR";
+
+export const PROFILE_PIC_UPDATED = "PROFILE_PIC_UPDATED";
+export const PROFILE_ERROR = "PROFILE_ERROR";

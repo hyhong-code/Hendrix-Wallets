@@ -1,3 +1,5 @@
+const aws = require("aws-sdk");
+
 const pool = require("../config/postgres");
 const sendError = require("../utils/sendError");
 const { checkProfile } = require("../utils/validate/validateControl");
@@ -35,4 +37,51 @@ exports.updateProfile = async (req, res, next) => {
     }
     sendError(res);
   }
+};
+
+aws.config.update({
+  region: "us-west-2",
+  accessKeyId: process.env.AWSAccessKeyId,
+  secretAccessKey: process.env.AWSSecretKey,
+});
+const S3_BUCKET = process.env.Bucket;
+
+// @desc    Update current logged in user's profile photo
+// @route   PATCH /api/profile/photo
+// @access  Private
+exports.updateProfilePic = (req, res) => {
+  const s3 = new aws.S3();
+  const fileName = req.body.fileName;
+  const fileType = req.body.fileType;
+
+  const s3Params = {
+    Bucket: S3_BUCKET,
+    Key: fileName,
+    Expires: 500,
+    ContentType: fileType,
+    ACL: "public-read",
+  };
+
+  s3.getSignedUrl("putObject", s3Params, async (err, data) => {
+    if (err) {
+      console.error(err);
+      res.json({ success: false, error: err });
+    }
+
+    const returnData = {
+      signedRequest: data,
+      url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`,
+    };
+
+    const { signedRequest, url } = returnData;
+
+    await pool.query(
+      `UPDATE profiles SET
+        photo = $1
+        WHERE user_id = $2 ;`,
+      [url, req.user.id]
+    );
+
+    res.status(200).json({ signedRequest, url });
+  });
 };
