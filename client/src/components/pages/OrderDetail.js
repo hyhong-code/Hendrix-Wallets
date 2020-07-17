@@ -5,10 +5,17 @@ import { getOrderDetail } from "../../actions/orderActions";
 import OrderDetailItem from "../OrderDetailItem";
 import OrderSummaryPanel from "../OrderSummaryPanel";
 
-const OrderDetail = ({ match, currentOrder, getOrderDetail }) => {
+const OrderDetail = ({
+  match,
+  currentOrder,
+  isAuthenticated,
+  getOrderDetail,
+}) => {
   useEffect(() => {
-    getOrderDetail(match.params.orderId);
-  }, []);
+    if (isAuthenticated) {
+      getOrderDetail(match.params.orderId);
+    }
+  }, [isAuthenticated]);
 
   return (
     <section id="order-detail" className="py-6 text-dark bg-light">
@@ -41,6 +48,9 @@ const OrderDetail = ({ match, currentOrder, getOrderDetail }) => {
   );
 };
 
-const mapStateToProps = ({ order: { currentOrder } }) => ({ currentOrder });
+const mapStateToProps = ({
+  order: { currentOrder },
+  auth: { isAuthenticated },
+}) => ({ currentOrder, isAuthenticated });
 
 export default connect(mapStateToProps, { getOrderDetail })(OrderDetail);
