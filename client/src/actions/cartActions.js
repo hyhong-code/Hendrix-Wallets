@@ -7,7 +7,7 @@ import {
   CART_ERROR,
 } from "./types";
 
-export const getCartItems = () => async (dispatch) => {
+export const getCart = () => async (dispatch) => {
   try {
     const res = await axios.get("/api/cart");
     dispatch({

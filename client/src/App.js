@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { getCategories } from "./actions/categoryActions";
 import { getItems } from "./actions/itemActions";
 import { loadUser } from "./actions/authActions";
-import { getCartItems } from "./actions/cartActions";
+import { getCart } from "./actions/cartActions";
 import GuestRoute from "./routes/GuestRoute";
 import Navbar from "./components/layout/Navbar";
 import Topbar from "./components/layout/Topbar";
@@ -25,7 +25,7 @@ const App = ({
   getCategories,
   getItems,
   loadUser,
-  getCartItems,
+  getCart,
 }) => {
   useEffect(() => {
     // Load user, Fetch item categories, Fetch items
@@ -45,7 +45,7 @@ const App = ({
     // Load user's cart items
     let isMounted = true;
     if (isMounted) {
-      getCartItems();
+      getCart();
     }
     return () => {
       isMounted = false;
@@ -80,5 +80,5 @@ export default connect(mapStateToProps, {
   getCategories,
   getItems,
   loadUser,
-  getCartItems,
+  getCart,
 })(App);

@@ -4,7 +4,7 @@ import { withRouter } from "react-router";
 
 import CartItem from "./CartItem";
 
-const ShoppingCart = ({ history, cartItems }) => {
+const ShoppingCart = ({ history, cart }) => {
   const [show, setShow] = useState(false);
 
   const handleCheckout = () => {
@@ -13,68 +13,65 @@ const ShoppingCart = ({ history, cartItems }) => {
   };
 
   return (
-    <li className="nav-item dropdown d-none d-lg-block">
-      <a
-        className="nav-link dropdown-toggle"
-        href="#!"
-        id="navbarDropdown"
-        role="button"
-        aria-haspopup="true"
-        aria-expanded="false"
-        onClick={() => setShow((prev) => !prev)}
-      >
-        My Cart
-      </a>
-      <div
-        className={`${
-          show && "show"
-        } dropdown-menu dropdown-menu-right p-0 text-dark bg-light`}
-        aria-labelledby="navbarDropdown"
-      >
-        <span onClick={() => setShow(false)} className="badge badge-danger">
-          x
-        </span>
-        <div className="cart-dropdown">
-          <div className="card-body p-2">
-            <p className="mb-2 mt-1 text-center">
-              <span className="d-inline-block border-bottom border-secondary mb-2 d-inline-block">
-                Cart Total: $
-                {cartItems &&
-                  Math.round(
-                    (cartItems.reduce(
+    cart && (
+      <li className="nav-item dropdown d-none d-lg-block">
+        <a
+          className="nav-link dropdown-toggle"
+          href="#!"
+          id="navbarDropdown"
+          role="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+          onClick={() => setShow((prev) => !prev)}
+        >
+          My Cart
+        </a>
+        <div
+          className={`${
+            show && "show"
+          } dropdown-menu dropdown-menu-right p-0 text-dark bg-light`}
+          aria-labelledby="navbarDropdown"
+        >
+          <span onClick={() => setShow(false)} className="badge badge-danger">
+            x
+          </span>
+          <div className="cart-dropdown">
+            <div className="card-body p-2">
+              <p className="mb-2 mt-1 text-center">
+                <span className="d-inline-block border-bottom border-secondary mb-2 d-inline-block">
+                  Cart Total: $
+                  {Math.round(
+                    cart.cartItems.reduce(
                       (acc, cartItem) =>
                         acc +
-                        ((cartItem.price - cartItem.discount) *
-                          cartItem.quantity) /
-                          100,
+                        (cartItem.price - cartItem.discount) *
+                          cartItem.quantity,
                       0
-                    ) +
-                      Number.EPSILON) *
-                      100
+                    ) + Number.EPSILON
                   ) / 100}
-              </span>
-            </p>
-            <ul className="list-group">
-              {cartItems &&
-                cartItems.map((cartItem) => (
+                </span>
+              </p>
+              <ul className="list-group">
+                {cart.cartItems.map((cartItem) => (
                   <CartItem key={cartItem.cart_item_id} cartItem={cartItem} />
                 ))}
-            </ul>
-            <button
-              onClick={handleCheckout}
-              className="mt-1 btn btn-secondary btn-block text-white"
-            >
-              Checkout
-            </button>
+              </ul>
+              <button
+                onClick={handleCheckout}
+                className="mt-1 btn btn-secondary btn-block text-white"
+              >
+                Checkout
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </li>
+      </li>
+    )
   );
 };
 
-const mapStateToProps = ({ cartItems }) => ({
-  cartItems,
+const mapStateToProps = ({ cart }) => ({
+  cart,
 });
 
 export default connect(mapStateToProps)(withRouter(ShoppingCart));
