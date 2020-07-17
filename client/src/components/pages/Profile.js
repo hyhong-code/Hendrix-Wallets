@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import UpdateProfileModal from "../UpdateProfileModal";
 
@@ -7,8 +8,21 @@ const Profile = ({ user }) => {
   return (
     <section id="profile" className="py-6 text-dark bg-light">
       <h1 className="display-4 text-center text-primary mb-4">MY PROFILE</h1>
+
       <div className="row">
         <div className="col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb py-2">
+              <li class="breadcrumb-item">
+                <Link to="/" className="text-secondary">
+                  Home
+                </Link>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Profile
+              </li>
+            </ol>
+          </nav>
           <div className="card card-body">
             {user && (
               <img

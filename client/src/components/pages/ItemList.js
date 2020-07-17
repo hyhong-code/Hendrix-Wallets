@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import ItemCard from "../ItemCard";
 import ItemFilter from "../ItemFilter";
@@ -36,7 +37,19 @@ const ItemList = ({ match, categories, items }) => {
       <div className="itemslist-banner text-light d-flex align-items-center justify-content-center">
         <h1 className="display-4">BROWSE OUR PRODUCTS</h1>
       </div>
-      <div className="container py-6">
+      <div className="container py-5">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb py-2">
+            <li class="breadcrumb-item">
+              <Link to="/" className="text-secondary">
+                Home
+              </Link>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              Explore
+            </li>
+          </ol>
+        </nav>
         <div className="row">
           <div className="col-lg-3">
             {categories && (

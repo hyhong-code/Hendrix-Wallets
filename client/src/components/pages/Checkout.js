@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import CheckoutItem from "../CheckoutItem";
 import SubtotalPanel from "../SubtotalPanel";
@@ -13,6 +14,23 @@ const Checkout = ({ cart }) => {
       <div className="container">
         <div className="py-5">
           <h2 className="text-primary mb-4 text-center">YOUR CART</h2>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb py-2">
+              <li class="breadcrumb-item">
+                <Link to="/" className="text-secondary">
+                  Home
+                </Link>
+              </li>
+              <li class="breadcrumb-item">
+                <Link to="/items/all" className="text-secondary">
+                  Explore
+                </Link>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Checkout
+              </li>
+            </ol>
+          </nav>
           <div className="row">
             <div className="col-lg-8 order-1 order-lg-0">
               {cart &&

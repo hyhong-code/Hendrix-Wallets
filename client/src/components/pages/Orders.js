@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { getOrders } from "../../actions/orderActions";
 import OrderListItem from "../OrderListItem";
@@ -21,8 +22,21 @@ const Orders = ({ orders, getOrders }) => {
       <div className="container">
         <h1 className="display-4 text-center text-primary">ORDERS</h1>
         <hr />
+
         <div className="row">
           <div className="col-md-10 offset-md-1">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb py-2">
+                <li class="breadcrumb-item">
+                  <Link to="/" className="text-secondary">
+                    Home
+                  </Link>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Orders
+                </li>
+              </ol>
+            </nav>
             <div className="card">
               <div className="card-body">
                 <div className="row orderlist-head">

@@ -32,8 +32,20 @@ const Login = ({ login }) => {
         <div className="row">
           <div className="col-md-6 offset-md-3">
             <h1 className="display-4 text-center text-primary mb-5">
-              <span>LOG IN</span>
+              <span>LOGIN</span>
             </h1>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb py-2">
+                <li class="breadcrumb-item">
+                  <Link to="/" className="text-secondary">
+                    Home
+                  </Link>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Login
+                </li>
+              </ol>
+            </nav>
             <form onSubmit={handleSubmit}>
               <div className="card card-body py-5 px-3">
                 <div className="row">

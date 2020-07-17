@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { getOrderDetail } from "../../actions/orderActions";
 import OrderDetailItem from "../OrderDetailItem";
@@ -34,6 +35,23 @@ const OrderDetail = ({
       </div>
 
       <div className="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb py-2">
+            <li class="breadcrumb-item">
+              <Link to="/" className="text-secondary">
+                Home
+              </Link>
+            </li>
+            <li class="breadcrumb-item">
+              <Link to="/orders" className="text-secondary">
+                Orders
+              </Link>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              Order Summary
+            </li>
+          </ol>
+        </nav>
         <div className="py-3">
           <div className="row">
             <div className="col-lg-8 order-1 order-lg-0">
