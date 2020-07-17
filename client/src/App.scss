@@ -438,6 +438,15 @@ body {
 }
 
 #order-detail {
+  min-height: 85vh;
+  h1.display-4 {
+    text-transform: uppercase;
+  }
+
+  p.lead {
+    font-size: 1rem;
+  }
+
   .order-summary-panel {
     @include card-shadow();
   }
@@ -467,7 +476,7 @@ body {
     }
 
     p.lead {
-      font-size: 1rem;
+      font-size: 0.8rem;
     }
   }
 }

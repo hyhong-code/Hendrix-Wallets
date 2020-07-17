@@ -5,7 +5,7 @@ import CheckoutItem from "../CheckoutItem";
 import SubtotalPanel from "../SubtotalPanel";
 
 const Checkout = ({ cart }) => {
-  return cart ? (
+  return (
     <section id="checkout" className="bg-light text-dark">
       <div className="checkout-banner text-light d-flex align-items-center justify-content-center">
         <h1 className="display-4">CHECKOUT</h1>
@@ -15,18 +15,22 @@ const Checkout = ({ cart }) => {
           <h2 className="text-primary mb-4 text-center">YOUR CART</h2>
           <div className="row">
             <div className="col-lg-8 order-1 order-lg-0">
-              {cart.cartItems.map((cartItem) => (
-                <CheckoutItem key={cartItem.cart_item_id} cartItem={cartItem} />
-              ))}
+              {cart &&
+                cart.cartItems.map((cartItem) => (
+                  <CheckoutItem
+                    key={cartItem.cart_item_id}
+                    cartItem={cartItem}
+                  />
+                ))}
             </div>
             <div className="col-lg-4 order-0 mb-4 mb-lg-0">
-              <SubtotalPanel cart={cart} />
+              {cart && <SubtotalPanel cart={cart} />}
             </div>
           </div>
         </div>
       </div>
     </section>
-  ) : null;
+  );
 };
 
 const mapStateToProps = ({ cart }) => ({ cart });

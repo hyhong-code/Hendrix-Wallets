@@ -12,7 +12,7 @@ const ShoppingCart = ({ history, cart }) => {
     history.push("/checkout");
   };
 
-  return cart ? (
+  return (
     <li className="nav-item dropdown d-none d-lg-block">
       <a
         className="nav-link dropdown-toggle"
@@ -37,22 +37,26 @@ const ShoppingCart = ({ history, cart }) => {
         <div className="cart-dropdown">
           <div className="card-body p-2">
             <p className="mb-2 mt-1 text-center">
-              <span className="d-inline-block border-bottom border-secondary mb-2 d-inline-block">
-                Cart Total: $
-                {Math.round(
-                  cart.cartItems.reduce(
-                    (acc, cartItem) =>
-                      acc +
-                      (cartItem.price - cartItem.discount) * cartItem.quantity,
-                    0
-                  ) + Number.EPSILON
-                ) / 100}
-              </span>
+              {cart && (
+                <span className="d-inline-block border-bottom border-secondary mb-2 d-inline-block">
+                  Cart Total: $
+                  {Math.round(
+                    cart.cartItems.reduce(
+                      (acc, cartItem) =>
+                        acc +
+                        (cartItem.price - cartItem.discount) *
+                          cartItem.quantity,
+                      0
+                    ) + Number.EPSILON
+                  ) / 100}
+                </span>
+              )}
             </p>
             <ul className="list-group">
-              {cart.cartItems.map((cartItem) => (
-                <CartItem key={cartItem.cart_item_id} cartItem={cartItem} />
-              ))}
+              {cart &&
+                cart.cartItems.map((cartItem) => (
+                  <CartItem key={cartItem.cart_item_id} cartItem={cartItem} />
+                ))}
             </ul>
             <button
               onClick={handleCheckout}
@@ -64,7 +68,7 @@ const ShoppingCart = ({ history, cart }) => {
         </div>
       </div>
     </li>
-  ) : null;
+  );
 };
 
 const mapStateToProps = ({ cart }) => ({

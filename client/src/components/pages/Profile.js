@@ -4,17 +4,19 @@ import { connect } from "react-redux";
 import UpdateProfileModal from "../UpdateProfileModal";
 
 const Profile = ({ user }) => {
-  return user ? (
+  return (
     <section id="profile" className="py-6 text-dark bg-light">
       <h1 className="display-4 text-center text-primary mb-4">MY PROFILE</h1>
       <div className="row">
         <div className="col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
           <div className="card card-body">
-            <img
-              src={user.photo}
-              className="d-block mx-auto mb-5"
-              alt="user profile photo"
-            />
+            {user && (
+              <img
+                src={user.photo}
+                className="d-block mx-auto mb-5"
+                alt="user profile photo"
+              />
+            )}
             <div className="row">
               <div className="col-4 mb-5 pb-2 border-bottom text-prompt">
                 Name:
@@ -23,7 +25,7 @@ const Profile = ({ user }) => {
               <div className="col-4 mb-5 pb-2 border-bottom text-prompt">
                 Phone Number:
               </div>
-              {user.phone ? (
+              {user && user.phone ? (
                 <div className="col-8 mb-5 pb-2 border-bottom">
                   {user.phone}
                 </div>
@@ -39,7 +41,7 @@ const Profile = ({ user }) => {
               <div className="col-4 mb-5 pb-2 text-prompt border-bottom">
                 Address:
               </div>
-              {user.address ? (
+              {user && user.address ? (
                 <div className="col-8 mb-5 pb-2 border-bottom">
                   {user.address}
                 </div>
@@ -49,12 +51,12 @@ const Profile = ({ user }) => {
                 </div>
               )}
             </div>
-            <UpdateProfileModal user={user} />
+            {user && <UpdateProfileModal user={user} />}
           </div>
         </div>
       </div>
     </section>
-  ) : null;
+  );
 };
 
 const mapStateToProps = ({ auth: { user } }) => ({ user });

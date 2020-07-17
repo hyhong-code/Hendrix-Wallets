@@ -22,7 +22,7 @@ const OrderDetail = ({
       <div className="text-center ">
         <h1 className="display-4 text-primary">Order Summary</h1>
         {currentOrder && (
-          <p className="lead text-muted">Order #: {currentOrder.id}</p>
+          <p className="lead text-muted">ORDER #: {currentOrder.id}</p>
         )}
       </div>
 
