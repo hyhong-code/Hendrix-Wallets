@@ -2,19 +2,18 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 
-const OrderlistItem = () => {
+const OrderlistItem = ({ order }) => {
   return (
     <li className="list-group-item orderlist-item">
       <Link to="/orderDetail">
         <div className="row">
-          <div className="col-4 p-0 d-none d-lg-block">
-            LvsnATpgyEpCjL9TdSBF
+          <div className="col-6 p-0 d-none d-lg-block">{order.id}</div>
+          <div className="col-5 col-lg-3  p-0">
+            {new Date(order.created_at).toLocaleDateString()}
           </div>
-          <div className="col-5 col-lg-2 p-0">7/15/2020</div>
-          <div className="col-2 p-0 d-none d-lg-block ">9 Pieces</div>
-          <div className="col-4 col-lg-2 p-0">$99.99</div>
-          <div className="col-3 col-lg-2 p-0">
-            <span className="badge badge-primary">Pending</span>
+          <div className="col-4 col-lg-2  p-0">${order.final_price / 100}</div>
+          <div className="col-3 col-lg-1 p-0">
+            <span className="badge badge-primary">{order.status}</span>
           </div>
         </div>
       </Link>

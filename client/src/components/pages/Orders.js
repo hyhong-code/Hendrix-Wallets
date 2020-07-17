@@ -1,8 +1,9 @@
 import React from "react";
+import { connect } from "react-redux";
 
-import OrderlistItem from "../OrderlistItem";
+import OrderListItem from "../OrderListItem";
 
-const Orders = () => {
+const Orders = ({ orders }) => {
   return (
     <section id="orders" className="py-6 bg-light text-dark">
       <div className="container">
@@ -13,30 +14,24 @@ const Orders = () => {
             <div className="card">
               <div className="card-body">
                 <div className="row orderlist-head">
-                  <div className="col-4 d-none d-lg-block p-0 ">
+                  <div className="col-6 d-none d-lg-block p-0 ">
                     <strong>Order No.</strong>
                   </div>
-                  <div className="col-5 col-lg-2 p-0 ">
+                  <div className="col-5 col-lg-3 p-0 ">
                     <strong>Order Date</strong>
                   </div>
-                  <div className="col-2 d-none d-lg-block p-0 ">
-                    <strong>Item Qty</strong>
-                  </div>
-                  <div className="col-4 col-lg-2 p-0">
+                  <div className="col-4 col-lg-2  p-0">
                     <strong>Total</strong>
                   </div>
-                  <div className="col-3 col-lg-2 p-0">
+                  <div className="col-3 col-lg-1  p-0">
                     <strong>Status</strong>
                   </div>
                 </div>
                 <ul className="list-group list-group-flush">
-                  <OrderlistItem />
-                  <OrderlistItem />
-                  <OrderlistItem />
-                  <OrderlistItem />
-                  <OrderlistItem />
-                  <OrderlistItem />
-                  <OrderlistItem />
+                  {orders &&
+                    orders.map((order) => (
+                      <OrderListItem key={order.id} order={order} />
+                    ))}
                 </ul>
               </div>
             </div>
@@ -47,4 +42,6 @@ const Orders = () => {
   );
 };
 
-export default Orders;
+const mapStateToProps = ({ order: { orders } }) => ({ orders });
+
+export default connect(mapStateToProps)(Orders);
