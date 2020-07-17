@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { ORDER_CREATED, ORDER_ERROR } from "./types";
+import { ORDER_CREATED, ORDER_ERROR, ORDERS_FETCHED } from "./types";
 
 const config = {
   headers: {
@@ -18,6 +18,18 @@ export const createOrder = (formData, history) => async (dispatch) => {
       payload: res.data.order,
     });
     history.push(`/orderDetail/${res.data.order.id}`);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getOrders = () => async (dispatch) => {
+  try {
+    const res = await axios.get("/api/order");
+    dispatch({
+      type: ORDERS_FETCHED,
+      payload: res.data,
+    });
   } catch (error) {
     console.error(error);
   }

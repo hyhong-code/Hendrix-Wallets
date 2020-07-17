@@ -4,12 +4,12 @@ import categories from "./categoryReducer";
 import items from "./itemReducer";
 import auth from "./authReducer";
 import cart from "./cartReducer";
-import orders from "./ordereReducer";
+import order from "./ordereReducer";
 
 export default combineReducers({
   categories,
   items,
   auth,
   cart,
-  orders,
+  order,
 });

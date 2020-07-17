@@ -6,6 +6,7 @@ import { getCategories } from "./actions/categoryActions";
 import { getItems } from "./actions/itemActions";
 import { loadUser } from "./actions/authActions";
 import { getCart } from "./actions/cartActions";
+import { getOrders } from "./actions/orderActions";
 import GuestRoute from "./routes/GuestRoute";
 import Navbar from "./components/layout/Navbar";
 import Topbar from "./components/layout/Topbar";
@@ -26,6 +27,7 @@ const App = ({
   getItems,
   loadUser,
   getCart,
+  getOrders,
 }) => {
   useEffect(() => {
     // Load user, Fetch item categories, Fetch items
@@ -46,6 +48,7 @@ const App = ({
     let isMounted = true;
     if (isMounted) {
       getCart();
+      getOrders();
     }
     return () => {
       isMounted = false;
@@ -81,4 +84,5 @@ export default connect(mapStateToProps, {
   getItems,
   loadUser,
   getCart,
+  getOrders,
 })(App);

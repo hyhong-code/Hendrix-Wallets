@@ -1,14 +1,17 @@
-import { ORDER_FETCHED, ORDER_CREATED, ORDER_ERROR } from "../actions/types";
+import { ORDERS_FETCHED, ORDER_CREATED, ORDER_ERROR } from "../actions/types";
 
-const INITIAL_STATE = [];
+const INITIAL_STATE = {
+  currentOrder: null,
+  orders: [],
+};
 
 export default (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
   switch (type) {
-    case ORDER_FETCHED:
-      return payload;
+    case ORDERS_FETCHED:
+      return { ...state, ...payload };
     case ORDER_CREATED:
-      return [...state, payload];
+      return { ...state, currentOrder: payload };
     default:
       return state;
   }
