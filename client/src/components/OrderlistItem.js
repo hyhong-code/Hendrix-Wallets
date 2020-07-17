@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const OrderlistItem = ({ order }) => {
   return (
     <li className="list-group-item orderlist-item">
-      <Link to="/orderDetail">
+      <Link to={`/orderDetail/${order.id}`}>
         <div className="row">
           <div className="col-6 p-0 d-none d-lg-block">{order.id}</div>
           <div className="col-5 col-lg-3  p-0">
