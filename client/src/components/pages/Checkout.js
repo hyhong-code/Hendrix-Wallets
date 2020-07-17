@@ -16,7 +16,7 @@ const Checkout = ({ cart }) => {
           <div className="row">
             <div className="col-lg-8 order-1 order-lg-0">
               {cart.cartItems.map((cartItem) => (
-                <CheckoutItem cartItem={cartItem} />
+                <CheckoutItem key={cartItem.cart_item_id} cartItem={cartItem} />
               ))}
             </div>
             <div className="col-lg-4 order-0 mb-4 mb-lg-0">

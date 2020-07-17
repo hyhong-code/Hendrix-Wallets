@@ -1,10 +1,38 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
+import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-const OrderInfoModal = ({ history }) => {
+const OrderInfoModal = ({ history, user }) => {
+  const [formData, setFormData] = useState({
+    name: "",
+    address: "",
+    email: "",
+    phone: "",
+    instructions: "",
+  });
+
+  const handleChange = (evt) => {
+    const { value, name } = evt.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleUseProfile = (evt) => {
+    evt.preventDefault();
+    setFormData((prev) => ({
+      ...prev,
+      name: user.name || "",
+      address: user.address || "",
+      email: user.email || "",
+      phone: user.phone || "",
+    }));
+  };
+
   const handleClick = () => {
     history.push("/orderdetail");
   };
+
+  const { name, address, email, phone, instructions } = formData;
+
   return (
     <Fragment>
       <button
@@ -15,7 +43,7 @@ const OrderInfoModal = ({ history }) => {
       >
         Fill out info
       </button>
-      {/* <!-- Modal --> */}
+
       <div
         className="modal fade"
         id="staticBackdrop"
@@ -28,9 +56,9 @@ const OrderInfoModal = ({ history }) => {
       >
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="staticBackdropLabel">
-                Comfirm Order
+            <div className="modal-header border-secondary">
+              <h5 className="modal-title text-primary" id="staticBackdropLabel">
+                CONFIRM ORDER
               </h5>
               <button
                 type="button"
@@ -42,25 +70,81 @@ const OrderInfoModal = ({ history }) => {
               </button>
             </div>
             <div className="modal-body px-3 px-md-5 py-3">
-              <form action="" className="order-info-modal-form">
-                <button className="btn btn-outline-dark btn-sm use-profile-btn">
+              <form className="order-info-modal-form">
+                <button
+                  onClick={handleUseProfile}
+                  className="btn btn-outline-dark btn-sm use-profile-btn"
+                >
                   Use Profile Info
                 </button>
-                <div className="form-group mb-2">
-                  <label htmlFor="recepient">Recepient Name</label>
-                  <input type="text" className="form-control" id="recepient" />
+                <div className="form-group mb-3">
+                  <label htmlFor="recepient" className="mb-1 text-primary">
+                    Recepient Name
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    className="form-control text-dark"
+                    id="recepient"
+                    value={name}
+                    onChange={handleChange}
+                    placeholder="e.g. John Smith"
+                  />
                 </div>
-                <div className="form-group mb-2">
-                  <label htmlFor="address">Address</label>
-                  <input type="text" className="form-control" id="address" />
+                <div className="form-group mb-3">
+                  <label htmlFor="address" className="mb-1 text-primary">
+                    Address
+                  </label>
+                  <input
+                    type="text"
+                    name="address"
+                    className="form-control text-dark"
+                    id="address"
+                    value={address}
+                    onChange={handleChange}
+                    placeholder="e.g. 555 110th Ave NE, Bellevue, WA 98004"
+                  />
                 </div>
-                <div className="form-group mb-2">
-                  <label htmlFor="email">Email</label>
-                  <input type="email" className="form-control" id="email" />
+                <div className="form-group mb-3">
+                  <label htmlFor="email" className="mb-1 text-primary">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    className="form-control text-dark"
+                    id="email"
+                    value={email}
+                    onChange={handleChange}
+                    placeholder="e.g. example@email.com"
+                  />
                 </div>
-                <div className="form-group mb-2">
-                  <label htmlFor="phone">Phone</label>
-                  <input type="text" className="form-control" id="phone" />
+                <div className="form-group mb-3">
+                  <label htmlFor="phone" className="mb-1 text-primary">
+                    Phone
+                  </label>
+                  <input
+                    type="text"
+                    name="phone"
+                    className="form-control text-dark"
+                    id="phone"
+                    value={phone}
+                    onChange={handleChange}
+                    placeholder="e.g. 2060001234"
+                  />
+                </div>
+                <div className="form-group mb-3">
+                  <label htmlFor="instruction" className="mb-1 text-primary">
+                    Instructions
+                  </label>
+                  <textarea
+                    name="instructions"
+                    className="form-control text-dark"
+                    id="instruction"
+                    value={instructions}
+                    onChange={handleChange}
+                    placeholder="e.g. Use discreet packaging"
+                  ></textarea>
                 </div>
               </form>
             </div>
@@ -70,7 +154,7 @@ const OrderInfoModal = ({ history }) => {
                 className="btn btn-secondary text-light"
                 data-dismiss="modal"
               >
-                Close
+                CLOSE
               </button>
               <button
                 type="button"
@@ -78,7 +162,7 @@ const OrderInfoModal = ({ history }) => {
                 data-dismiss="modal"
                 onClick={handleClick}
               >
-                Confirm Order
+                CONFIRM
               </button>
             </div>
           </div>
@@ -88,4 +172,6 @@ const OrderInfoModal = ({ history }) => {
   );
 };
 
-export default withRouter(OrderInfoModal);
+const mapStateToProps = ({ auth: { user } }) => ({ user });
+
+export default connect(mapStateToProps)(withRouter(OrderInfoModal));

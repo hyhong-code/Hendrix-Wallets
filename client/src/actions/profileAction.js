@@ -28,7 +28,7 @@ export const updateProfile = (formData) => async (dispatch) => {
 };
 
 export const updateProfilePic = (file) => async (dispatch, getState) => {
-  const folderName = "hendrix/user";
+  const folderName = `hendrix/user/${getState().auth.user.id}`;
   const fileName = `${uuid()}`;
   const fileType = file.type;
   try {
