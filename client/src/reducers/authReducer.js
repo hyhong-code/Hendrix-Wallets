@@ -32,6 +32,7 @@ export default (state = INITIAL_STATE, action) => {
     case AUTH_ERROR:
     case USER_LOGOUT:
       localStorage.removeItem("jwt");
+      sessionStorage.removeItem("refreshPath");
       setTokenHeader(false);
       return INITIAL_STATE;
     case PROFILE_UPDATED:

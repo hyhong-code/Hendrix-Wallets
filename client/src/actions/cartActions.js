@@ -7,6 +7,7 @@ import {
   CLEAR_CART,
   CART_ERROR,
 } from "./types";
+import { createToast } from "../actions/toastActions";
 
 export const getCart = () => async (dispatch) => {
   try {
@@ -16,7 +17,8 @@ export const getCart = () => async (dispatch) => {
       payload: res.data.cart,
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error.response);
+    dispatch({ type: CART_ERROR });
   }
 };
 
@@ -28,7 +30,13 @@ export const addItemToCart = (itemId) => async (dispatch) => {
       payload: res.data.cart,
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error.response);
+    dispatch({ type: CART_ERROR });
+    if (error.response) {
+      dispatch(
+        createToast(Object.values(error.response.data.errors).join(", "))
+      );
+    }
   }
 };
 
@@ -43,7 +51,13 @@ export const removeItemFromCart = (itemId, cartItemId) => async (dispatch) => {
       payload: res.data.cart,
     });
   } catch (error) {
-    console.error(error.response);
+    // console.error(error.response);
+    dispatch({ type: CART_ERROR });
+    if (error.response) {
+      dispatch(
+        createToast(Object.values(error.response.data.errors).join(", "))
+      );
+    }
   }
 };
 
