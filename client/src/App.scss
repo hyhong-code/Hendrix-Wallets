@@ -163,8 +163,7 @@ body {
         rgba($color-secondary, 0.5),
         rgba($color-secondary, 0.9)
       ),
-      url("https://images.unsplash.com/photo-1567016627485-de3bcbecdbb2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80")
-        no-repeat center center/cover;
+      url(./assets/home.jpeg) no-repeat center center/cover;
 
     p.lead {
       font-size: 2rem;
@@ -290,8 +289,7 @@ body {
         rgba($color-secondary, 0.5),
         rgba($color-secondary, 0.9)
       ),
-      url(https://images.unsplash.com/photo-1510681491618-3cb3e5bb6bf6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80)
-        no-repeat center center/cover;
+      url(./assets/items.jpeg) no-repeat center center/cover;
   }
 
   .card {
@@ -345,8 +343,7 @@ body {
         rgba($color-secondary, 0.5),
         rgba($color-secondary, 0.9)
       ),
-      url(https://images.unsplash.com/photo-1560472355-536de3962603?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80)
-        no-repeat center center/cover;
+      url(./assets/checkout.jpg) no-repeat center center/cover;
   }
 
   .checkout-card {
