@@ -10,20 +10,14 @@ const GuestRoute = ({
   ...otherProps
 }) => {
   useEffect(() => {
-    let isMounted = true;
-    if (isMounted) {
-      if (isAuthenticated) {
-        const refreshPath = sessionStorage.getItem("refreshPath");
-        if (refreshPath) {
-          history.replace(refreshPath);
-        } else {
-          history.replace("/");
-        }
+    if (isAuthenticated) {
+      const refreshPath = sessionStorage.getItem("refreshPath");
+      if (refreshPath) {
+        history.replace(refreshPath);
+      } else {
+        history.replace("/");
       }
     }
-    return () => {
-      isMounted = false;
-    };
   }, [isAuthenticated]);
 
   return <Route {...otherProps} component={Component} />;

@@ -7,13 +7,7 @@ import OrderListItem from "../OrderListItem";
 
 const Orders = ({ orders, getOrders }) => {
   useEffect(() => {
-    let isMounted = true;
-    if (isMounted) {
-      getOrders();
-    }
-    return () => {
-      isMounted = false;
-    };
+    getOrders();
     // eslint-disable-next-line
   }, []);
 

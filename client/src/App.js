@@ -34,29 +34,15 @@ const App = ({
   getOrders,
 }) => {
   useEffect(() => {
-    // Load user, Fetch item categories, Fetch items
-    let isMounted = true;
-    if (isMounted) {
-      loadUser();
-      getCategories();
-      getItems();
-    }
-    return () => {
-      isMounted = false;
-    };
+    loadUser();
+    getCategories();
+    getItems();
     // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
-    // Load user's cart items
-    let isMounted = true;
-    if (isMounted) {
-      getCart();
-      getOrders();
-    }
-    return () => {
-      isMounted = false;
-    };
+    getCart();
+    getOrders();
     // eslint-disable-next-line
   }, [isAuthenticated]);
 

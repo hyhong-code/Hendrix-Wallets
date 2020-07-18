@@ -10,17 +10,11 @@ const ProtectedRoute = ({
   ...otherProps
 }) => {
   useEffect(() => {
-    let isMounted = true;
-    if (isMounted) {
-      if (isAuthenticated) {
-        sessionStorage.setItem("refreshPath", location.pathname);
-      } else {
-        history.replace("/login");
-      }
+    if (isAuthenticated) {
+      sessionStorage.setItem("refreshPath", location.pathname);
+    } else {
+      history.replace("/login");
     }
-    return () => {
-      isMounted = false;
-    };
   }, [location.pathname, isAuthenticated]);
 
   return <Route {...otherProps} component={Component} />;

@@ -4,17 +4,10 @@ import { withRouter } from "react-router-dom";
 const ScrollToTop = ({ location }) => {
   const prevLocation = usePrevious(location);
   useEffect(() => {
-    let isMounted = true;
-    if (isMounted) {
-      if (location !== prevLocation) {
-        window.scrollTo(0, 0);
-      }
+    if (location !== prevLocation) {
+      window.scrollTo(0, 0);
     }
-    return () => {
-      isMounted = false;
-    };
   });
-
   return <Fragment></Fragment>;
 };
 

@@ -13,15 +13,9 @@ const OrderDetail = ({
   getOrderDetail,
 }) => {
   useEffect(() => {
-    let isMounted = true;
-    if (isMounted) {
-      if (isAuthenticated) {
-        getOrderDetail(match.params.orderId);
-      }
+    if (isAuthenticated) {
+      getOrderDetail(match.params.orderId);
     }
-    return () => {
-      isMounted = false;
-    };
     // eslint-disable-next-line
   }, [isAuthenticated]);
 
