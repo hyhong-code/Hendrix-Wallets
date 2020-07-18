@@ -2,8 +2,8 @@
 
 ### Main technolodges: Node/Express, PostgreSQL, React, Redux, Sass, Bootstrap, Stripe
 
-### Currently customer facing mvp is complete
-### Still working on admin facing CMS
+**Customer facing MVP is complete**
+Currently working on admin facing CMS to manage products and orders
 
 ---
 
@@ -22,28 +22,28 @@
 ## SHOWCASE:
 
 ### HOME PAGE
-<img src="./showcase/home.png" width="90%">
+<img src="./showcase/home.png" width="85%">
 
 ### ITEMS PAGE
-<img src="./showcase/items.png" width="90%">
+<img src="./showcase/items.png" width="85%">
 
 ### CART COMPONENT
-<img src="./showcase/cart.png">
+<img src="./showcase/cart.png" width="30%">
 
 ### CHECKOUT PAGE
-<img src="./showcase/checkout.png" width="90%">
+<img src="./showcase/checkout.png" width="85%">
 
 ### ORDER SUMMARY PAGE
-<img src="./showcase/orderSummary.png" width="90%">
+<img src="./showcase/orderSummary.png" width="85%">
 
 ### STRIPE INTERGRATION
-<img src="./showcase/stripe.png" width="90%">
+<img src="./showcase/stripe.png" width="85%">
 
 ### CUSTOMER ORDER LIST
-<img src="./showcase/orderList.png" width="90%">
+<img src="./showcase/orderList.png" width="85%">
 
 ### CUSTOMER PROFILE
-<img src="./showcase/profile.png" width="90%">
+<img src="./showcase/profile.png" width="85%">
 
 ### CUSTOMER SIGNUP
-<img src="./showcase/signup.png" width="90%">
+<img src="./showcase/signup.png" width="85%">
