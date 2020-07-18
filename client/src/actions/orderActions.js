@@ -3,6 +3,7 @@ import axios from "axios";
 import {
   ORDER_CREATED,
   ORDER_PAID,
+  ORDER_CANCELED,
   ORDER_ERROR,
   ORDERS_FETCHED,
   ORDER_DETAIL_FETCHED,
@@ -61,9 +62,20 @@ export const payForOrder = (token, orderId) => async (dispatch) => {
       { token },
       config
     );
-    console.log(res.data);
     dispatch({
       type: ORDER_PAID,
+      payload: res.data.order,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const cancelOrder = (orderId) => async (dispatch) => {
+  try {
+    const res = await axios.patch(`api/order/${orderId}/cancel`);
+    dispatch({
+      type: ORDER_CANCELED,
       payload: res.data.order,
     });
   } catch (error) {

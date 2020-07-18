@@ -177,3 +177,50 @@ exports.payForOrder = async (req, res, next) => {
     sendError(res);
   }
 };
+
+// @desc    Cancel an order
+// @route   PATCH /api/order/:orderId/cancel
+// @access  Private - User role
+exports.cancelOrder = async (req, res, next) => {
+  try {
+    let order = await pool.query("SELECT * FROM orders WHERE id = $1 ;", [
+      req.params.orderId,
+    ]);
+
+    // Handle order not exist
+    if (!order.rows.length) {
+      return sendError(res, 404, { message: "Order not found" });
+    }
+
+    // Handle user not owner of order
+    if (!order.rows[0].user_id !== req.user.id) {
+      return sendError(res, 401, { message: "User not authorized" });
+    }
+
+    // Handle order is already paid for
+    if (!order.rows[0].status !== "CONFIRMED") {
+      return sendError(res, 400, {
+        message: "Cannot cancel this order at this time",
+      });
+    }
+
+    // Cancel the order
+    order = await pool.query(
+      "UPDATE orders SET status = 'CANCELED' WHERE id = $1 RETURNING * ;",
+      [req.params.orderId]
+    );
+
+    // Return order details to client
+    const cart = await pool.query("SELECT * FROM carts WHERE id = $1 ;", [
+      order.rows[0].cart_id,
+    ]);
+    const cartItems = await getCartItemsHelper(cart.rows[0].id);
+    order.rows[0].cart = cart.rows[0];
+    order.rows[0].cart.cartItems = cartItems;
+
+    res.status(200).json({ order: order.rows[0] });
+  } catch (error) {
+    console.error(error);
+    sendError(res);
+  }
+};
