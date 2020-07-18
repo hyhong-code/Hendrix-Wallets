@@ -26,7 +26,7 @@ const Showcase = ({ categories }) => {
                   ))}
               </div>
               <Link to="/items/all" className="btn btn-primary btn-block mt-4">
-                Explore All
+                EXPLORE ALL
               </Link>
             </div>
           </div>

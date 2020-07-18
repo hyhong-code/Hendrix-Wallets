@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import ReactToolTip from "react-tooltip";
 
 import CartItem from "./CartItem";
-
-import { Link } from "react-router-dom";
 
 const ShoppingCart = ({ history, cart }) => {
   const [show, setShow] = useState(false);
@@ -54,17 +53,32 @@ const ShoppingCart = ({ history, cart }) => {
               )}
             </p>
             <ul className="list-group">
-              {cart &&
+              {cart && cart.cartItems.length ? (
                 cart.cartItems.map((cartItem) => (
                   <CartItem key={cartItem.cart_item_id} cartItem={cartItem} />
-                ))}
+                ))
+              ) : (
+                <small className="text-primary ml-5">
+                  Your cart is empty...
+                </small>
+              )}
             </ul>
-            <button
-              onClick={handleCheckout}
-              className="mt-1 btn btn-secondary btn-block text-white"
-            >
-              Checkout
-            </button>
+            {cart && cart.cartItems.length ? (
+              <button
+                onClick={handleCheckout}
+                className="mt-1 btn btn-secondary btn-block text-white"
+              >
+                CHECK OUT
+              </button>
+            ) : (
+              <button
+                data-tip="Add some items first"
+                className="mt-1 btn btn-secondary btn-block text-white disabled"
+              >
+                CHECK OUT
+              </button>
+            )}
+            <ReactToolTip />
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 
 import { createOrder } from "../actions/orderActions";
 
-const OrderInfoModal = ({ history, user, createOrder }) => {
+const OrderInfoModal = ({ history, user, cart, createOrder }) => {
   const [formData, setFormData] = useState({
     name: "",
     address: "",
@@ -38,14 +38,20 @@ const OrderInfoModal = ({ history, user, createOrder }) => {
 
   return (
     <Fragment>
-      <button
-        className="btn btn-primary d-block mx-auto mt-4"
-        type="button"
-        data-toggle="modal"
-        data-target="#staticBackdrop"
-      >
-        Fill out info
-      </button>
+      {cart && cart.cartItems.length ? (
+        <button
+          className="btn btn-primary d-block mx-auto mt-4"
+          type="button"
+          data-toggle="modal"
+          data-target="#staticBackdrop"
+        >
+          NEXT STEP
+        </button>
+      ) : (
+        <button className="btn btn-primary d-block mx-auto mt-4 disabled">
+          NEXT STEP
+        </button>
+      )}
 
       <div
         className="modal fade"
@@ -175,7 +181,7 @@ const OrderInfoModal = ({ history, user, createOrder }) => {
   );
 };
 
-const mapStateToProps = ({ auth: { user } }) => ({ user });
+const mapStateToProps = ({ auth: { user }, cart }) => ({ user, cart });
 
 export default connect(mapStateToProps, { createOrder })(
   withRouter(OrderInfoModal)

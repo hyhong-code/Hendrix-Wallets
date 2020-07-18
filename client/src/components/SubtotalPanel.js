@@ -52,24 +52,26 @@ const SubtotalPanel = ({ cart }) => {
           <div className="col-6 mb-0 mb-md-2 text-primary">Shipping:</div>
           {cart && (
             <div className="col-6 mb-0 mb-md-2">
-              +${parseInt(cart.shipping_cost) / 100}
+              +${cart.cartItems.length ? parseInt(cart.shipping_cost) / 100 : 0}
             </div>
           )}
           <div className="col-6 mb-0 mb-md-2 text-primary">Tax:</div>
           {cart && (
             <div className="col-6 mb-0 mb-md-2">
               +$
-              {Math.round(
-                ((cart.cartItems.reduce(
-                  (acc, { price, discount, quantity }) =>
-                    acc + (price - discount) * quantity,
-                  0
-                ) +
-                  parseInt(cart.shipping_cost)) *
-                  parseInt(cart.tax_rate_pct_basis)) /
-                  10000 +
-                  Number.EPSILON
-              ) / 100}
+              {cart.cartItems.length
+                ? Math.round(
+                    ((cart.cartItems.reduce(
+                      (acc, { price, discount, quantity }) =>
+                        acc + (price - discount) * quantity,
+                      0
+                    ) +
+                      parseInt(cart.shipping_cost)) *
+                      parseInt(cart.tax_rate_pct_basis)) /
+                      10000 +
+                      Number.EPSILON
+                  ) / 100
+                : 0}
             </div>
           )}
         </div>
@@ -79,16 +81,18 @@ const SubtotalPanel = ({ cart }) => {
           {cart && (
             <div className="col-6 mb-0 mb-md-2">
               $
-              {Math.round(
-                (cart.cartItems.reduce(
-                  (acc, { price, discount, quantity }) =>
-                    acc + (price - discount) * quantity,
-                  0
-                ) +
-                  parseInt(cart.shipping_cost)) *
-                  (1 + parseInt(cart.tax_rate_pct_basis) / 10000) +
-                  Number.EPSILON
-              ) / 100}
+              {cart.cartItems.length
+                ? Math.round(
+                    (cart.cartItems.reduce(
+                      (acc, { price, discount, quantity }) =>
+                        acc + (price - discount) * quantity,
+                      0
+                    ) +
+                      parseInt(cart.shipping_cost)) *
+                      (1 + parseInt(cart.tax_rate_pct_basis) / 10000) +
+                      Number.EPSILON
+                  ) / 100
+                : 0}
             </div>
           )}
         </div>
