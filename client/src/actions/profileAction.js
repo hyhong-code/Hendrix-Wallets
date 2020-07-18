@@ -1,12 +1,8 @@
 import axios from "axios";
 import { uuid } from "uuidv4";
 
-import {
-  PROFILE_UPDATED,
-  CLEAR_PROFILE_PIC,
-  PROFILE_PIC_UPDATED,
-  PROFILE_ERROR,
-} from "./types";
+import { PROFILE_UPDATED, PROFILE_PIC_UPDATED, PROFILE_ERROR } from "./types";
+import { createToast } from "../actions/toastActions";
 
 const config = {
   headers: {
@@ -22,7 +18,13 @@ export const updateProfile = (formData) => async (dispatch) => {
       payload: res.data.profile,
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error.response);
+    dispatch({ type: PROFILE_ERROR });
+    if (error.response) {
+      dispatch(
+        createToast(Object.values(error.response.data.errors).join(", "))
+      );
+    }
   }
 };
 
@@ -50,6 +52,12 @@ export const updateProfilePic = (file) => async (dispatch, getState) => {
       payload: url,
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error.response);
+    dispatch({ type: PROFILE_ERROR });
+    if (error.response) {
+      dispatch(
+        createToast(Object.values(error.response.data.errors).join(", "))
+      );
+    }
   }
 };

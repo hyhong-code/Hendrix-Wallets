@@ -8,7 +8,7 @@ import {
   AUTH_ERROR,
   PROFILE_UPDATED,
   PROFILE_PIC_UPDATED,
-  CLEAR_PROFILE_PIC,
+  PROFILE_ERROR,
 } from "../actions/types";
 import setTokenHeader from "../utils/setTokenHeader";
 
@@ -31,6 +31,7 @@ export default (state = INITIAL_STATE, action) => {
     case SIGNUP_FAILED:
     case AUTH_ERROR:
     case USER_LOGOUT:
+    case PROFILE_ERROR:
       localStorage.removeItem("jwt");
       sessionStorage.removeItem("refreshPath");
       setTokenHeader(false);
