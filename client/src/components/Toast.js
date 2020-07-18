@@ -1,24 +1,24 @@
 import React from "react";
 
-const toast = () => {
+const Toast = ({ toast: { msg, type } }) => {
   return (
-    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="toast-header">
-        <img src="..." class="rounded mr-2" alt="..." />
-        <strong class="mr-auto">Bootstrap</strong>
-        <small class="text-muted">11 mins ago</small>
-        <button
-          type="button"
-          class="ml-2 mb-1 close"
-          data-dismiss="toast"
+    <div class={`alert alert-${type} alert-dismissible fade show`} role="alert">
+      <div className="d-flex align-items-center justify-content-between">
+        <span className="header">
+          {type === "danger" ? "Error" : "Success"}
+        </span>
+        <span
+          class="py-0 px-2 d-block close-btn"
+          data-dismiss="alert"
           aria-label="Close"
         >
           <span aria-hidden="true">&times;</span>
-        </button>
+        </span>
       </div>
-      <div class="toast-body">Hello, world! This is a toast message.</div>
+      <hr className="m-0 mb-1" />
+      <p className="m-0 toast-text">{msg}</p>
     </div>
   );
 };
 
-export default toast;
+export default Toast;

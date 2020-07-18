@@ -12,6 +12,7 @@ import {
 import setTokenHeader from "../utils/setTokenHeader";
 import { clearCart } from "./cartActions";
 import { clearOrder } from "./orderActions";
+import { createToast } from "./toastActions";
 
 const config = {
   headers: {
@@ -45,12 +46,14 @@ export const login = (formData) => async (dispatch) => {
     dispatch(loadUser());
   } catch (error) {
     console.error(error.response);
-    if (error.response) {
-      console.log(Object.values(error.response.data.errors));
-    }
     dispatch({
       type: LOGIN_FAILED,
     });
+    if (error.response) {
+      dispatch(
+        createToast(Object.values(error.response.data.errors).join(","))
+      );
+    }
   }
 };
 

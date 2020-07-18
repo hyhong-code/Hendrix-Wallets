@@ -11,6 +11,7 @@ import GuestRoute from "./routes/GuestRoute";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import ScrollToTop from "./components/layout/ScrollToTop";
 import Refresh from "./components/layout/Refresh";
+import ToastContainer from "./components/layout/ToastContainer";
 import Navbar from "./components/layout/Navbar";
 import Topbar from "./components/layout/Topbar";
 import Home from "./components/pages/Home";
@@ -80,6 +81,7 @@ const App = ({
         <Route exact path="/refresh" component={Refresh} />
       </Switch>
       <Footer />
+      <ToastContainer />
     </BrowserRouter>
   );
 };
