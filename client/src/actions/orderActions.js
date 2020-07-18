@@ -45,7 +45,6 @@ export const getOrders = () => async (dispatch) => {
 export const getOrderDetail = (orderId) => async (dispatch) => {
   try {
     const res = await axios.get(`/api/order/${orderId}`);
-    console.log(res.data);
     dispatch({
       type: ORDER_DETAIL_FETCHED,
       payload: res.data.order,

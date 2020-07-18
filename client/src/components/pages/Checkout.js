@@ -15,18 +15,18 @@ const Checkout = ({ cart }) => {
         <div className="py-5">
           <h2 className="text-primary mb-4 text-center">YOUR CART</h2>
           <nav aria-label="breadcrumb">
-            <ol class="breadcrumb py-2">
-              <li class="breadcrumb-item">
+            <ol className="breadcrumb py-2">
+              <li className="breadcrumb-item">
                 <Link to="/" className="text-secondary">
                   Home
                 </Link>
               </li>
-              <li class="breadcrumb-item">
+              <li className="breadcrumb-item">
                 <Link to="/items/all" className="text-secondary">
                   Explore
                 </Link>
               </li>
-              <li class="breadcrumb-item active" aria-current="page">
+              <li className="breadcrumb-item active" aria-current="page">
                 Checkout
               </li>
             </ol>

@@ -12,13 +12,13 @@ const Profile = ({ user }) => {
       <div className="row">
         <div className="col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
           <nav aria-label="breadcrumb">
-            <ol class="breadcrumb py-2">
-              <li class="breadcrumb-item">
+            <ol className="breadcrumb py-2">
+              <li className="breadcrumb-item">
                 <Link to="/" className="text-secondary">
                   Home
                 </Link>
               </li>
-              <li class="breadcrumb-item active" aria-current="page">
+              <li className="breadcrumb-item active" aria-current="page">
                 Profile
               </li>
             </ol>

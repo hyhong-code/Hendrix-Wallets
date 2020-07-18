@@ -39,13 +39,13 @@ const ItemList = ({ match, categories, items }) => {
       </div>
       <div className="container py-5">
         <nav aria-label="breadcrumb">
-          <ol class="breadcrumb py-2">
-            <li class="breadcrumb-item">
+          <ol className="breadcrumb py-2">
+            <li className="breadcrumb-item">
               <Link to="/" className="text-secondary">
                 Home
               </Link>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">
+            <li className="breadcrumb-item active" aria-current="page">
               Explore
             </li>
           </ol>

@@ -17,7 +17,6 @@ const config = {
 export const updateProfile = (formData) => async (dispatch) => {
   try {
     const res = await axios.patch("/api/profile", formData, config);
-    console.log(res.data.profile);
     dispatch({
       type: PROFILE_UPDATED,
       payload: res.data.profile,
