@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Avartar = ({ user }) => {
+const Avartar = ({ user, logout }) => {
   return (
     <li className="nav-item my-lg-0 ml-0 ml-lg-2 dropdown">
       <a
@@ -29,7 +29,9 @@ const Avartar = ({ user }) => {
         <Link to="/orders" className="dropdown-item signin">
           My Orders
         </Link>
-        <span className="dropdown-item logout">Log out</span>
+        <span onClick={logout} className="dropdown-item logout">
+          Log out
+        </span>
       </div>
     </li>
   );

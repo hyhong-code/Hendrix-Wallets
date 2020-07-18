@@ -2,12 +2,13 @@ import React, { Fragment } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 
+import { logout } from "../../actions/authActions";
 import logo from "../../assets/logo.png";
 import ShoppingCart from "../ShoppingCart";
 import Avartar from "../Avartar";
 import SearchForm from "../SearchForm";
 
-const Navbar = ({ auth: { isAuthenticated, user } }) => {
+const Navbar = ({ auth: { isAuthenticated, user }, logout }) => {
   const authLinks = () => (
     <Fragment>
       <ShoppingCart />
@@ -16,7 +17,7 @@ const Navbar = ({ auth: { isAuthenticated, user } }) => {
           My Cart
         </NavLink>
       </li>
-      {user && <Avartar user={user} />}
+      {user && <Avartar user={user} logout={logout} />}
     </Fragment>
   );
 
@@ -81,4 +82,4 @@ const Navbar = ({ auth: { isAuthenticated, user } }) => {
 
 const mapStateToProps = ({ auth }) => ({ auth });
 
-export default connect(mapStateToProps)(Navbar);
+export default connect(mapStateToProps, { logout })(Navbar);
