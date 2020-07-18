@@ -1,21 +1,33 @@
-import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Route, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 const ProtectedRoute = ({
+  history,
+  location,
   component: Component,
   isAuthenticated,
   ...otherProps
 }) => {
-  return isAuthenticated ? (
-    <Route {...otherProps} component={Component} />
-  ) : (
-    <Redirect to="/login" />
-  );
+  useEffect(() => {
+    let isMounted = true;
+    if (isMounted) {
+      if (isAuthenticated) {
+        sessionStorage.setItem("refreshPath", location.pathname);
+      } else {
+        history.replace("/login");
+      }
+    }
+    return () => {
+      isMounted = false;
+    };
+  }, [location.pathname, isAuthenticated]);
+
+  return <Route {...otherProps} component={Component} />;
 };
 
 const mapStateToProps = ({ auth: { isAuthenticated } }) => ({
   isAuthenticated,
 });
 
-export default connect(mapStateToProps)(ProtectedRoute);
+export default connect(mapStateToProps)(withRouter(ProtectedRoute));
