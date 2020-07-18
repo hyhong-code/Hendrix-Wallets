@@ -65,7 +65,7 @@ const UpdateProfileModal = ({ user, updateProfile }) => {
                 <img
                   src={user.photo}
                   className="d-block mx-auto mb-4"
-                  alt="user profile photo"
+                  alt="user profile"
                 />
                 <ProfilePicUpdate />
                 <form>

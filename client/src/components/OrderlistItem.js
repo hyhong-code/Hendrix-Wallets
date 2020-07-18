@@ -2,6 +2,24 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 
+const badgeColor = (orderStatus) => {
+  console.log(orderStatus);
+  switch (orderStatus) {
+    case "CONFIRMED":
+      return "badge-info";
+    case "PAID":
+      return "badge-primary";
+    case "SHIPPED":
+      return "badge-secondary text-light";
+    case "DELIVERED":
+      return "badge-success";
+    case "CANCELED":
+      return "badge-danger";
+    default:
+      return "";
+  }
+};
+
 const OrderlistItem = ({ order }) => {
   return (
     <li className="list-group-item orderlist-item">
@@ -12,8 +30,11 @@ const OrderlistItem = ({ order }) => {
             {new Date(order.created_at).toLocaleDateString()}
           </div>
           <div className="col-4 col-lg-2  p-0">${order.final_price / 100}</div>
+
           <div className="col-3 col-lg-1 p-0">
-            <span className="badge badge-primary">{order.status}</span>
+            <span className={`badge ${badgeColor(order.status)}`}>
+              {order.status}
+            </span>
           </div>
         </div>
       </Link>

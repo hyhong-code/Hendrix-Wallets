@@ -52,6 +52,42 @@ const OrderDetail = ({
             </li>
           </ol>
         </nav>
+        <div className="progress">
+          {currentOrder &&
+            (currentOrder.status === "CONFIRMED" ||
+              currentOrder.status === "SHIPPED" ||
+              currentOrder.status === "PAID" ||
+              currentOrder.status === "DELIVERED") && (
+              <div className="bg-info order-progress progress-bar progress-bar-striped progress-bar-animated">
+                CONFIRMED
+              </div>
+            )}
+          {currentOrder &&
+            (currentOrder.status === "SHIPPED" ||
+              currentOrder.status === "PAID" ||
+              currentOrder.status === "DELIVERED") && (
+              <div className="bg-primary order-progress progress-bar progress-bar-striped progress-bar-animated">
+                PAID
+              </div>
+            )}
+          {currentOrder &&
+            (currentOrder.status === "SHIPPED" ||
+              currentOrder.status === "DELIVERED") && (
+              <div className="bg-secondary order-progress progress-bar progress-bar-striped progress-bar-animated">
+                SHIPPED
+              </div>
+            )}
+          {currentOrder && currentOrder.status === "DELIVERED" && (
+            <div className="bg-success order-progress progress-bar progress-bar-striped progress-bar-animated">
+              DELIVERED
+            </div>
+          )}
+          {currentOrder && currentOrder.status === "CANCELED" && (
+            <div className="bg-danger order-progress-canceled progress-bar progress-bar-striped progress-bar-animated">
+              CANCELED
+            </div>
+          )}
+        </div>
         <div className="py-3">
           <div className="row">
             <div className="col-lg-8 order-1 order-lg-0">

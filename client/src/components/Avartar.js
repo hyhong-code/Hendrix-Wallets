@@ -15,7 +15,7 @@ const Avartar = ({ user }) => {
       >
         <img
           src={user.photo}
-          alt="user profile photo"
+          alt="user profile"
           className="img-fluid rounded-circle d-inline-block profile-pic"
         />
       </a>

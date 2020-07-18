@@ -469,6 +469,20 @@ body {
       }
     }
   }
+
+  .progress {
+    height: 1.2rem;
+  }
+
+  .order-progress {
+    width: 25%;
+    font-weight: 600;
+  }
+
+  .order-progress-canceled {
+    @extend .order-progress;
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -562,4 +576,9 @@ body {
       font-size: 0.8rem;
     }
   }
+}
+
+#refresh {
+  min-height: 85vh;
+  position: relative;
 }

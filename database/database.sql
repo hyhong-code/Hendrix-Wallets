@@ -60,13 +60,13 @@ CREATE TABLE orders(
     phone VARCHAR(150) NOT NULL,
     address VARCHAR(255) NOT NULL,
     instructions VARCHAR(255),
-    status VARCHAR(50) DEFAULT 'Unpaid' CHECK (
+    status VARCHAR(50) DEFAULT 'CONFIRMED' CHECK (
         status IN (
-            'Unpaid',
-            'Processing',
-            'Shipped',
-            'Delivered',
-            'Canceled'
+            'CONFIRMED',
+            'PAID',
+            'SHIPPED',
+            'DELIVERED',
+            'CANCELED'
         )
     ),
     stripe_token VARCHAR(255),

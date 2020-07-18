@@ -28,7 +28,7 @@ const Profile = ({ user }) => {
               <img
                 src={user.photo}
                 className="d-block mx-auto mb-5"
-                alt="user profile photo"
+                alt="user profile"
               />
             )}
             <div className="row">
