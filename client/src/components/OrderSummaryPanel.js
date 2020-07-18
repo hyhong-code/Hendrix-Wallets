@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 import Stripe from "./Stripe";
 
@@ -93,13 +93,28 @@ const OrderSummaryPanel = ({ order }) => {
           Phone: <br /> <small className="text-dark">{order.phone}</small>
         </div>
         <div className="text-primary mb-2 py-1 border-bottom">
+          Email: <br /> <small className="text-dark">{order.email}</small>
+        </div>
+        <div className="text-primary mb-2 py-1 border-bottom">
           Instructions: <br />
-          <small className="text-dark">{order.instructions}</small>
+          {order.instructions ? (
+            <small className="text-dark">{order.instructions}</small>
+          ) : (
+            <small className="text-muted">NO INSTRUCTIONS</small>
+          )}
         </div>
-
-        <div className="d-flex align-items-center justify-content-center mt-4">
-          <Stripe order={order} />
-        </div>
+        {order.status === "CONFIRMED" && (
+          <Fragment>
+            <div className="d-flex align-items-center justify-content-center mt-4">
+              <Stripe order={order} />
+            </div>
+            <div className="d-flex align-items-center justify-content-center mt-2">
+              <button className="cancel-btn btn btn-outline-primary btn-sm">
+                Cancel
+              </button>
+            </div>
+          </Fragment>
+        )}
       </div>
     </div>
   );

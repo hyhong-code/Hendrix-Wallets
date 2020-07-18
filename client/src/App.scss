@@ -453,6 +453,11 @@ body {
 
   .order-summary-panel {
     @include card-shadow();
+
+    .cancel-btn {
+      padding-left: 2.15rem;
+      padding-right: 2.15rem;
+    }
   }
 
   .order-detail-item {

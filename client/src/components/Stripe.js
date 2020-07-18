@@ -1,7 +1,5 @@
 import React from "react";
 import StripeCheckout from "react-stripe-checkout";
-import axios from "axios";
-import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 import logo from "../assets/logo.png";
@@ -30,4 +28,4 @@ class Stripe extends React.Component {
   }
 }
 
-export default connect(null, { payForOrder })(withRouter(Stripe));
+export default connect(null, { payForOrder })(Stripe);
