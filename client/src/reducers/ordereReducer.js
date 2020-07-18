@@ -24,6 +24,7 @@ export default (state = INITIAL_STATE, action) => {
     case ORDER_CANCELED:
       return { ...state, currentOrder: payload };
     case CLEAR_ORDER:
+    case ORDER_ERROR:
       return INITIAL_STATE;
     default:
       return state;

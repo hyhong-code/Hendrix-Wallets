@@ -4,12 +4,13 @@ import {
   ORDER_CREATED,
   ORDER_PAID,
   ORDER_CANCELED,
-  ORDER_ERROR,
   ORDERS_FETCHED,
   ORDER_DETAIL_FETCHED,
   CLEAR_ORDER,
+  ORDER_ERROR,
 } from "./types";
 import { getCart } from "./cartActions";
+import { createToast } from "./toastActions";
 
 const config = {
   headers: {
@@ -27,7 +28,13 @@ export const createOrder = (formData, history) => async (dispatch) => {
     dispatch(getCart());
     history.push(`/orderDetail/${res.data.order.id}`);
   } catch (error) {
-    console.error(error);
+    // console.error(error.response);
+    dispatch({ type: ORDER_ERROR });
+    if (error.response) {
+      dispatch(
+        createToast(Object.values(error.response.data.errors).join(", "))
+      );
+    }
   }
 };
 
@@ -40,6 +47,8 @@ export const getOrders = () => async (dispatch) => {
     });
   } catch (error) {
     console.error(error);
+    // console.error(error.response);
+    dispatch({ type: ORDER_ERROR });
   }
 };
 
@@ -51,7 +60,13 @@ export const getOrderDetail = (orderId) => async (dispatch) => {
       payload: res.data.order,
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error.response);
+    dispatch({ type: ORDER_ERROR });
+    if (error.response) {
+      dispatch(
+        createToast(Object.values(error.response.data.errors).join(", "))
+      );
+    }
   }
 };
 
@@ -67,7 +82,13 @@ export const payForOrder = (token, orderId) => async (dispatch) => {
       payload: res.data.order,
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error.response);
+    dispatch({ type: ORDER_ERROR });
+    if (error.response) {
+      dispatch(
+        createToast(Object.values(error.response.data.errors).join(", "))
+      );
+    }
   }
 };
 
@@ -79,7 +100,13 @@ export const cancelOrder = (orderId) => async (dispatch) => {
       payload: res.data.order,
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error.response);
+    dispatch({ type: ORDER_ERROR });
+    if (error.response) {
+      dispatch(
+        createToast(Object.values(error.response.data.errors).join(", "))
+      );
+    }
   }
 };
 
