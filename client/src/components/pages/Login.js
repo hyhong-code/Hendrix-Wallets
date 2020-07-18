@@ -16,14 +16,14 @@ const Login = ({ login }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (evt) => {
+  const handleSubmit = async (evt) => {
     evt.preventDefault();
-    console.log(formData);
-    login(formData);
-    setFormData({
-      email: "",
-      password: "",
-    });
+    if (await login(formData)) {
+      setFormData({
+        email: "",
+        password: "",
+      });
+    }
   };
 
   return (

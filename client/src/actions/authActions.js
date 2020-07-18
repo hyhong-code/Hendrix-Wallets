@@ -28,11 +28,18 @@ export const signup = (formData) => async (dispatch) => {
       payload: res.data,
     });
     dispatch(loadUser());
+    return true;
   } catch (error) {
-    console.error(error.response);
+    // console.error(error.response);
     dispatch({
       type: SIGNUP_FAILED,
     });
+    if (error.response) {
+      dispatch(
+        createToast(Object.values(error.response.data.errors).join(", "))
+      );
+    }
+    return false;
   }
 };
 
@@ -44,16 +51,18 @@ export const login = (formData) => async (dispatch) => {
       payload: res.data,
     });
     dispatch(loadUser());
+    return true;
   } catch (error) {
-    console.error(error.response);
+    // console.error(error.response);
     dispatch({
       type: LOGIN_FAILED,
     });
     if (error.response) {
       dispatch(
-        createToast(Object.values(error.response.data.errors).join(","))
+        createToast(Object.values(error.response.data.errors).join(", "))
       );
     }
+    return false;
   }
 };
 
@@ -66,7 +75,7 @@ export const loadUser = () => async (dispatch) => {
       payload: res.data,
     });
   } catch (error) {
-    console.error(error.response);
+    // console.error(error.response);
     dispatch({
       type: AUTH_ERROR,
     });

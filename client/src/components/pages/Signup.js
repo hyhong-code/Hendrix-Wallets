@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { signup } from "../../actions/authActions";
+import { createToast } from "../../actions/toastActions";
 
-const Signup = ({ signup }) => {
+const Signup = ({ signup, createToast }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,18 +19,20 @@ const Signup = ({ signup }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (evt) => {
+  const handleSubmit = async (evt) => {
     evt.preventDefault();
-    console.log(formData);
 
     if (password === passwordConfirm) {
-      signup(formData);
-      setFormData({
-        name: "",
-        email: "",
-        password: "",
-        passwordConfirm: "",
-      });
+      if (await signup(formData)) {
+        setFormData({
+          name: "",
+          email: "",
+          password: "",
+          passwordConfirm: "",
+        });
+      }
+    } else {
+      createToast("Passwords must match");
     }
   };
 
@@ -123,4 +126,4 @@ const Signup = ({ signup }) => {
   );
 };
 
-export default connect(null, { signup })(Signup);
+export default connect(null, { signup, createToast })(Signup);

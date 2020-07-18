@@ -2,7 +2,7 @@ import { uuid } from "uuidv4";
 
 import { CREATE_TOAST, CLEAR_TOAST } from "./types";
 
-export const createToast = (msg, type = "error", duration = 3000) => (
+export const createToast = (msg, type = "danger", duration = 5000) => (
   dispatch
 ) => {
   const id = uuid();
