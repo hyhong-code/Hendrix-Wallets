@@ -64,7 +64,7 @@ exports.removeItemFromCart = async (req, res, next) => {
     // Check if item exist
     if (!item.rows.length) {
       return sendError(res, 404, {
-        item: `Item with id ${req.params.itemId} not found`,
+        message: `Item with id ${req.params.itemId} not found`,
       });
     }
 

@@ -53,12 +53,12 @@ exports.login = async (req, res, next) => {
     ]);
     if (!user.rows.length) {
       return sendError(res, 404, {
-        email: `No user found with email ${email}`,
+        message: `No user found with email ${email}`,
       });
     }
     if (!(await bcrypt.compare(password, user.rows[0].password))) {
       return sendError(res, 401, {
-        password: `Invalid credentials`,
+        message: `Invalid credentials`,
       });
     }
 

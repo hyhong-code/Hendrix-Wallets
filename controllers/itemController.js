@@ -17,7 +17,7 @@ exports.createItem = async (req, res, next) => {
 
     if (!category.rows.length) {
       return sendError(res, 404, {
-        category: `Category with id ${req.params.categoryId} not found.`,
+        message: `Category with id ${req.params.categoryId} not found.`,
       });
     }
     const item = await pool.query(

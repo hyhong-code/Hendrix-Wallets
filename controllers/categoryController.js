@@ -23,7 +23,7 @@ exports.createCategory = async (req, res, next) => {
       error.code === "23505" &&
       error.constraint === "item_categories_name_key"
     ) {
-      return sendError(res, 400, { name: "Category name already exists" });
+      return sendError(res, 400, { message: "Category name already exists" });
     }
     sendError(res);
   }

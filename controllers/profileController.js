@@ -34,7 +34,7 @@ exports.updateProfile = async (req, res, next) => {
   } catch (error) {
     console.error(error);
     if (error.code === "23505" && error.constraint === "users_email_key") {
-      return sendError(res, 400, { email: `${email} is already used` });
+      return sendError(res, 400, { message: `${email} is already used` });
     }
     sendError(res);
   }

@@ -98,7 +98,9 @@ exports.getOrderDetailsById = async (req, res, next) => {
 
     // Hanlde order not exists
     if (!order.rows.length) {
-      return sendError(res, 404, { message: "Order not found" });
+      return sendError(res, 404, {
+        message: `"Order with id ${req.params.orderId} not found"`,
+      });
     }
 
     const cart = await pool.query("SELECT * FROM carts WHERE id = $1 ;", [
@@ -132,7 +134,9 @@ exports.payForOrder = async (req, res, next) => {
 
     // Handle order not exist
     if (!order.rows.length) {
-      return sendError(res, 404, { message: "Order not found" });
+      return sendError(res, 404, {
+        message: `Order with id ${req.params.orderId} not found`,
+      });
     }
 
     // Hanlde user not the owner of order
@@ -143,7 +147,7 @@ exports.payForOrder = async (req, res, next) => {
     // Handle order is already paid or canceled
     if (order.rows[0].status !== "CONFIRMED") {
       return sendError(res, 401, {
-        message: "Order is already paid or canceled",
+        message: `Order with id ${req.params.orderId} is already paid for or canceled`,
       });
     }
 
@@ -189,7 +193,9 @@ exports.cancelOrder = async (req, res, next) => {
 
     // Handle order not exist
     if (!order.rows.length) {
-      return sendError(res, 404, { message: "Order not found" });
+      return sendError(res, 404, {
+        message: `Order with id ${req.params.orderId} not found`,
+      });
     }
 
     // Handle user not owner of order
@@ -200,7 +206,7 @@ exports.cancelOrder = async (req, res, next) => {
     // Handle order is already paid for
     if (order.rows[0].status !== "CONFIRMED") {
       return sendError(res, 400, {
-        message: "Cannot cancel this order at this time",
+        message: `Cannot cancel order ${req.params.orderId} at this time`,
       });
     }
 
