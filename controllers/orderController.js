@@ -151,7 +151,7 @@ exports.payForOrder = async (req, res, next) => {
     await stripe.charges.create({
       amount: order.rows[0].final_price,
       currency: "usd",
-      description: `${order.rows[0].final_price / 100} charge for order ${
+      description: `$${order.rows[0].final_price / 100} charge for order ${
         order.rows[0].id
       }`,
       source: req.body.token.id,

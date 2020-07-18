@@ -7,8 +7,11 @@ import {
   SIGNUP_FAILED,
   USER_LOADED,
   AUTH_ERROR,
+  USER_LOGOUT,
 } from "./types";
 import setTokenHeader from "../utils/setTokenHeader";
+import { clearCart } from "./cartActions";
+import { clearOrder } from "./orderActions";
 
 const config = {
   headers: {
@@ -62,4 +65,12 @@ export const loadUser = () => async (dispatch) => {
       type: AUTH_ERROR,
     });
   }
+};
+
+export const logout = () => (dispatch) => {
+  dispatch(clearCart());
+  dispatch(clearOrder());
+  dispatch({
+    type: USER_LOGOUT,
+  });
 };

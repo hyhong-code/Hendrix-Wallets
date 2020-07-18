@@ -4,6 +4,7 @@ import {
   CART_FETCHED,
   ADDED_TO_CART,
   REMOVED_FROM_CART,
+  CLEAR_CART,
   CART_ERROR,
 } from "./types";
 
@@ -44,4 +45,10 @@ export const removeItemFromCart = (itemId, cartItemId) => async (dispatch) => {
   } catch (error) {
     console.error(error.response);
   }
+};
+
+export const clearCart = () => (dispatch) => {
+  dispatch({
+    type: CLEAR_CART,
+  });
 };

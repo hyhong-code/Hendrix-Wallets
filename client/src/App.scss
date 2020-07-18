@@ -136,6 +136,14 @@ body {
     }
   }
 
+  .logout {
+    @extend .signin;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
   form {
     .form-control {
       display: inline-block;

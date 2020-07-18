@@ -4,6 +4,7 @@ import {
   SIGNUP_SUCCESS,
   SIGNUP_FAILED,
   USER_LOADED,
+  USER_LOGOUT,
   AUTH_ERROR,
   PROFILE_UPDATED,
   PROFILE_PIC_UPDATED,
@@ -29,6 +30,7 @@ export default (state = INITIAL_STATE, action) => {
     case LOGIN_FAILED:
     case SIGNUP_FAILED:
     case AUTH_ERROR:
+    case USER_LOGOUT:
       localStorage.removeItem("jwt");
       setTokenHeader(false);
       return INITIAL_STATE;

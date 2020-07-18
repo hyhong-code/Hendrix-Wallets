@@ -29,6 +29,7 @@ const Avartar = ({ user }) => {
         <Link to="/orders" className="dropdown-item signin">
           My Orders
         </Link>
+        <span className="dropdown-item logout">Log out</span>
       </div>
     </li>
   );

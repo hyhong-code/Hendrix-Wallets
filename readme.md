@@ -3,7 +3,7 @@
 ### Main technolodges: Node/Express, PostgreSQL, React, Redux, Sass, Bootstrap, Stripe
 
 **Customer facing MVP is complete**
-Currently working on admin facing CMS to manage products and orders
+*Currently working on admin facing CMS to manage products and orders*
 
 ---
 
@@ -36,7 +36,7 @@ Currently working on admin facing CMS to manage products and orders
 ### ORDER SUMMARY PAGE
 <img src="./showcase/orderSummary.png" width="85%">
 
-### STRIPE INTERGRATION
+### STRIPE INTEGRATION
 <img src="./showcase/stripe.png" width="85%">
 
 ### CUSTOMER ORDER LIST

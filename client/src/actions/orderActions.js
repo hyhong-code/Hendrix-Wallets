@@ -7,6 +7,7 @@ import {
   ORDER_ERROR,
   ORDERS_FETCHED,
   ORDER_DETAIL_FETCHED,
+  CLEAR_ORDER,
 } from "./types";
 import { getCart } from "./cartActions";
 
@@ -80,4 +81,10 @@ export const cancelOrder = (orderId) => async (dispatch) => {
   } catch (error) {
     console.error(error);
   }
+};
+
+export const clearOrder = () => (dispatch) => {
+  dispatch({
+    type: CLEAR_ORDER,
+  });
 };

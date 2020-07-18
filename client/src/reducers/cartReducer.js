@@ -3,6 +3,7 @@ import {
   ADDED_TO_CART,
   REMOVED_FROM_CART,
   CART_ERROR,
+  CLEAR_CART,
 } from "../actions/types";
 
 const INITIAL_STATE = null;
@@ -15,6 +16,7 @@ export default (state = INITIAL_STATE, action) => {
     case REMOVED_FROM_CART:
       return payload;
     case CART_ERROR:
+    case CLEAR_CART:
       return INITIAL_STATE;
     default:
       return state;
