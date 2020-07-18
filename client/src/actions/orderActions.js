@@ -73,7 +73,7 @@ export const payForOrder = (token, orderId) => async (dispatch) => {
 
 export const cancelOrder = (orderId) => async (dispatch) => {
   try {
-    const res = await axios.patch(`api/order/${orderId}/cancel`);
+    const res = await axios.patch(`/api/order/${orderId}/cancel`);
     dispatch({
       type: ORDER_CANCELED,
       payload: res.data.order,

@@ -193,12 +193,12 @@ exports.cancelOrder = async (req, res, next) => {
     }
 
     // Handle user not owner of order
-    if (!order.rows[0].user_id !== req.user.id) {
+    if (order.rows[0].user_id !== req.user.id) {
       return sendError(res, 401, { message: "User not authorized" });
     }
 
     // Handle order is already paid for
-    if (!order.rows[0].status !== "CONFIRMED") {
+    if (order.rows[0].status !== "CONFIRMED") {
       return sendError(res, 400, {
         message: "Cannot cancel this order at this time",
       });

@@ -1,5 +1,7 @@
 import React, { Fragment } from "react";
+import { connect } from "react-redux";
 
+import { cancelOrder } from "../actions/orderActions";
 import Stripe from "./Stripe";
 
 const subtotal = (items) =>
@@ -43,7 +45,7 @@ const tax = (items, shipping, taxRate) =>
       Number.EPSILON
   ) / 100;
 
-const OrderSummaryPanel = ({ order }) => {
+const OrderSummaryPanel = ({ order, cancelOrder }) => {
   return (
     <div className="card order-summary-panel mx-3">
       <div className="card-body py-5 px-4">
@@ -109,7 +111,10 @@ const OrderSummaryPanel = ({ order }) => {
               <Stripe order={order} />
             </div>
             <div className="d-flex align-items-center justify-content-center mt-2">
-              <button className="cancel-btn btn btn-outline-primary btn-sm">
+              <button
+                className="cancel-btn btn btn-outline-primary btn-sm"
+                onClick={() => cancelOrder(order.id)}
+              >
                 Cancel
               </button>
             </div>
@@ -120,4 +125,4 @@ const OrderSummaryPanel = ({ order }) => {
   );
 };
 
-export default OrderSummaryPanel;
+export default connect(null, { cancelOrder })(OrderSummaryPanel);

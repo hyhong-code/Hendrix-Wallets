@@ -18,6 +18,6 @@ router
   .post(auth, limitTo("user"), createOrder);
 router.route("/:orderId").get(auth, limitTo("user"), getOrderDetailsById);
 router.route("/:orderId/pay").post(auth, limitTo("user"), payForOrder);
-router.route("/:orderId/pay").patch(auth, limitTo("user"), cancelOrder);
+router.route("/:orderId/cancel").patch(auth, limitTo("user"), cancelOrder);
 
 module.exports = router;
