@@ -98,7 +98,7 @@ const OrderSummaryPanel = ({ order }) => {
         </div>
 
         <div className="d-flex align-items-center justify-content-center mt-4">
-          <Stripe finalPrice={order.final_price} />
+          <Stripe order={order} />
         </div>
       </div>
     </div>

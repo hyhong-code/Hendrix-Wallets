@@ -2,28 +2,14 @@ import React from "react";
 import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
 import logo from "../assets/logo.png";
+import { payForOrder } from "../actions/orderActions";
 
 class Stripe extends React.Component {
   onToken = async (token) => {
-    const config = {
-      header: {
-        "Content-Type": "application/json",
-      },
-    };
-    console.log(token);
-    try {
-      const res = await axios.post("/save-stripe-token", { token }, config);
-      console.log(res.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  onClosed = () => {
-    console.log("closed");
-    this.props.history.push("/refresh");
+    this.props.payForOrder(token, this.props.order.id);
   };
 
   render() {
@@ -32,15 +18,16 @@ class Stripe extends React.Component {
         token={this.onToken}
         stripeKey={process.env.REACT_APP_STRIPE_KEY}
         currency="USD"
-        name="HENDRIX WALLETS" // the pop-in header title
-        description="PERN E-COMMERCE PROJECT" // the pop-in header subtitle
+        name="HENDRIX WALLETS"
+        description="PERN E-COMMERCE PROJECT"
         image={logo}
-        amount={parseInt(this.props.finalPrice)}
-        email="hong961127@gmail.com"
+        amount={parseInt(this.props.order.final_price)}
+        email={this.props.order.email}
         closed={this.onClosed}
+        locale="auto"
       />
     );
   }
 }
 
-export default withRouter(Stripe);
+export default connect(null, { payForOrder })(withRouter(Stripe));

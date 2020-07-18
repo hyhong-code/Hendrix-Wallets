@@ -16,12 +16,6 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
 
-// Try out stripe
-app.post("/save-stripe-token", (req, res) => {
-  console.log(req.body);
-  // Change order status to paid here
-});
-
 // Mount Routers
 app.use("/api/auth", authRouter);
 app.use("/api/profile", profileRouter);

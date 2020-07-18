@@ -1,4 +1,5 @@
 const pool = require("../config/postgres");
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const sendError = require("../utils/sendError");
 const getCartItemsHelper = require("../utils/getCartItemsHelper");
@@ -108,6 +109,68 @@ exports.getOrderDetailsById = async (req, res, next) => {
 
     order.rows[0].cart = cart.rows[0];
     order.rows[0].cart.cartItems = cartItems;
+    res.status(200).json({ order: order.rows[0] });
+  } catch (error) {
+    console.error(error);
+    sendError(res);
+  }
+};
+
+// @desc    Pay for an order
+// @route   POST /api/order/:orderId/pay
+// @access  Private - User role
+exports.payForOrder = async (req, res, next) => {
+  try {
+    // Hanle no stripe token
+    if (!req.body.token) {
+      return sendError(res, 404, { message: "Stripe token not found" });
+    }
+
+    let order = await pool.query("SELECT * FROM orders WHERE id = $1 ;", [
+      req.params.orderId,
+    ]);
+
+    // Handle order not exist
+    if (!order.rows.length) {
+      return sendError(res, 404, { message: "Order not found" });
+    }
+
+    // Hanlde user not the owner of order
+    if (order.rows[0].user_id !== req.user.id) {
+      return sendError(res, 401, { message: "User not authorized" });
+    }
+
+    // Handle order is already paid or canceled
+    if (order.rows[0].status !== "CONFIRMED") {
+      return sendError(res, 401, {
+        message: "Order is already paid or canceled",
+      });
+    }
+
+    // Make the charge
+    await stripe.charges.create({
+      amount: order.rows[0].final_price,
+      currency: "usd",
+      description: `${order.rows[0].final_price / 100} charge for order ${
+        order.rows[0].id
+      }`,
+      source: req.body.token.id,
+    });
+
+    // Change order status
+    order = await pool.query(
+      `UPDATE orders SET status = 'PAID' WHERE id = $1 RETURNING * ;`,
+      [req.params.orderId]
+    );
+
+    // Return order details to client
+    const cart = await pool.query("SELECT * FROM carts WHERE id = $1 ;", [
+      order.rows[0].cart_id,
+    ]);
+    const cartItems = await getCartItemsHelper(cart.rows[0].id);
+    order.rows[0].cart = cart.rows[0];
+    order.rows[0].cart.cartItems = cartItems;
+
     res.status(200).json({ order: order.rows[0] });
   } catch (error) {
     console.error(error);

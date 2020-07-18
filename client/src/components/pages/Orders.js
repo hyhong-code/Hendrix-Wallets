@@ -43,13 +43,13 @@ const Orders = ({ orders, getOrders }) => {
                   <div className="col-6 d-none d-lg-block p-0 ">
                     <strong>Order No.</strong>
                   </div>
-                  <div className="col-5 col-lg-3 p-0 ">
+                  <div className="col-5 col-lg-2 p-0 ">
                     <strong>Order Date</strong>
                   </div>
                   <div className="col-4 col-lg-2  p-0">
                     <strong>Total</strong>
                   </div>
-                  <div className="col-3 col-lg-1  p-0">
+                  <div className="col-3 col-lg-2  p-0">
                     <strong>Status</strong>
                   </div>
                 </div>

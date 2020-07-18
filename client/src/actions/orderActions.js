@@ -2,6 +2,7 @@ import axios from "axios";
 
 import {
   ORDER_CREATED,
+  ORDER_PAID,
   ORDER_ERROR,
   ORDERS_FETCHED,
   ORDER_DETAIL_FETCHED,
@@ -46,6 +47,23 @@ export const getOrderDetail = (orderId) => async (dispatch) => {
     console.log(res.data);
     dispatch({
       type: ORDER_DETAIL_FETCHED,
+      payload: res.data.order,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const payForOrder = (token, orderId) => async (dispatch) => {
+  try {
+    const res = await axios.post(
+      `/api/order/${orderId}/pay`,
+      { token },
+      config
+    );
+    console.log(res.data);
+    dispatch({
+      type: ORDER_PAID,
       payload: res.data.order,
     });
   } catch (error) {
