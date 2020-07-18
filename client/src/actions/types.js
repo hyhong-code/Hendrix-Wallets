@@ -29,3 +29,6 @@ export const ORDER_CANCELED = "ORDER_CANCELED";
 export const ORDER_PAID = "ORDER_PAID";
 export const ORDER_ERROR = "ORDER_ERROR";
 export const CLEAR_ORDER = "CLEAR_ORDER";
+
+export const CREATE_TOAST = "CREATE_TOAST";
+export const CLEAR_TOAST = "CLEAR_TOAST";

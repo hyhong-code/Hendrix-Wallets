@@ -19,26 +19,26 @@ module.exports = async (req, res, next) => {
   }
 
   if (!token) {
-    return sendError(res, 401, { auth: "No token, please login" });
+    return sendError(res, 401, { message: "No token, please login" });
   }
 
   let decoded;
   try {
     decoded = jwt.verify(token, process.env.JWT_SECRET);
   } catch (error) {
-    return sendError(res, 401, { auth: "Invalid token, please login" });
+    return sendError(res, 401, { message: "Invalid token, please login" });
   }
 
   try {
     const user = await pool.query(
-      `SELECT users.id, name, photo, role FROM users 
-         JOIN profiles ON users.id = profiles.user_id 
+      `SELECT users.id, name, photo, role FROM users
+         JOIN profiles ON users.id = profiles.user_id
          WHERE users.id = $1 ;`,
       [decoded.id]
     );
 
     if (!user.rows.length) {
-      return sendError(res, 404, { auth: "User not found" });
+      return sendError(res, 404, { message: "User not found" });
     }
 
     req.user = user.rows[0];

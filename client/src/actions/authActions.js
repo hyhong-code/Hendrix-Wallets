@@ -45,6 +45,9 @@ export const login = (formData) => async (dispatch) => {
     dispatch(loadUser());
   } catch (error) {
     console.error(error.response);
+    if (error.response) {
+      console.log(Object.values(error.response.data.errors));
+    }
     dispatch({
       type: LOGIN_FAILED,
     });

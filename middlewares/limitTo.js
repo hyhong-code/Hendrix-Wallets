@@ -6,7 +6,7 @@ const sendError = require("../utils/sendError");
  */
 module.exports = (...rolesWithAccess) => (req, res, next) => {
   if (!rolesWithAccess.includes(req.user.role)) {
-    return sendError(res, 403, { forbidden: "Access denied" });
+    return sendError(res, 403, { message: "Access denied" });
   }
   next();
 };
