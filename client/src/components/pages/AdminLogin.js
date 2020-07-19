@@ -1,10 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { adminLogin } from "../../actions/adminActions";
+import { createToast } from "../../actions/toastActions";
 
-const AdminLogin = ({ adminLogin }) => {
+const AdminLogin = ({
+  history,
+  adminAuthenticated,
+  isAuthenticated,
+  adminLogin,
+  createToast,
+}) => {
+  useEffect(() => {
+    if (adminAuthenticated) {
+      history.replace("/admin/dashboard");
+    }
+    if (isAuthenticated) {
+      createToast("Customers are restricted from this route");
+      history.replace("/");
+    }
+  }, [adminAuthenticated, isAuthenticated]);
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -89,4 +106,14 @@ const AdminLogin = ({ adminLogin }) => {
   );
 };
 
-export default connect(null, { adminLogin })(AdminLogin);
+const mapStateToProps = ({
+  admin: { adminAuthenticated },
+  auth: { isAuthenticated },
+}) => ({
+  adminAuthenticated,
+  isAuthenticated,
+});
+
+export default connect(mapStateToProps, { adminLogin, createToast })(
+  AdminLogin
+);

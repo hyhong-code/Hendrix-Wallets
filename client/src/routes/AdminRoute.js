@@ -2,9 +2,12 @@ import React, { useEffect } from "react";
 import { Route, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
+import { createToast } from "../actions/toastActions";
+
 const AdminRoute = ({
   component: Component,
   history,
+  isAuthenticated,
   adminAuthenticated,
   ...otherProps
 }) => {
@@ -12,12 +15,20 @@ const AdminRoute = ({
     if (!adminAuthenticated) {
       history.replace("/admin");
     }
-  }, [adminAuthenticated]);
+    if (isAuthenticated) {
+      createToast("Customers are restricted from this route");
+      history.replace("/");
+    }
+  }, [adminAuthenticated, isAuthenticated]);
 
   return <Route {...otherProps} component={Component} />;
 };
 
-const mapStateToProps = ({ admin: { adminAuthenticated } }) => ({
+const mapStateToProps = ({
+  admin: { adminAuthenticated },
+  auth: { isAuthenticated },
+}) => ({
+  isAuthenticated,
   adminAuthenticated,
 });
 
