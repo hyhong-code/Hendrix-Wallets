@@ -1,7 +1,6 @@
 import axios from "axios";
 
 import { ITEMS_FETCHED, ITEMS_ERROR } from "./types";
-import { createToast } from "../actions/toastActions";
 
 export const getItems = () => async (dispatch) => {
   try {

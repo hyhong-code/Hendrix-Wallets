@@ -18,6 +18,7 @@ const AdminRoute = ({
       createToast("Customers are restricted from this route");
       history.replace("/");
     }
+    // eslint-disable-next-line
   }, [adminAuthenticated, isAuthenticated]);
 
   return <Route {...otherProps} component={Component} />;

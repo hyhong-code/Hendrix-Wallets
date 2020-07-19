@@ -18,6 +18,7 @@ const GuestRoute = ({
         history.replace("/");
       }
     }
+    // eslint-disable-next-line
   }, [isAuthenticated]);
 
   return <Route {...otherProps} component={Component} />;

@@ -19,8 +19,7 @@ const UpdateProfileModal = ({ user, updateProfile }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleClick = (evt) => {
-    console.log(formData);
+  const handleClick = () => {
     updateProfile(formData);
   };
 

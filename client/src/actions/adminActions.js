@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { ADMIN_LOGGEDIN, ADMIN_ERROR, ADMIN_LOADED } from "./types";
+import { ADMIN_LOGGEDIN, ADMIN_ERROR } from "./types";
 import { loadUser } from "./authActions";
 import { createToast } from "../actions/toastActions";
 

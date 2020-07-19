@@ -20,6 +20,7 @@ const AdminLogin = ({
       createToast("Customers are restricted from this route");
       history.replace("/");
     }
+    // eslint-disable-next-line
   }, [adminAuthenticated, isAuthenticated]);
 
   const [formData, setFormData] = useState({

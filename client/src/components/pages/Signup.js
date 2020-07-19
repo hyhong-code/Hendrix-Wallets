@@ -11,6 +11,7 @@ const Signup = ({ history, signup, createToast, adminAuthenticated }) => {
       createToast("Logged in as admin, can't access user Route.");
       history.replace("/admin/dashboard");
     }
+    // eslint-disable-next-line
   }, [adminAuthenticated]);
 
   const [formData, setFormData] = useState({

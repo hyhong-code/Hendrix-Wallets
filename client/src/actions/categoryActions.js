@@ -1,7 +1,6 @@
 import axios from "axios";
 
 import { CATEGORIES_FETCHED, CATEGORIES_ERROR } from "./types";
-import { createToast } from "../actions/toastActions";
 
 export const getCategories = () => async (dispatch) => {
   try {

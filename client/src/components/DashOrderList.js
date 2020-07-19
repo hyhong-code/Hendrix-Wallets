@@ -4,7 +4,6 @@ import OrderListItem from "./OrderListItem";
 
 const DashOrderList = ({ orders, numPerPage }) => {
   const [curPage, setCurPage] = useState(1);
-  console.log(orders.length, numPerPage);
   return (
     <div className="card">
       <div className="card-body">

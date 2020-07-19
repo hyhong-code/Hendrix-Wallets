@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { login } from "../../actions/authActions";
@@ -11,6 +11,7 @@ const Login = ({ history, login, adminAuthenticated, createToast }) => {
       createToast("Logged in as admin, can't access user Route.");
       history.replace("/admin/dashboard");
     }
+    // eslint-disable-next-line
   }, [adminAuthenticated]);
 
   const [formData, setFormData] = useState({

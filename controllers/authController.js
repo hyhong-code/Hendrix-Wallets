@@ -30,7 +30,7 @@ exports.register = async (req, res, next) => {
     ]);
     sendJwtToken(user.rows[0], 201, res);
   } catch (error) {
-    console.log(error);
+    console.error(error);
     if (error.code === "23505") {
       return sendError(res, 400, { message: "Email already in use" });
     } else {

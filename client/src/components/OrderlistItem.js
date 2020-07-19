@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 const badgeColor = (orderStatus) => {
-  console.log(orderStatus);
   switch (orderStatus) {
     case "CONFIRMED":
       return "badge-info";

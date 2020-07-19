@@ -15,6 +15,7 @@ const UserRoute = ({
     } else {
       history.replace("/login");
     }
+    // eslint-disable-next-line
   }, [location.pathname, isAuthenticated]);
 
   return <Route {...otherProps} component={Component} />;

@@ -12,12 +12,12 @@ const AdminDashboard = () => {
   return (
     <section id="admin-dashboard" className="py-6 bg-light text-dark">
       <div className="container">
-        <div class="row">
-          <div class="col-lg-3">
+        <div className="row">
+          <div className="col-lg-3">
             <DashControlPanel />
           </div>
-          <div class="col-lg-9">
-            <div class="tab-content" id="v-pills-tabContent">
+          <div className="col-lg-9">
+            <div className="tab-content" id="v-pills-tabContent">
               <DashSummary />
               <DashOrders />
               <DashItems />
