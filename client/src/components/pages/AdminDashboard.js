@@ -1,5 +1,12 @@
 import React from "react";
 
+import DashSummary from "../DashSummary";
+import DashOrders from "../DashOrders";
+import DashItems from "../DashItems";
+import DashCategories from "../DashCategories";
+import DashUsers from "../DashUsers";
+import DashStock from "../DashStock";
+
 const AdminDashboard = () => {
   return (
     <section id="admin-dashboard" className="py-6 bg-light text-dark">
@@ -7,6 +14,8 @@ const AdminDashboard = () => {
         <div class="row">
           <div class="col-3">
             <div className="card card-body p-4 control-panel">
+              <h1>DASHBOARD</h1>
+              <hr className="mb-4" />
               <div
                 class="nav flex-column nav-pills"
                 id="v-pills-tab"
@@ -22,7 +31,7 @@ const AdminDashboard = () => {
                   aria-controls="v-pills-summary"
                   aria-selected="true"
                 >
-                  Summary
+                  SUMMARY
                 </a>
                 <a
                   class="nav-link"
@@ -33,7 +42,7 @@ const AdminDashboard = () => {
                   aria-controls="v-pills-orders"
                   aria-selected="false"
                 >
-                  Orders
+                  ORDERS
                 </a>
                 <a
                   class="nav-link"
@@ -44,7 +53,7 @@ const AdminDashboard = () => {
                   aria-controls="v-pills-items"
                   aria-selected="false"
                 >
-                  Items
+                  ITEMS
                 </a>
                 <a
                   class="nav-link"
@@ -55,45 +64,41 @@ const AdminDashboard = () => {
                   aria-controls="v-pills-categories"
                   aria-selected="false"
                 >
-                  Categories
+                  CATEGORIES
+                </a>
+                <a
+                  class="nav-link"
+                  id="v-pills-users-tab"
+                  data-toggle="pill"
+                  href="#v-pills-users"
+                  role="tab"
+                  aria-controls="v-pills-users"
+                  aria-selected="false"
+                >
+                  USERS
+                </a>
+                <a
+                  class="nav-link"
+                  id="v-pills-stock-tab"
+                  data-toggle="pill"
+                  href="#v-pills-stock"
+                  role="tab"
+                  aria-controls="v-pills-stock"
+                  aria-selected="false"
+                >
+                  STOCK
                 </a>
               </div>
             </div>
           </div>
           <div class="col-9">
             <div class="tab-content" id="v-pills-tabContent">
-              <div
-                class="tab-pane fade show active"
-                id="v-pills-summary"
-                role="tabpanel"
-                aria-labelledby="v-pills-summary-tab"
-              >
-                <h1>Summary</h1>
-              </div>
-              <div
-                class="tab-pane fade"
-                id="v-pills-orders"
-                role="tabpanel"
-                aria-labelledby="v-pills-orders-tab"
-              >
-                <h1>Orders</h1>
-              </div>
-              <div
-                class="tab-pane fade"
-                id="v-pills-items"
-                role="tabpanel"
-                aria-labelledby="v-pills-items-tab"
-              >
-                <h1>Items</h1>
-              </div>
-              <div
-                class="tab-pane fade"
-                id="v-pills-categories"
-                role="tabpanel"
-                aria-labelledby="v-pills-categories-tab"
-              >
-                <h1>Categories</h1>
-              </div>
+              <DashSummary />
+              <DashOrders />
+              <DashItems />
+              <DashCategories />
+              <DashUsers />
+              <DashStock />
             </div>
           </div>
         </div>

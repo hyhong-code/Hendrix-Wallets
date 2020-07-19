@@ -658,7 +658,15 @@ body {
   min-height: 85vh;
   position: relative;
 
+  h1 {
+    color: $color-primary;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
   .control-panel {
+    @include card-shadow();
+
     .nav-link {
       margin-top: 0.3rem;
       margin-bottom: 0.3rem;
