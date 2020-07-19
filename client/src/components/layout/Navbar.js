@@ -8,7 +8,11 @@ import ShoppingCart from "../ShoppingCart";
 import Avartar from "../Avartar";
 import SearchForm from "../SearchForm";
 
-const Navbar = ({ auth: { isAuthenticated, user }, logout }) => {
+const Navbar = ({
+  auth: { isAuthenticated, user },
+  logout,
+  adminAuthenticated,
+}) => {
   const authLinks = () => (
     <Fragment>
       <ShoppingCart />
@@ -41,7 +45,7 @@ const Navbar = ({ auth: { isAuthenticated, user }, logout }) => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary text-light sticky-top py-2">
       <div className="container d-flex">
         <Link to="/" className="navbar-brand d-flex align-items-center">
-          <img src={logo} className="logo" alt="" />
+          <img src={logo} className="logo" alt="logo" />
           <span className="ml-2">HENDRIX</span>
         </Link>
         <button
@@ -68,11 +72,21 @@ const Navbar = ({ auth: { isAuthenticated, user }, logout }) => {
                 EXPLORE
               </NavLink>
             </li>
-            {isAuthenticated && <SearchForm />}
+            {isAuthenticated && !adminAuthenticated && <SearchForm />}
           </ul>
 
           <ul className="navbar-nav ml-auto align-items-center">
-            {isAuthenticated ? authLinks() : guestLinks()}
+            {isAuthenticated && !adminAuthenticated ? (
+              authLinks()
+            ) : !isAuthenticated && !adminAuthenticated ? (
+              guestLinks()
+            ) : (
+              <li className="nav-item">
+                <NavLink exact to="/admin/dashboard" className="nav-link">
+                  DASHBOARD
+                </NavLink>
+              </li>
+            )}
           </ul>
         </div>
       </div>
@@ -80,6 +94,9 @@ const Navbar = ({ auth: { isAuthenticated, user }, logout }) => {
   );
 };
 
-const mapStateToProps = ({ auth }) => ({ auth });
+const mapStateToProps = ({ auth, admin: { adminAuthenticated } }) => ({
+  auth,
+  adminAuthenticated,
+});
 
 export default connect(mapStateToProps, { logout })(Navbar);

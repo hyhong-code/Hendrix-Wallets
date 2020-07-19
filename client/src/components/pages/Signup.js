@@ -1,11 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { signup } from "../../actions/authActions";
 import { createToast } from "../../actions/toastActions";
 
-const Signup = ({ signup, createToast }) => {
+const Signup = ({ history, signup, createToast, adminAuthenticated }) => {
+  useEffect(() => {
+    if (adminAuthenticated) {
+      createToast("Logged in as admin, can't access user Route.");
+      history.replace("/admin/dashboard");
+    }
+  }, [adminAuthenticated]);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -126,4 +133,8 @@ const Signup = ({ signup, createToast }) => {
   );
 };
 
-export default connect(null, { signup, createToast })(Signup);
+const mapStateToProps = ({ admin: { adminAuthenticated } }) => ({
+  adminAuthenticated,
+});
+
+export default connect(mapStateToProps, { signup, createToast })(Signup);

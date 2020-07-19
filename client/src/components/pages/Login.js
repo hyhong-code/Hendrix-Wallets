@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { login } from "../../actions/authActions";
+import { createToast } from "../../actions/toastActions";
 
-const Login = ({ history, login, adminAuthenticated }) => {
+const Login = ({ history, login, adminAuthenticated, createToast }) => {
   useEffect(() => {
     if (adminAuthenticated) {
+      createToast("Logged in as admin, can't access user Route.");
       history.replace("/admin/dashboard");
     }
   }, [adminAuthenticated]);
@@ -105,4 +107,4 @@ const mapStateToProps = ({ admin: { adminAuthenticated } }) => ({
   adminAuthenticated,
 });
 
-export default connect(mapStateToProps, { login })(Login);
+export default connect(mapStateToProps, { login, createToast })(Login);
