@@ -48,15 +48,15 @@ body {
 
 .toast-container {
   position: fixed;
-  top: 7rem;
-  right: 5rem;
-  width: 18rem;
-  height: 25rem;
+  top: 5rem;
+  right: 3rem;
+  width: 17rem;
+  height: 20rem;
   overflow-y: scroll;
   z-index: 11;
 
   .alert {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0.7rem;
     opacity: 0.9;
 
     .close-btn {
@@ -81,7 +81,7 @@ body {
     top: 5rem;
     right: 1rem;
     width: 15rem;
-    height: 15rem;
+    height: 12rem;
     overflow-y: scroll;
     z-index: 10000;
 

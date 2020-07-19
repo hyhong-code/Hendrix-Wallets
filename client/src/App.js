@@ -27,6 +27,7 @@ import "./App.scss";
 
 const App = ({
   isAuthenticated,
+  toasts,
   getCategories,
   getItems,
   loadUser,
@@ -67,13 +68,14 @@ const App = ({
         <Route exact path="/refresh" component={Refresh} />
       </Switch>
       <Footer />
-      <ToastContainer />
+      {!!toasts.length && <ToastContainer />}
     </BrowserRouter>
   );
 };
 
-const mapStateToProps = ({ auth: { isAuthenticated } }) => ({
+const mapStateToProps = ({ auth: { isAuthenticated }, toasts }) => ({
   isAuthenticated,
+  toasts,
 });
 
 export default connect(mapStateToProps, {

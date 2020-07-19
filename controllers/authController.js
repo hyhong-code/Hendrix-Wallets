@@ -74,7 +74,7 @@ exports.login = async (req, res, next) => {
 exports.loadMe = async (req, res, next) => {
   try {
     const user = await pool.query(
-      `SELECT users.id, name, email, photo, phone, address, carts.id AS cart_id FROM users
+      `SELECT users.id, name, role, email, photo, phone, address, carts.id AS cart_id FROM users
        JOIN profiles ON users.id = profiles.user_id
        JOIN carts ON users.id = carts.user_id
        WHERE users.id = $1 ;`,
