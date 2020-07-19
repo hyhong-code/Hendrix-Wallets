@@ -23,6 +23,7 @@ import Orders from "./components/pages/Orders";
 import OrderDetail from "./components/pages/OrderDetail";
 import Signup from "./components/pages/Signup";
 import Login from "./components/pages/Login";
+import AdminLogin from "./components/pages/AdminLogin";
 import "./App.scss";
 
 const App = ({
@@ -66,6 +67,7 @@ const App = ({
         <GuestRoute exact path="/signup" component={Signup} />
         <GuestRoute exact path="/login" component={Login} />
         <Route exact path="/refresh" component={Refresh} />
+        <Route exact path="/admin" component={AdminLogin} />
       </Switch>
       <Footer />
       {!!toasts.length && <ToastContainer />}

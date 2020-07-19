@@ -85,13 +85,13 @@ const ItemFilter = ({
               className="btn btn-outline-primary"
               onClick={handleCheckAll}
             >
-              All
+              ALL
             </button>
             <button
               className="btn btn-outline-secondary ml-3"
               onClick={handleClear}
             >
-              Clear
+              CLEAR
             </button>
           </div>
         </div>

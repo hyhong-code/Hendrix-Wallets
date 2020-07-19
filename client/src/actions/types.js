@@ -12,6 +12,9 @@ export const USER_LOGOUT = "USER_LOGOUT";
 export const USER_LOADED = "USER_LOADED";
 export const AUTH_ERROR = "AUTH_ERROR";
 
+export const ADMIN_LOGGEDIN = "ADMIN_LOGGEDIN";
+export const ADMIN_ERROR = "ADMIN_ERROR";
+
 export const CART_FETCHED = "CART_FETCHED";
 export const ADDED_TO_CART = "ADDED_TO_CART";
 export const REMOVED_FROM_CART = "REMOVED_FROM_CART";
