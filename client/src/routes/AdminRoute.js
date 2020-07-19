@@ -12,10 +12,9 @@ const AdminRoute = ({
   ...otherProps
 }) => {
   useEffect(() => {
-    if (!adminAuthenticated) {
+    if (!adminAuthenticated && !isAuthenticated) {
       history.replace("/admin");
-    }
-    if (isAuthenticated) {
+    } else if (!adminAuthenticated && isAuthenticated) {
       createToast("Customers are restricted from this route");
       history.replace("/");
     }
