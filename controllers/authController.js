@@ -51,11 +51,19 @@ exports.login = async (req, res, next) => {
     const user = await pool.query("SELECT * FROM users WHERE email = $1 ;", [
       email,
     ]);
+
     if (!user.rows.length) {
       return sendError(res, 404, {
         message: `No user found with email ${email}`,
       });
     }
+
+    if (user.rows[0].role === "admin") {
+      return sendError(res, 401, {
+        message: "Please use admin login route /admin",
+      });
+    }
+
     if (!(await bcrypt.compare(password, user.rows[0].password))) {
       return sendError(res, 401, {
         message: `Invalid credentials`,
