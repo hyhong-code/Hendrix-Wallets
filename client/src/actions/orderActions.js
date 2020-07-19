@@ -131,6 +131,14 @@ export const getAllOrders = (formData) => async (dispatch) => {
       payload: res.data,
     });
   } catch (error) {
-    console.error(error.response);
+    // console.error(error.response);
+    dispatch({
+      type: ORDER_ERROR,
+    });
+    if (error.response) {
+      dispatch(
+        createToast(Object.values(error.response.data.errors).join(", "))
+      );
+    }
   }
 };

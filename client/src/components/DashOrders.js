@@ -1,28 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
 import OrderListItem from "../components/OrderListItem";
 import { getAllOrders } from "../actions/orderActions";
 
+const INITIAL_STATE = {
+  id: "",
+  user_id: "",
+  status: "",
+  sort: "",
+  limit: "",
+};
+
 const DashOrders = ({ orders, getAllOrders }) => {
-  const [formData, setFormData] = useState({
-    id: "",
-    user_id: "",
-    status: "",
-    sort: "",
-    limit: "",
-  });
+  const [formData, setFormData] = useState(INITIAL_STATE);
+  const [curPage, setCurPage] = useState(1);
 
   const handleChange = (evt) => {
     const { name, value } = evt.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleClear = (evt) => {
+    evt.preventDefault();
+    setFormData(INITIAL_STATE);
+  };
+
   const { id, user_id, status, sort, limit } = formData;
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    console.log(formData);
     getAllOrders(formData);
   };
 
@@ -113,7 +120,7 @@ const DashOrders = ({ orders, getAllOrders }) => {
                 Search
               </button>
             </div>
-            <div className="col-4">
+            <div onClick={handleClear} className="col-4">
               <button className="btn btn-outline-primary btn-block btn-sm">
                 Clear
               </button>
@@ -143,8 +150,73 @@ const DashOrders = ({ orders, getAllOrders }) => {
             </div>
           </div>
           <ul className="list-group list-group-flush">
-            {orders && orders.map((order) => <OrderListItem order={order} />)}
+            {orders &&
+              orders
+                .slice((curPage - 1) * 10, curPage * 10)
+                .map((order) => <OrderListItem order={order} />)}
           </ul>
+          <hr className="border-secondary" />
+          <nav
+            aria-label="Page navigation"
+            className="mt-4 d-flex justify-content-center align-items-center"
+          >
+            <ul class="pagination">
+              {orders && (
+                <li class={`page-item ${curPage <= 1 ? "disabled" : ""}`}>
+                  <a
+                    class="page-link"
+                    href="#"
+                    aria-label="Previous"
+                    onClick={() => {
+                      if (curPage > 1) {
+                        setCurPage(curPage - 1);
+                      }
+                    }}
+                  >
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+              )}
+              {orders &&
+                Array.from(
+                  Array(Math.ceil(orders.length / 10)),
+                  (_, x) => x + 1
+                ).map((num) => (
+                  <li
+                    key={num}
+                    class={`page-item ${num === curPage ? "active" : ""}`}
+                  >
+                    <a
+                      class="page-link"
+                      href="#"
+                      onClick={() => setCurPage(num)}
+                    >
+                      {num}
+                    </a>
+                  </li>
+                ))}
+              {orders && (
+                <li
+                  class={`page-item ${
+                    curPage * 10 >= orders.length ? "disabled" : ""
+                  }`}
+                >
+                  <a
+                    class="page-link"
+                    href="#"
+                    aria-label="Next"
+                    onClick={() => {
+                      if (curPage * 10 < orders.length) {
+                        setCurPage(curPage + 1);
+                      }
+                    }}
+                  >
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              )}
+            </ul>
+          </nav>
         </div>
       </div>
     </div>
