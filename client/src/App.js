@@ -8,7 +8,9 @@ import { loadUser } from "./actions/authActions";
 import { getCart } from "./actions/cartActions";
 import { getOrders } from "./actions/orderActions";
 import GuestRoute from "./routes/GuestRoute";
-import ProtectedRoute from "./routes/ProtectedRoute";
+import UserRoute from "./routes/UserRoute";
+import AdminRoute from "./routes/AdminRoute";
+import AdminDashboard from "./components/pages/AdminDashboard";
 import ScrollToTop from "./components/layout/ScrollToTop";
 import Refresh from "./components/layout/Refresh";
 import ToastContainer from "./components/layout/ToastContainer";
@@ -56,18 +58,15 @@ const App = ({
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/items/:category" component={ItemList} />
-        <ProtectedRoute exact path="/checkout" component={Checkout} />
-        <ProtectedRoute exact path="/profile" component={Profile} />
-        <ProtectedRoute exact path="/orders" component={Orders} />
-        <ProtectedRoute
-          exact
-          path="/orderDetail/:orderId"
-          component={OrderDetail}
-        />
+        <UserRoute exact path="/checkout" component={Checkout} />
+        <UserRoute exact path="/profile" component={Profile} />
+        <UserRoute exact path="/orders" component={Orders} />
+        <UserRoute exact path="/orderDetail/:orderId" component={OrderDetail} />
         <GuestRoute exact path="/signup" component={Signup} />
         <GuestRoute exact path="/login" component={Login} />
         <Route exact path="/refresh" component={Refresh} />
         <Route exact path="/admin" component={AdminLogin} />
+        <AdminRoute exact path="/admin/dashboard" component={AdminDashboard} />
       </Switch>
       <Footer />
       {!!toasts.length && <ToastContainer />}

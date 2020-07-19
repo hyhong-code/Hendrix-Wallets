@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Route, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
-const ProtectedRoute = ({
+const UserRoute = ({
   history,
   location,
   component: Component,
@@ -24,4 +24,4 @@ const mapStateToProps = ({ auth: { isAuthenticated } }) => ({
   isAuthenticated,
 });
 
-export default connect(mapStateToProps)(withRouter(ProtectedRoute));
+export default connect(mapStateToProps)(withRouter(UserRoute));
