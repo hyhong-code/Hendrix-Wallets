@@ -5,6 +5,7 @@ const sendError = require("../utils/sendError");
 const getCartItemsHelper = require("../utils/getCartItemsHelper");
 const getUserCart = require("../utils/getUserCart");
 const { checkOrder } = require("../utils/validate/validateControl");
+const nullifyEmptyStr = require("../utils/nullifyEmptyStr");
 
 // @desc    Create a order using current cart
 // @route   POST /api/order
@@ -225,6 +226,36 @@ exports.cancelOrder = async (req, res, next) => {
     order.rows[0].cart.cartItems = cartItems;
 
     res.status(200).json({ order: order.rows[0] });
+  } catch (error) {
+    console.error(error);
+    sendError(res);
+  }
+};
+
+// @desc    Get all orders
+// @route   Get /api/order/all
+// @access  Private - Admin role
+exports.getAllOrders = async (req, res, next) => {
+  try {
+    let { id, user_id, status, sort, limit } = req.query;
+
+    id = nullifyEmptyStr(id);
+    user_id = nullifyEmptyStr(user_id);
+    status = nullifyEmptyStr(status);
+    sort = nullifyEmptyStr(sort ? sort.split("-").join(" ") : "");
+    limit = nullifyEmptyStr(limit);
+
+    console.log(id, user_id, status, sort, limit);
+
+    const qry = `SELECT * FROM orders
+           WHERE id = COALESCE(id, $1)
+           AND user_id = COALESCE(user_id, $2)
+           AND status = COALESCE(status, $3)
+           ORDER by COALESCE('created_at ASC', $4)
+           LIMIT COALESCE(50, $5);`;
+
+    const orders = await pool.query(qry, [id, user_id, status, sort, limit]);
+    res.status(200).json({ orders: orders.rows });
   } catch (error) {
     console.error(error);
     sendError(res);
