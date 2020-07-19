@@ -69,7 +69,6 @@ CREATE TABLE orders(
             'CANCELED'
         )
     ),
-    stripe_token VARCHAR(255),
     final_price BIGINT NOT NULL CHECK (final_price > 0),
     created_at TIMESTAMP DEFAULT NOW(),
     shipped_at TIMESTAMP,

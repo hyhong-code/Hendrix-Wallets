@@ -2,6 +2,8 @@
 
 ### Main technolodges: Node/Express, PostgreSQL, React, Redux, Sass, Bootstrap, Stripe
 
+[Live demo](https://hendrix-wallets.herokuapp.com/)
+
 **Customer facing MVP is complete**
 
 _Currently working on admin facing CMS to manage products and orders_
@@ -18,6 +20,7 @@ _Currently working on admin facing CMS to manage products and orders_
 - Pay for an order with card
 - Cancel an order
 - Moniter order status
+- Admin Order Management System
 
 ---
 
