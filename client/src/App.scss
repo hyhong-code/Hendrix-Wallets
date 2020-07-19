@@ -653,3 +653,15 @@ body {
   min-height: 85vh;
   position: relative;
 }
+
+#admin-dashboard {
+  min-height: 85vh;
+  position: relative;
+
+  .control-panel {
+    .nav-link {
+      margin-top: 0.3rem;
+      margin-bottom: 0.3rem;
+    }
+  }
+}
