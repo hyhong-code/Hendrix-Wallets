@@ -1,21 +1,26 @@
-const {ADMIN_LOGGEDIN,ADMIN_ERROR} from '../actions/types.js'
+import { ADMIN_LOGGEDIN, ADMIN_ERROR, ADMIN_LOADED } from "../actions/types.js";
+import setTokenHeader from "../utils/setTokenHeader";
 
 const INITIAL_STATE = {
   adminAuthenticated: false,
-  admin,
+  admin: null,
 };
 
-export default (state, action) => {
+export default (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
   switch (type) {
     case ADMIN_LOGGEDIN:
+      localStorage.setItem("jwt", payload.token);
+      setTokenHeader(payload.token);
       return {
         ...state,
         adminAuthenticated: true,
       };
     case ADMIN_LOADED:
-      return { ...state, adminAuthenticated: true, admin: payload };
+      return { ...state, adminAuthenticated: true, admin: payload.user };
     case ADMIN_ERROR:
+      localStorage.removeItem("jwt");
+      setTokenHeader(false);
       return INITIAL_STATE;
     default:
       return state;

@@ -8,6 +8,7 @@ import {
   USER_LOADED,
   AUTH_ERROR,
   USER_LOGOUT,
+  ADMIN_LOADED,
 } from "./types";
 import setTokenHeader from "../utils/setTokenHeader";
 import { clearCart } from "./cartActions";
@@ -70,10 +71,18 @@ export const loadUser = () => async (dispatch) => {
   setTokenHeader(localStorage.getItem("jwt"));
   try {
     const res = await axios.get("/api/auth/loadme");
-    dispatch({
-      type: USER_LOADED,
-      payload: res.data,
-    });
+    if (res.data.user.role === "user") {
+      dispatch({
+        type: USER_LOADED,
+        payload: res.data,
+      });
+    }
+    if (res.data.user.role === "admin") {
+      dispatch({
+        type: ADMIN_LOADED,
+        payload: res.data,
+      });
+    }
   } catch (error) {
     // console.error(error.response);
     dispatch({

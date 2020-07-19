@@ -13,6 +13,7 @@ export const USER_LOADED = "USER_LOADED";
 export const AUTH_ERROR = "AUTH_ERROR";
 
 export const ADMIN_LOGGEDIN = "ADMIN_LOGGEDIN";
+export const ADMIN_LOADED = "ADMIN_LOADED";
 export const ADMIN_ERROR = "ADMIN_ERROR";
 
 export const CART_FETCHED = "CART_FETCHED";

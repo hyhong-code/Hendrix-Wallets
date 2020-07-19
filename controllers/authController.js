@@ -86,3 +86,38 @@ exports.loadMe = async (req, res, next) => {
     sendError(res);
   }
 };
+
+// @desc    Log in an admin
+// @route   POST /api/auth/login/login
+// @access  Public
+exports.adminLogin = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+    const { isValid, errors } = checkLogin(email, password);
+    if (!isValid) return sendError(res, 400, errors);
+
+    const user = await pool.query("SELECT * FROM users WHERE email = $1 ;", [
+      email,
+    ]);
+
+    if (!user.rows.length) {
+      return sendError(res, 404, {
+        message: `No user found with email ${email}`,
+      });
+    }
+
+    if (user.rows[0].role !== "admin") {
+      return sendError(res, 401, { message: "User not authorized" });
+    }
+
+    if (!(await bcrypt.compare(password, user.rows[0].password))) {
+      return sendError(res, 401, {
+        message: `Invalid credentials`,
+      });
+    }
+
+    sendJwtToken(user.rows[0], 200, res);
+  } catch (error) {
+    sendError(res);
+  }
+};

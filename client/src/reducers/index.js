@@ -6,6 +6,7 @@ import auth from "./authReducer";
 import cart from "./cartReducer";
 import order from "./ordereReducer";
 import toasts from "./toastReducer";
+import admin from "./adminReducer";
 
 export default combineReducers({
   categories,
@@ -14,4 +15,5 @@ export default combineReducers({
   cart,
   order,
   toasts,
+  admin,
 });

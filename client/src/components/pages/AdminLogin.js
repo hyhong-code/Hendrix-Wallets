@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { login } from "../../actions/authActions";
+import { adminLogin } from "../../actions/adminActions";
 
-const AdminLogin = ({ login }) => {
+const AdminLogin = ({ adminLogin }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -18,7 +18,7 @@ const AdminLogin = ({ login }) => {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
-    if (await login(formData)) {
+    if (await adminLogin(formData)) {
       setFormData({
         email: "",
         password: "",
@@ -89,4 +89,4 @@ const AdminLogin = ({ login }) => {
   );
 };
 
-export default connect(null, { login })(AdminLogin);
+export default connect(null, { adminLogin })(AdminLogin);
