@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
 
-import { cancelOrder, shipOrder } from "../actions/orderActions";
+import { cancelOrder, shipOrder, deliverOrder } from "../actions/orderActions";
 import Stripe from "./Stripe";
 
 const subtotal = (items) =>
@@ -50,6 +50,7 @@ const OrderSummaryPanel = ({
   cancelOrder,
   shipOrder,
   adminAuthenticated,
+  deliverOrder,
 }) => {
   return (
     <div className="card order-summary-panel mx-3">
@@ -144,7 +145,10 @@ const OrderSummaryPanel = ({
         )}
         {adminAuthenticated && order.status === "SHIPPED" && (
           <div className="d-flex align-items-center justify-content-center mt-4">
-            <button className="cancel-btn btn btn-outline-success btn-sm">
+            <button
+              onClick={() => deliverOrder(order.id)}
+              className="cancel-btn btn btn-outline-success btn-sm"
+            >
               ORDER DELIVERED
             </button>
           </div>
@@ -154,4 +158,6 @@ const OrderSummaryPanel = ({
   );
 };
 
-export default connect(null, { cancelOrder, shipOrder })(OrderSummaryPanel);
+export default connect(null, { cancelOrder, shipOrder, deliverOrder })(
+  OrderSummaryPanel
+);

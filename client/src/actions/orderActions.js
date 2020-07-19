@@ -9,6 +9,7 @@ import {
   CLEAR_ORDER,
   ORDER_ERROR,
   ORDER_SHIPPED,
+  ORDER_DELIVERED,
 } from "./types";
 import { getCart } from "./cartActions";
 import { createToast } from "./toastActions";
@@ -153,12 +154,29 @@ export const shipOrder = (orderId) => async (dispatch) => {
     });
   } catch (error) {
     console.error(error.response);
-    //   dispatch({ type: ORDER_ERROR });
-    //   if (error.response) {
-    //     dispatch(
-    //       createToast(Object.values(error.response.data.errors).join(", "))
-    //     );
-    //   }
-    // }
+    dispatch({ type: ORDER_ERROR });
+    if (error.response) {
+      dispatch(
+        createToast(Object.values(error.response.data.errors).join(", "))
+      );
+    }
+  }
+};
+
+export const deliverOrder = (orderId) => async (dispatch) => {
+  try {
+    const res = await axios.patch(`/api/order/${orderId}/deliver`);
+    dispatch({
+      type: ORDER_DELIVERED,
+      payload: res.data.order,
+    });
+  } catch (error) {
+    console.error(error.response);
+    dispatch({ type: ORDER_ERROR });
+    if (error.response) {
+      dispatch(
+        createToast(Object.values(error.response.data.errors).join(", "))
+      );
+    }
   }
 };

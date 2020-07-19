@@ -8,6 +8,7 @@ const {
   cancelOrder,
   getAllOrders,
   shipOrder,
+  deliverOrder,
 } = require("../controllers/orderController");
 const auth = require("../middlewares/auth");
 const limitTo = require("../middlewares/limitTo");
@@ -24,5 +25,6 @@ router.route("/:orderId").get(auth, getOrderDetailsById);
 router.route("/:orderId/pay").post(auth, limitTo("user"), payForOrder);
 router.route("/:orderId/cancel").patch(auth, limitTo("user"), cancelOrder);
 router.route("/:orderId/ship").patch(auth, limitTo("admin"), shipOrder);
+router.route("/:orderId/deliver").patch(auth, limitTo("admin"), deliverOrder);
 
 module.exports = router;

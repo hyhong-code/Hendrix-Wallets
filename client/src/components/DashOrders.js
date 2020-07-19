@@ -46,7 +46,7 @@ const DashOrders = ({ orders, getAllOrders, clearOrder }) => {
       <div className="card card-body mb-3">
         <form>
           <div className="form-row">
-            <div className="col-6 mb-2">
+            <div className="col-6 mb-3">
               <input
                 type="text"
                 className="form-control"
@@ -56,7 +56,7 @@ const DashOrders = ({ orders, getAllOrders, clearOrder }) => {
                 value={id}
               />
             </div>
-            <div className="col-6 mb-2">
+            <div className="col-6 mb-3">
               <input
                 type="text"
                 className="form-control"
@@ -66,7 +66,7 @@ const DashOrders = ({ orders, getAllOrders, clearOrder }) => {
                 value={user_id}
               />
             </div>
-            <div className="col-4 mb-2">
+            <div className="col-4 mb-3">
               <select
                 className="custom-select custom-select-sm"
                 onChange={handleChange}
@@ -83,7 +83,7 @@ const DashOrders = ({ orders, getAllOrders, clearOrder }) => {
                 <option value="CANCELED">CANCELED</option>
               </select>
             </div>
-            <div className="col-4 mb-2">
+            <div className="col-4 mb-3">
               <select
                 className="custom-select custom-select-sm"
                 onChange={handleChange}
@@ -99,7 +99,7 @@ const DashOrders = ({ orders, getAllOrders, clearOrder }) => {
                 <option value="created_at-ASC">Date Earliest First</option>
               </select>
             </div>
-            <div className="col-4 mb-2">
+            <div className="col-4 mb-3">
               <select
                 className="custom-select custom-select-sm"
                 onChange={handleChange}

@@ -7,6 +7,7 @@ import {
   CLEAR_ORDER,
   ORDER_ERROR,
   ORDER_SHIPPED,
+  ORDER_DELIVERED,
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -24,6 +25,7 @@ export default (state = INITIAL_STATE, action) => {
     case ORDER_PAID:
     case ORDER_CANCELED:
     case ORDER_SHIPPED:
+    case ORDER_DELIVERED:
       return { ...state, currentOrder: payload };
     case CLEAR_ORDER:
     case ORDER_ERROR:
