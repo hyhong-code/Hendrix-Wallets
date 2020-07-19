@@ -14,17 +14,33 @@ const Topbar = () => {
             <span className="text-contact">Email: hong961127@gmail.com</span>
           </div>
           <div className="col-md-4 d-flex justify-content-center justify-content-lg-end align-items-center">
-            <a className="social-icon mr-3" href="#!">
+            <a
+              target="_blank"
+              className="social-icon mr-3"
+              href="https://www.linkedin.com/in/denny-haiyang-hong-7a7230104/"
+            >
               <i className="fab fa-linkedin"></i>
             </a>
-            <a className="social-icon mr-3" href="#!">
-              <i className="fab fa-facebook"></i>
+            <a
+              target="_blank"
+              className="social-icon mr-3"
+              href="https://github.com/hyhong-code"
+            >
+              <i className="fab fa-github"></i>
             </a>
-            <a className="social-icon mr-3" href="#!">
-              <i className="fab fa-instagram"></i>
-            </a>
-            <a className="social-icon" href="#!">
+            <a
+              target="_blank"
+              className="social-icon mr-3"
+              href="https://twitter.com/DennyHong3"
+            >
               <i className="fab fa-twitter"></i>
+            </a>
+            <a
+              target="_blank"
+              className="social-icon"
+              href="https://www.facebook.com/DennyHong1996"
+            >
+              <i className="fab fa-facebook"></i>
             </a>
           </div>
         </div>

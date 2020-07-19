@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 
-const SearchForm = ({ history }) => {
+const SearchForm = ({ history, closeNav }) => {
   const [text, setText] = useState("");
 
   const handleClick = (evt) => {
     evt.preventDefault();
-
     history.push(`/items/search-${text}`);
     setText("");
+    closeNav();
   };
 
   return (
