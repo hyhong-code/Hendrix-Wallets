@@ -126,7 +126,10 @@ export const getAllOrders = (formData) => async (dispatch) => {
     });
     params = params.join("&");
     const res = await axios.get(`/api/order/all?${params}`);
-    console.log(res.data);
+    dispatch({
+      type: ORDERS_FETCHED,
+      payload: res.data,
+    });
   } catch (error) {
     console.error(error.response);
   }

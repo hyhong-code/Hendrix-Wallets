@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import OrderListItem from "../components/OrderListItem";
 import { getAllOrders } from "../actions/orderActions";
 
-const DashOrders = ({ getAllOrders }) => {
+const DashOrders = ({ orders, getAllOrders }) => {
   const [formData, setFormData] = useState({
     id: "",
     user_id: "",
@@ -143,30 +143,7 @@ const DashOrders = ({ getAllOrders }) => {
             </div>
           </div>
           <ul className="list-group list-group-flush">
-            <OrderListItem
-              order={{
-                id: "e5975661-bce8-4e1a-952e-a8dd422b7546",
-                created_at: "2020-07-17T02:10:43.739Z",
-                final_price: "3407",
-                status: "PAID",
-              }}
-            />
-            <OrderListItem
-              order={{
-                id: "e5975661-bce8-4e1a-952e-a8dd422b7546",
-                created_at: "2020-07-17T02:10:43.739Z",
-                final_price: "3407",
-                status: "PAID",
-              }}
-            />
-            <OrderListItem
-              order={{
-                id: "e5975661-bce8-4e1a-952e-a8dd422b7546",
-                created_at: "2020-07-17T02:10:43.739Z",
-                final_price: "3407",
-                status: "PAID",
-              }}
-            />
+            {orders && orders.map((order) => <OrderListItem order={order} />)}
           </ul>
         </div>
       </div>
@@ -174,4 +151,6 @@ const DashOrders = ({ getAllOrders }) => {
   );
 };
 
-export default connect(null, { getAllOrders })(DashOrders);
+const mapStateToProps = ({ order: { orders } }) => ({ orders });
+
+export default connect(mapStateToProps, { getAllOrders })(DashOrders);
