@@ -79,6 +79,9 @@ const Profile = ({ user }) => {
   );
 };
 
-const mapStateToProps = ({ auth: { user } }) => ({ user });
+const mapStateToProps = ({
+  auth: { user },
+  admin: { adminAuthenticated },
+}) => ({ user, adminAuthenticated });
 
 export default connect(mapStateToProps)(Profile);

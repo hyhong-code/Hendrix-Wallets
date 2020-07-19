@@ -33,7 +33,9 @@ const Checkout = ({ cart }) => {
           </nav>
           <div className="row">
             <div className="col-lg-8 order-1 order-lg-0">
-              <p className="lead text-primary">Your cart is empty...</p>
+              {cart && !cart.cartItems.length && (
+                <p className="lead text-primary">Your cart is empty...</p>
+              )}
               {cart &&
                 cart.cartItems.map((cartItem) => (
                   <CheckoutItem

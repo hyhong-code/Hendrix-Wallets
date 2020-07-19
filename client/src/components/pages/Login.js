@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { login } from "../../actions/authActions";
 
-const Login = ({ login }) => {
+const Login = ({ history, login, adminAuthenticated }) => {
+  useEffect(() => {
+    if (adminAuthenticated) {
+      history.replace("/admin/dashboard");
+    }
+  }, [adminAuthenticated]);
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -95,4 +101,8 @@ const Login = ({ login }) => {
   );
 };
 
-export default connect(null, { login })(Login);
+const mapStateToProps = ({ admin: { adminAuthenticated } }) => ({
+  adminAuthenticated,
+});
+
+export default connect(mapStateToProps, { login })(Login);
