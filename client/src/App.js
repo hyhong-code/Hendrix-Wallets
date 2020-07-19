@@ -11,6 +11,7 @@ import GuestRoute from "./routes/GuestRoute";
 import UserRoute from "./routes/UserRoute";
 import AdminRoute from "./routes/AdminRoute";
 import AdminDashboard from "./components/pages/AdminDashboard";
+import AdminOrderDetail from "./components/pages/AdminOrderDetail";
 import ScrollToTop from "./components/layout/ScrollToTop";
 import Refresh from "./components/layout/Refresh";
 import ToastContainer from "./components/layout/ToastContainer";
@@ -67,6 +68,11 @@ const App = ({
         <Route exact path="/refresh" component={Refresh} />
         <Route exact path="/admin" component={AdminLogin} />
         <AdminRoute exact path="/admin/dashboard" component={AdminDashboard} />
+        <AdminRoute
+          exact
+          path="/admin/orderDetail/:orderId"
+          component={AdminOrderDetail}
+        />
       </Switch>
       <Footer />
       {!!toasts.length && <ToastContainer />}

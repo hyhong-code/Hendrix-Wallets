@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import { Link } from "react-router-dom";
 
@@ -20,10 +21,16 @@ const badgeColor = (orderStatus) => {
   }
 };
 
-const OrderlistItem = ({ order }) => {
+const OrderlistItem = ({ order, adminAuthenticated, isAuthenticated }) => {
+  let path;
+  if (isAuthenticated) {
+    path = `/orderDetail/${order.id}`;
+  } else if (adminAuthenticated) {
+    path = `/admin/orderDetail/${order.id}`;
+  }
   return (
     <li className="list-group-item orderlist-item">
-      <Link to={`/orderDetail/${order.id}`}>
+      <Link to={path}>
         <div className="row">
           <div className="col-6 p-0 d-none d-lg-block">{order.id}</div>
           <div className="col-5 col-lg-2  p-0">
@@ -42,4 +49,12 @@ const OrderlistItem = ({ order }) => {
   );
 };
 
-export default OrderlistItem;
+const mapStateToProps = ({
+  admin: { adminAuthenticated },
+  auth: { isAuthenticated },
+}) => ({
+  adminAuthenticated,
+  isAuthenticated,
+});
+
+export default connect(mapStateToProps)(OrderlistItem);
