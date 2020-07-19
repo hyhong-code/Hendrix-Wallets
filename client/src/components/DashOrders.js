@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 
 import OrderListItem from "../components/OrderListItem";
+import { getAllOrders } from "../actions/orderActions";
 
-const DashOrders = () => {
+const DashOrders = ({ getAllOrders }) => {
   const [formData, setFormData] = useState({
     id: "",
     user_id: "",
@@ -17,6 +19,12 @@ const DashOrders = () => {
   };
 
   const { id, user_id, status, sort, limit } = formData;
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    console.log(formData);
+    getAllOrders(formData);
+  };
 
   return (
     <div
@@ -58,11 +66,11 @@ const DashOrders = () => {
                 <option value="" selected>
                   Order Status
                 </option>
-                <option value="status=CONFIRMED">CONFIRMED</option>
-                <option value="status=PAID">PAID</option>
-                <option value="status=SHIPPED">SHIPPED</option>
-                <option value="status=DELIVERED">DELIVERED</option>
-                <option value="status=CANCELED">CANCELED</option>
+                <option value="CONFIRMED">CONFIRMED</option>
+                <option value="PAID">PAID</option>
+                <option value="SHIPPED">SHIPPED</option>
+                <option value="DELIVERED">DELIVERED</option>
+                <option value="CANCELED">CANCELED</option>
               </select>
             </div>
             <div className="col-4 mb-2">
@@ -75,14 +83,10 @@ const DashOrders = () => {
                 <option value="" selected>
                   Sort By
                 </option>
-                <option value="sort=final_price-asc">Price Lowest First</option>
-                <option value="sort=final_price-desc">
-                  Price Lowest First
-                </option>
-                <option value="sort=created_at-desc">
-                  Date Most Recent First
-                </option>
-                <option value="sort=created_at-asc">Date Earliest First</option>
+                <option value="final_price-ASC">Price Lowest First</option>
+                <option value="final_price-DESC">Price Highest First</option>
+                <option value="created_at-DESC">Date Most Recent First</option>
+                <option value="created_at-ASC">Date Earliest First</option>
               </select>
             </div>
             <div className="col-4 mb-2">
@@ -95,14 +99,17 @@ const DashOrders = () => {
                 <option value="" selected>
                   # Results
                 </option>
-                <option value="limit=5">5</option>
-                <option value="limit=15">15</option>
-                <option value="limit=25">25</option>
-                <option value="limit=50">50</option>
+                <option value="5">5</option>
+                <option value="15">15</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
               </select>
             </div>
             <div className="col-4">
-              <button className="btn btn-outline-primary btn-block btn-sm">
+              <button
+                onClick={handleSubmit}
+                className="btn btn-outline-primary btn-block btn-sm"
+              >
                 Search
               </button>
             </div>
@@ -167,4 +174,4 @@ const DashOrders = () => {
   );
 };
 
-export default DashOrders;
+export default connect(null, { getAllOrders })(DashOrders);

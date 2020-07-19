@@ -115,3 +115,19 @@ export const clearOrder = () => (dispatch) => {
     type: CLEAR_ORDER,
   });
 };
+
+export const getAllOrders = (formData) => async (dispatch) => {
+  try {
+    let params = [];
+    Object.keys(formData).forEach((key) => {
+      if (formData[key]) {
+        params.push(`${key}=${formData[key]}`);
+      }
+    });
+    params = params.join("&");
+    const res = await axios.get(`/api/order/all?${params}`);
+    console.log(res.data);
+  } catch (error) {
+    console.error(error.response);
+  }
+};

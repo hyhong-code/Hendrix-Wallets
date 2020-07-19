@@ -13,6 +13,8 @@ const limitTo = require("../middlewares/limitTo");
 
 const router = express.Router();
 
+router.route("/all").get(auth, limitTo("admin"), getAllOrders);
+
 router
   .route("/")
   .get(auth, limitTo("user"), getOrders)
@@ -20,7 +22,5 @@ router
 router.route("/:orderId").get(auth, limitTo("user"), getOrderDetailsById);
 router.route("/:orderId/pay").post(auth, limitTo("user"), payForOrder);
 router.route("/:orderId/cancel").patch(auth, limitTo("user"), cancelOrder);
-
-router.route("/all").get(auth, limitTo("admin"), getAllOrders);
 
 module.exports = router;

@@ -242,22 +242,33 @@ exports.getAllOrders = async (req, res, next) => {
     id = nullifyEmptyStr(id);
     user_id = nullifyEmptyStr(user_id);
     status = nullifyEmptyStr(status);
-    sort = nullifyEmptyStr(sort ? sort.split("-").join(" ") : "");
+    sortField = nullifyEmptyStr(sort ? sort.split("-")[0] : "");
+    sortOrder = nullifyEmptyStr(sort ? sort.split("-")[1] : "");
     limit = nullifyEmptyStr(limit);
 
-    console.log(id, user_id, status, sort, limit);
+    let orderBy;
+    if (sortOrder && sortField) {
+      orderBy = `ORDER BY ${sortField} ${sortOrder}`;
+    } else {
+      orderBy = `ORDER BY created_at DESC`;
+    }
 
     const qry = `SELECT * FROM orders
-           WHERE id = COALESCE(id, $1)
-           AND user_id = COALESCE(user_id, $2)
-           AND status = COALESCE(status, $3)
-           ORDER by COALESCE('created_at ASC', $4)
-           LIMIT COALESCE(50, $5);`;
+           WHERE id = COALESCE($1, id)
+           AND user_id = COALESCE($2, user_id)
+           AND status = COALESCE($3, status)
+           ${orderBy}
+           LIMIT COALESCE($4, 50);`;
 
-    const orders = await pool.query(qry, [id, user_id, status, sort, limit]);
+    const orders = await pool.query(qry, [id, user_id, status, limit]);
     res.status(200).json({ orders: orders.rows });
   } catch (error) {
     console.error(error);
+    if (error.code === "22P02") {
+      return sendError(res, 400, {
+        message: "Order ID / User ID format error",
+      });
+    }
     sendError(res);
   }
 };
