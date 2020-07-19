@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
 
-import { cancelOrder } from "../actions/orderActions";
+import { cancelOrder, shipOrder } from "../actions/orderActions";
 import Stripe from "./Stripe";
 
 const subtotal = (items) =>
@@ -45,7 +45,12 @@ const tax = (items, shipping, taxRate) =>
       Number.EPSILON
   ) / 100;
 
-const OrderSummaryPanel = ({ order, cancelOrder }) => {
+const OrderSummaryPanel = ({
+  order,
+  cancelOrder,
+  shipOrder,
+  adminAuthenticated,
+}) => {
   return (
     <div className="card order-summary-panel mx-3">
       <div className="card-body py-5 px-4">
@@ -105,7 +110,7 @@ const OrderSummaryPanel = ({ order, cancelOrder }) => {
             <small className="text-muted">NO INSTRUCTIONS</small>
           )}
         </div>
-        {order.status === "CONFIRMED" && (
+        {!adminAuthenticated && order.status === "CONFIRMED" && (
           <Fragment>
             <div className="d-flex align-items-center justify-content-center mt-4">
               <Stripe order={order} />
@@ -120,9 +125,33 @@ const OrderSummaryPanel = ({ order, cancelOrder }) => {
             </div>
           </Fragment>
         )}
+        {adminAuthenticated && order.status === "CONFIRMED" && (
+          <div className="d-flex align-items-center justify-content-center mt-4">
+            <small className="text-muted">
+              Waiting for customer to pay for this order...
+            </small>
+          </div>
+        )}
+        {adminAuthenticated && order.status === "PAID" && (
+          <div className="d-flex align-items-center justify-content-center mt-4">
+            <button
+              onClick={() => shipOrder(order.id)}
+              className="cancel-btn btn btn-outline-primary btn-sm"
+            >
+              ORDER SHIPPED
+            </button>
+          </div>
+        )}
+        {adminAuthenticated && order.status === "SHIPPED" && (
+          <div className="d-flex align-items-center justify-content-center mt-4">
+            <button className="cancel-btn btn btn-outline-success btn-sm">
+              ORDER DELIVERED
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
-export default connect(null, { cancelOrder })(OrderSummaryPanel);
+export default connect(null, { cancelOrder, shipOrder })(OrderSummaryPanel);

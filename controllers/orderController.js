@@ -272,3 +272,46 @@ exports.getAllOrders = async (req, res, next) => {
     sendError(res);
   }
 };
+
+// @desc    Ship an order
+// @route   PATCH /api/order/:orderId/ship
+// @access  Private - Admin role
+exports.shipOrder = async (req, res, next) => {
+  try {
+    let order = await pool.query(`SELECT * FROM orders WHERE id = $1 ;`, [
+      req.params.orderId,
+    ]);
+
+    // Hanlde order not found
+    if (!order.rows.length) {
+      return sendError(res, 404, {
+        message: `Order with id ${req.params.orderId} not found`,
+      });
+    }
+
+    // Handle use not yet paid
+    if (order.rows[0].status !== "PAID") {
+      return sendError(res, 400, {
+        message: "Order can only be shipped after user has paid",
+      });
+    }
+
+    // Ship the order
+    order = await pool.query(
+      "UPDATE orders SET status = 'SHIPPED' WHERE id = $1 RETURNING * ;",
+      [req.params.orderId]
+    );
+
+    // Return order details to client
+    const cart = await pool.query("SELECT * FROM carts WHERE id = $1 ;", [
+      order.rows[0].cart_id,
+    ]);
+    const cartItems = await getCartItemsHelper(cart.rows[0].id);
+    order.rows[0].cart = cart.rows[0];
+    order.rows[0].cart.cartItems = cartItems;
+
+    res.status(200).json({ order: order.rows[0] });
+  } catch (error) {
+    console.error(error);
+  }
+};

@@ -8,6 +8,7 @@ import {
   ORDER_DETAIL_FETCHED,
   CLEAR_ORDER,
   ORDER_ERROR,
+  ORDER_SHIPPED,
 } from "./types";
 import { getCart } from "./cartActions";
 import { createToast } from "./toastActions";
@@ -140,5 +141,24 @@ export const getAllOrders = (formData) => async (dispatch) => {
         createToast(Object.values(error.response.data.errors).join(", "))
       );
     }
+  }
+};
+
+export const shipOrder = (orderId) => async (dispatch) => {
+  try {
+    const res = await axios.patch(`/api/order/${orderId}/ship`);
+    dispatch({
+      type: ORDER_SHIPPED,
+      payload: res.data.order,
+    });
+  } catch (error) {
+    console.error(error.response);
+    //   dispatch({ type: ORDER_ERROR });
+    //   if (error.response) {
+    //     dispatch(
+    //       createToast(Object.values(error.response.data.errors).join(", "))
+    //     );
+    //   }
+    // }
   }
 };

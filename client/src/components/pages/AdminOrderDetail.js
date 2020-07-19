@@ -32,13 +32,8 @@ const AdminOrderDetail = ({
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb py-2">
             <li className="breadcrumb-item">
-              <Link to="/" className="text-secondary">
-                Home
-              </Link>
-            </li>
-            <li className="breadcrumb-item">
-              <Link to="/orders" className="text-secondary">
-                Orders
+              <Link to="/admin/dashboard" className="text-secondary">
+                Dashboard
               </Link>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
@@ -94,7 +89,12 @@ const AdminOrderDetail = ({
                 ))}
             </div>
             <div className="col-lg-4 order-0 mb-4 mb-lg-0">
-              {currentOrder && <OrderSummaryPanel order={currentOrder} />}
+              {currentOrder && (
+                <OrderSummaryPanel
+                  adminAuthenticated={adminAuthenticated}
+                  order={currentOrder}
+                />
+              )}
             </div>
           </div>
         </div>
