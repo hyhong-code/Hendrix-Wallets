@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
-import ReactTooltip from "react-tooltip";
 
 import { addItemToCart } from "../actions/cartActions";
+import Tooltip from "../components/Tooltip";
 
 const ItemCard = ({ item, addItemToCart, isAuthenticated }) => {
   const pricing = () =>
@@ -40,17 +40,22 @@ const ItemCard = ({ item, addItemToCart, isAuthenticated }) => {
                 <i className="fas fa-cart-plus"></i>
               </button>
             ) : (
-              <button
-                className="btn btn-sm btn-outline-secondary ml-2 disabled"
-                data-tip="Please log in first"
+              <Tooltip
+                placement="top"
+                trigger="click"
+                tooltip="Please login first"
               >
-                <i className="fas fa-cart-plus"></i>
-              </button>
+                <button
+                  className="btn btn-sm btn-outline-secondary ml-2 disabled"
+                  data-tip="Please log in first"
+                >
+                  <i className="fas fa-cart-plus"></i>
+                </button>
+              </Tooltip>
             )}
           </div>
         </div>
       </div>
-      <ReactTooltip />
     </Fragment>
   );
 };

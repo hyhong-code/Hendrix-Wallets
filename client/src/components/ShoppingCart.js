@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import ReactToolTip from "react-tooltip";
 
 import CartItem from "./CartItem";
+import Tooltip from "./Tooltip";
 
 const ShoppingCart = ({ history, cart }) => {
   const [show, setShow] = useState(false);
@@ -71,14 +71,19 @@ const ShoppingCart = ({ history, cart }) => {
                 CHECK OUT
               </button>
             ) : (
-              <button
-                data-tip="Add some items first"
-                className="mt-1 btn btn-secondary btn-block text-white disabled"
+              <Tooltip
+                placement="top"
+                trigger="click"
+                tooltip="Add some items first"
               >
-                CHECK OUT
-              </button>
+                <button
+                  data-tip="Add some items first"
+                  className="mt-1 btn btn-secondary btn-block text-white disabled"
+                >
+                  CHECK OUT
+                </button>
+              </Tooltip>
             )}
-            <ReactToolTip />
           </div>
         </div>
       </div>
