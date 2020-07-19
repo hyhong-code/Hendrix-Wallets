@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 
-import OrderListItem from "../components/OrderListItem";
-import { getAllOrders } from "../actions/orderActions";
+import { getAllOrders, clearOrder } from "../actions/orderActions";
+import DashOrderList from "./DashOrderList";
 
-const INITIAL_STATE = {
+const INITIAL_FORM_STATE = {
   id: "",
   user_id: "",
   status: "",
@@ -12,9 +12,10 @@ const INITIAL_STATE = {
   limit: "",
 };
 
-const DashOrders = ({ orders, getAllOrders }) => {
-  const [formData, setFormData] = useState(INITIAL_STATE);
-  const [curPage, setCurPage] = useState(1);
+const DashOrders = ({ orders, getAllOrders, clearOrder }) => {
+  const [formData, setFormData] = useState(INITIAL_FORM_STATE);
+
+  const [numPerPage, setNumPerPage] = useState(10);
 
   const handleChange = (evt) => {
     const { name, value } = evt.target;
@@ -23,7 +24,9 @@ const DashOrders = ({ orders, getAllOrders }) => {
 
   const handleClear = (evt) => {
     evt.preventDefault();
-    setFormData(INITIAL_STATE);
+    setFormData(INITIAL_FORM_STATE);
+    setNumPerPage(10);
+    clearOrder();
   };
 
   const { id, user_id, status, sort, limit } = formData;
@@ -35,28 +38,28 @@ const DashOrders = ({ orders, getAllOrders }) => {
 
   return (
     <div
-      class="tab-pane fade tab-orders"
+      className="tab-pane fade tab-orders"
       id="v-pills-orders"
       role="tabpanel"
       aria-labelledby="v-pills-orders-tab"
     >
       <div className="card card-body mb-3">
         <form>
-          <div class="form-row">
-            <div class="col-6 mb-2">
+          <div className="form-row">
+            <div className="col-6 mb-2">
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 name="id"
                 placeholder="Order ID"
                 onChange={handleChange}
                 value={id}
               />
             </div>
-            <div class="col-6 mb-2">
+            <div className="col-6 mb-2">
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 name="user_id"
                 placeholder="User ID"
                 onChange={handleChange}
@@ -65,12 +68,12 @@ const DashOrders = ({ orders, getAllOrders }) => {
             </div>
             <div className="col-4 mb-2">
               <select
-                class="custom-select custom-select-sm"
+                className="custom-select custom-select-sm"
                 onChange={handleChange}
                 value={status}
                 name="status"
               >
-                <option value="" selected>
+                <option value="" defaultValue>
                   Order Status
                 </option>
                 <option value="CONFIRMED">CONFIRMED</option>
@@ -82,12 +85,12 @@ const DashOrders = ({ orders, getAllOrders }) => {
             </div>
             <div className="col-4 mb-2">
               <select
-                class="custom-select custom-select-sm"
+                className="custom-select custom-select-sm"
                 onChange={handleChange}
                 value={sort}
                 name="sort"
               >
-                <option value="" selected>
+                <option value="" defaultValue>
                   Sort By
                 </option>
                 <option value="final_price-ASC">Price Lowest First</option>
@@ -98,18 +101,18 @@ const DashOrders = ({ orders, getAllOrders }) => {
             </div>
             <div className="col-4 mb-2">
               <select
-                class="custom-select custom-select-sm"
+                className="custom-select custom-select-sm"
                 onChange={handleChange}
                 value={limit}
                 name="limit"
               >
-                <option value="" selected>
-                  # Results
+                <option value="" defaultValue>
+                  Limit
                 </option>
-                <option value="5">5</option>
-                <option value="15">15</option>
-                <option value="25">25</option>
                 <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="250">250</option>
+                <option value="500">500</option>
               </select>
             </div>
             <div className="col-4">
@@ -126,103 +129,30 @@ const DashOrders = ({ orders, getAllOrders }) => {
               </button>
             </div>
             <div className="col-4">
-              <button className="btn btn-outline-primary btn-block btn-sm">
-                All Orders
-              </button>
+              <select
+                className="custom-select custom-select-sm"
+                onChange={(evt) => setNumPerPage(evt.target.value)}
+                value={numPerPage}
+              >
+                <option value={10} defaultValue>
+                  10 Per Page
+                </option>
+                <option value={15}>15 Per Page</option>
+                <option value={20}>20 Per Page</option>
+                <option value={25}>25 Per Page</option>
+                <option value={50}>50 Per Page</option>
+              </select>
             </div>
           </div>
         </form>
       </div>
-      <div className="card">
-        <div className="card-body">
-          <div className="row orderlist-head">
-            <div className="col-6 d-none d-lg-block p-0 ">
-              <strong>Order No.</strong>
-            </div>
-            <div className="col-5 col-lg-2 p-0 ">
-              <strong>Order Date</strong>
-            </div>
-            <div className="col-4 col-lg-2  p-0">
-              <strong>Total</strong>
-            </div>
-            <div className="col-3 col-lg-2  p-0">
-              <strong>Status</strong>
-            </div>
-          </div>
-          <ul className="list-group list-group-flush">
-            {orders &&
-              orders
-                .slice((curPage - 1) * 10, curPage * 10)
-                .map((order) => <OrderListItem order={order} />)}
-          </ul>
-          <hr className="border-secondary" />
-          <nav
-            aria-label="Page navigation"
-            className="mt-4 d-flex justify-content-center align-items-center"
-          >
-            <ul class="pagination">
-              {orders && (
-                <li class={`page-item ${curPage <= 1 ? "disabled" : ""}`}>
-                  <a
-                    class="page-link"
-                    href="#"
-                    aria-label="Previous"
-                    onClick={() => {
-                      if (curPage > 1) {
-                        setCurPage(curPage - 1);
-                      }
-                    }}
-                  >
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>
-              )}
-              {orders &&
-                Array.from(
-                  Array(Math.ceil(orders.length / 10)),
-                  (_, x) => x + 1
-                ).map((num) => (
-                  <li
-                    key={num}
-                    class={`page-item ${num === curPage ? "active" : ""}`}
-                  >
-                    <a
-                      class="page-link"
-                      href="#"
-                      onClick={() => setCurPage(num)}
-                    >
-                      {num}
-                    </a>
-                  </li>
-                ))}
-              {orders && (
-                <li
-                  class={`page-item ${
-                    curPage * 10 >= orders.length ? "disabled" : ""
-                  }`}
-                >
-                  <a
-                    class="page-link"
-                    href="#"
-                    aria-label="Next"
-                    onClick={() => {
-                      if (curPage * 10 < orders.length) {
-                        setCurPage(curPage + 1);
-                      }
-                    }}
-                  >
-                    <span aria-hidden="true">&raquo;</span>
-                  </a>
-                </li>
-              )}
-            </ul>
-          </nav>
-        </div>
-      </div>
+      {orders && <DashOrderList orders={orders} numPerPage={numPerPage} />}
     </div>
   );
 };
 
 const mapStateToProps = ({ order: { orders } }) => ({ orders });
 
-export default connect(mapStateToProps, { getAllOrders })(DashOrders);
+export default connect(mapStateToProps, { getAllOrders, clearOrder })(
+  DashOrders
+);

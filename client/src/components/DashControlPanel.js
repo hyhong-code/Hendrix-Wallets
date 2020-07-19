@@ -6,13 +6,13 @@ const DashControlPanel = () => {
       <h1>DASHBOARD</h1>
       <hr className="mb-4" />
       <div
-        class="nav flex-column nav-pills"
+        className="nav flex-column nav-pills"
         id="v-pills-tab"
         role="tablist"
         aria-orientation="vertical"
       >
         <a
-          class="nav-link active"
+          className="nav-link active"
           id="v-pills-summary-tab"
           data-toggle="pill"
           href="#v-pills-summary"
@@ -23,7 +23,7 @@ const DashControlPanel = () => {
           SUMMARY
         </a>
         <a
-          class="nav-link"
+          className="nav-link"
           id="v-pills-orders-tab"
           data-toggle="pill"
           href="#v-pills-orders"
@@ -34,7 +34,7 @@ const DashControlPanel = () => {
           ORDERS
         </a>
         <a
-          class="nav-link"
+          className="nav-link"
           id="v-pills-items-tab"
           data-toggle="pill"
           href="#v-pills-items"
@@ -45,7 +45,7 @@ const DashControlPanel = () => {
           ITEMS
         </a>
         <a
-          class="nav-link"
+          className="nav-link"
           id="v-pills-categories-tab"
           data-toggle="pill"
           href="#v-pills-categories"
@@ -56,7 +56,7 @@ const DashControlPanel = () => {
           CATEGORIES
         </a>
         <a
-          class="nav-link"
+          className="nav-link"
           id="v-pills-users-tab"
           data-toggle="pill"
           href="#v-pills-users"
@@ -67,7 +67,7 @@ const DashControlPanel = () => {
           USERS
         </a>
         <a
-          class="nav-link"
+          className="nav-link"
           id="v-pills-stock-tab"
           data-toggle="pill"
           href="#v-pills-stock"
