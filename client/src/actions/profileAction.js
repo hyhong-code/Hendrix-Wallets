@@ -20,7 +20,7 @@ export const updateProfile = (formData) => async (dispatch) => {
   } catch (error) {
     // console.error(error.response);
     dispatch({ type: PROFILE_ERROR });
-    if (error.response) {
+    if (error.response && error.response.data.errors) {
       dispatch(
         createToast(Object.values(error.response.data.errors).join(", "))
       );
@@ -54,7 +54,7 @@ export const updateProfilePic = (file) => async (dispatch, getState) => {
   } catch (error) {
     // console.error(error.response);
     dispatch({ type: PROFILE_ERROR });
-    if (error.response) {
+    if (error.response && error.response.data.errors) {
       dispatch(
         createToast(Object.values(error.response.data.errors).join(", "))
       );

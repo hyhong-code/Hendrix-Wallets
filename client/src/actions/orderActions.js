@@ -32,7 +32,7 @@ export const createOrder = (formData, history) => async (dispatch) => {
   } catch (error) {
     // console.error(error.response);
     dispatch({ type: ORDER_ERROR });
-    if (error.response) {
+    if (error.response && error.response.data.errors) {
       dispatch(
         createToast(Object.values(error.response.data.errors).join(", "))
       );
@@ -64,7 +64,7 @@ export const getOrderDetail = (orderId) => async (dispatch) => {
   } catch (error) {
     // console.error(error.response);
     dispatch({ type: ORDER_ERROR });
-    if (error.response) {
+    if (error.response && error.response.data.errors) {
       dispatch(
         createToast(Object.values(error.response.data.errors).join(", "))
       );
@@ -86,7 +86,7 @@ export const payForOrder = (token, orderId) => async (dispatch) => {
   } catch (error) {
     // console.error(error.response);
     dispatch({ type: ORDER_ERROR });
-    if (error.response) {
+    if (error.response && error.response.data.errors) {
       dispatch(
         createToast(Object.values(error.response.data.errors).join(", "))
       );
@@ -104,7 +104,7 @@ export const cancelOrder = (orderId) => async (dispatch) => {
   } catch (error) {
     // console.error(error.response);
     dispatch({ type: ORDER_ERROR });
-    if (error.response) {
+    if (error.response && error.response.data.errors) {
       dispatch(
         createToast(Object.values(error.response.data.errors).join(", "))
       );
@@ -137,7 +137,7 @@ export const getAllOrders = (formData) => async (dispatch) => {
     dispatch({
       type: ORDER_ERROR,
     });
-    if (error.response) {
+    if (error.response && error.response.data.errors) {
       dispatch(
         createToast(Object.values(error.response.data.errors).join(", "))
       );
@@ -155,7 +155,7 @@ export const shipOrder = (orderId) => async (dispatch) => {
   } catch (error) {
     console.error(error.response);
     dispatch({ type: ORDER_ERROR });
-    if (error.response) {
+    if (error.response && error.response.data.errors) {
       dispatch(
         createToast(Object.values(error.response.data.errors).join(", "))
       );
@@ -173,7 +173,7 @@ export const deliverOrder = (orderId) => async (dispatch) => {
   } catch (error) {
     console.error(error.response);
     dispatch({ type: ORDER_ERROR });
-    if (error.response) {
+    if (error.response && error.response.data.errors) {
       dispatch(
         createToast(Object.values(error.response.data.errors).join(", "))
       );

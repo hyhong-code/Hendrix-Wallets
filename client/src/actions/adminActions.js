@@ -24,7 +24,7 @@ export const adminLogin = (formData) => async (dispatch) => {
     dispatch({
       type: ADMIN_ERROR,
     });
-    if (error.response) {
+    if (error.response && error.response.data.errors) {
       dispatch(
         createToast(Object.values(error.response.data.errors).join(", "))
       );

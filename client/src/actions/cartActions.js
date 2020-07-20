@@ -32,7 +32,7 @@ export const addItemToCart = (itemId) => async (dispatch) => {
   } catch (error) {
     // console.error(error.response);
     dispatch({ type: CART_ERROR });
-    if (error.response) {
+    if (error.response && error.response.data.errors) {
       dispatch(
         createToast(Object.values(error.response.data.errors).join(", "))
       );
@@ -53,7 +53,7 @@ export const removeItemFromCart = (itemId, cartItemId) => async (dispatch) => {
   } catch (error) {
     // console.error(error.response);
     dispatch({ type: CART_ERROR });
-    if (error.response) {
+    if (error.response && error.response.data.errors) {
       dispatch(
         createToast(Object.values(error.response.data.errors).join(", "))
       );

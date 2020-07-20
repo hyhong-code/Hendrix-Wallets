@@ -17,7 +17,7 @@ const CheckoutItem = ({ cartItem, addItemToCart, removeItemFromCart }) => {
           </div>
           <div className="col-6 col-md-8">
             <h5 className="card-title d-flex">
-              <span>Monvelli</span>
+              <span>{cartItem.name}</span>
               {cartItem.discount > 0 ? (
                 <span className="ml-auto text-secondary text-price">
                   <small className="text-primary text-normal-price mr-2 d-block d-md-inline mb-1 mb-md-0">

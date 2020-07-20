@@ -35,7 +35,7 @@ export const signup = (formData) => async (dispatch) => {
     dispatch({
       type: SIGNUP_FAILED,
     });
-    if (error.response) {
+    if (error.response && error.response.data.errors) {
       dispatch(
         createToast(Object.values(error.response.data.errors).join(", "))
       );
@@ -58,7 +58,7 @@ export const login = (formData) => async (dispatch) => {
     dispatch({
       type: LOGIN_FAILED,
     });
-    if (error.response) {
+    if (error.response && error.response.data.errors) {
       dispatch(
         createToast(Object.values(error.response.data.errors).join(", "))
       );
