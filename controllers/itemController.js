@@ -1,6 +1,7 @@
 const pool = require("../config/postgres");
 const sendError = require("../utils/sendError");
 const { checkItem } = require("../utils/validate/validateControl");
+const nullifyEmptyStr = require("../utils/nullifyEmptyStr");
 
 // @desc    Create a item
 // @route   POST /api/category/:categoryId/item
@@ -38,17 +39,60 @@ exports.createItem = async (req, res, next) => {
   }
 };
 
-// @desc    Create a item
-// @route   POST /api/category/:categoryId/item
-// @access  Admin role
+// @desc    Get all items
+// @route   GET /api/item
+// @access  Public
 exports.getItems = async (req, res, next) => {
+  let {
+    name,
+    description,
+    category,
+    price_MT,
+    price_LT,
+    sort,
+    limit,
+  } = req.query;
+
+  name = nullifyEmptyStr(name);
+  description = nullifyEmptyStr(description);
+  category = nullifyEmptyStr(category);
+  price_LT = nullifyEmptyStr(price_LT);
+  price_MT = nullifyEmptyStr(price_MT);
+  sortField = nullifyEmptyStr(sort ? sort.split("-")[0] : "");
+  sortOrder = nullifyEmptyStr(sort ? sort.split("-")[1] : "");
+  limit = nullifyEmptyStr(limit);
+
+  let orderBy;
+  if (sortOrder && sortField) {
+    orderBy = `ORDER BY ${sortField} ${sortOrder}`;
+  } else {
+    orderBy = `ORDER BY created_at DESC`;
+  }
+
+  let price = "";
+  if (price_LT) {
+    price += `AND price < ${price_LT * 100} `;
+  }
+  if (price_MT) {
+    price += `AND price > ${price_MT * 100} `;
+  }
+
+  console.log(name, description, category, price, orderBy, limit);
+
   try {
     const items = await pool.query(
       `SELECT items.id, items.name, items.description, items.category_id, items.photo, items.price,
        items.discount, items.created_at, item_categories.name AS category_name
        FROM items JOIN item_categories
-       ON items.category_id = item_categories.id ;
-      `
+       ON items.category_id = item_categories.id
+       WHERE items.name ILIKE '%' || COALESCE($1, items.name) || '%'
+       AND items.description ILIKE '%' || COALESCE($2, items.description) || '%'
+       AND items.category_id = COALESCE($3, items.category_id)
+       ${price}
+       ${orderBy}
+       LIMIT COALESCE($4, 500)
+       ; `,
+      [name, description, category, limit]
     );
     res.status(200).json({ items: items.rows });
   } catch (error) {

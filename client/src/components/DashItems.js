@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
-import { getAllOrders, clearOrder } from "../actions/orderActions";
+import { getItems } from "../actions/itemActions";
 import DashItemList from "./DashItemList";
 
 const INITIAL_FORM_STATE = {
@@ -14,7 +14,7 @@ const INITIAL_FORM_STATE = {
   limit: "",
 };
 
-const DashItems = ({ categories }) => {
+const DashItems = ({ categories, getItems, clearItems }) => {
   const [formData, setFormData] = useState(INITIAL_FORM_STATE);
 
   const [numPerPage, setNumPerPage] = useState(10);
@@ -28,7 +28,7 @@ const DashItems = ({ categories }) => {
     evt.preventDefault();
     setFormData(INITIAL_FORM_STATE);
     setNumPerPage(10);
-    clearOrder();
+    clearItems();
   };
 
   const {
@@ -43,7 +43,7 @@ const DashItems = ({ categories }) => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    getAllOrders(formData);
+    getItems(formData);
   };
   return (
     <div
@@ -110,7 +110,7 @@ const DashItems = ({ categories }) => {
                 className="custom-select custom-select-sm"
                 onChange={handleChange}
                 value={category}
-                name="status"
+                name="category"
               >
                 <option value="" defaultValue>
                   Category
@@ -133,8 +133,8 @@ const DashItems = ({ categories }) => {
                 <option value="" defaultValue>
                   Sort By
                 </option>
-                <option value="final_price-ASC">Price Lowest First</option>
-                <option value="final_price-DESC">Price Highest First</option>
+                <option value="price-ASC">Price Lowest First</option>
+                <option value="price-DESC">Price Highest First</option>
                 <option value="created_at-DESC">Most Recent Added First</option>
                 <option value="created_at-ASC">Earliest Added First</option>
               </select>
@@ -192,4 +192,4 @@ const DashItems = ({ categories }) => {
 
 const mapStateToProps = ({ categories }) => ({ categories });
 
-export default connect(mapStateToProps)(DashItems);
+export default connect(mapStateToProps, { getItems })(DashItems);

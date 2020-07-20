@@ -1,4 +1,4 @@
-import { ITEMS_FETCHED, ITEMS_ERROR } from "../actions/types";
+import { ITEMS_FETCHED, ITEMS_ERROR, CLEAR_ITEMS } from "../actions/types";
 
 const INITIAL_STATE = null;
 
@@ -8,6 +8,7 @@ export default (state = INITIAL_STATE, action) => {
     case ITEMS_FETCHED:
       return payload;
     case ITEMS_ERROR:
+    case CLEAR_ITEMS:
       return INITIAL_STATE;
     default:
       return state;

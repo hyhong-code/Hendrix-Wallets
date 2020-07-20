@@ -258,7 +258,7 @@ exports.getAllOrders = async (req, res, next) => {
            AND user_id = COALESCE($2, user_id)
            AND status = COALESCE($3, status)
            ${orderBy}
-           LIMIT COALESCE($4, 50);`;
+           LIMIT COALESCE($4, 500);`;
 
     const orders = await pool.query(qry, [id, user_id, status, limit]);
     res.status(200).json({ orders: orders.rows });

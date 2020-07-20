@@ -126,7 +126,7 @@ export const getAllOrders = (formData) => async (dispatch) => {
         params.push(`${key}=${formData[key]}`);
       }
     });
-    params = params.join("&");
+    params = params.length ? params.join("&") : "";
     const res = await axios.get(`/api/order/all?${params}`);
     dispatch({
       type: ORDERS_FETCHED,
