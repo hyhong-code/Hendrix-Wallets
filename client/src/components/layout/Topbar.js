@@ -16,12 +16,14 @@ const Topbar = () => {
           <div className="col-md-4 d-flex justify-content-center justify-content-lg-end align-items-center">
             <a
               target="_blank"
+              rel="noopener noreferrer"
               className="social-icon mr-3"
               href="https://www.linkedin.com/in/denny-haiyang-hong-7a7230104/"
             >
               <i className="fab fa-linkedin"></i>
             </a>
             <a
+              rel="noopener noreferrer"
               target="_blank"
               className="social-icon mr-3"
               href="https://github.com/hyhong-code"
@@ -29,6 +31,7 @@ const Topbar = () => {
               <i className="fab fa-github"></i>
             </a>
             <a
+              rel="noopener noreferrer"
               target="_blank"
               className="social-icon mr-3"
               href="https://twitter.com/DennyHong3"
@@ -36,6 +39,7 @@ const Topbar = () => {
               <i className="fab fa-twitter"></i>
             </a>
             <a
+              rel="noopener noreferrer"
               target="_blank"
               className="social-icon"
               href="https://www.facebook.com/DennyHong1996"

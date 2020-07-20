@@ -3,7 +3,7 @@ import React from "react";
 const DashUsers = () => {
   return (
     <div
-      class="tab-pane fade"
+      className="tab-pane fade"
       id="v-pills-users"
       role="tabpanel"
       aria-labelledby="v-pills-users-tab"

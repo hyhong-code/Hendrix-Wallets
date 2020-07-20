@@ -46,7 +46,7 @@ const DashItems = ({ categories, items, getItems, clearItems }) => {
   };
   return (
     <div
-      class="tab-pane fade tab-items"
+      className="tab-pane fade tab-items"
       id="v-pills-items"
       role="tabpanel"
       aria-labelledby="v-pills-items-tab"
@@ -102,7 +102,9 @@ const DashItems = ({ categories, items, getItems, clearItems }) => {
                   Price More Then
                 </option>
                 {Array.from(Array(500), (_, i) => i + 1).map((value) => (
-                  <option value={value}>${value}</option>
+                  <option key={value} value={value}>
+                    ${value}
+                  </option>
                 ))}
               </select>
             </div>

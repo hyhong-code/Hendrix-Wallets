@@ -15,7 +15,6 @@ export const getItems = (formData) => async (dispatch) => {
     }
     params = params.length ? params.join("&") : "";
     const res = await axios.get(`/api/item?${params}`);
-    console.log(res.data);
     dispatch({ type: ITEMS_FETCHED, payload: res.data.items });
   } catch (error) {
     // console.error(error.response);
@@ -40,7 +39,6 @@ export const updateItem = (itemId, formData) => async (dispatch) => {
       type: ITEM_UPDATED,
       payload: res.data.item,
     });
-    console.log(res.data);
   } catch (error) {
     // console.error(error.response);
     if (error.response && error.response.data.errors) {

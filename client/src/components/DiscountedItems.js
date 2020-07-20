@@ -12,6 +12,7 @@ const DiscountedItems = ({ items }) => {
           {items &&
             items
               .filter((item) => item.discount > 0)
+              .slice(0, 8)
               .map((item) => (
                 <div key={item.id} className=" col-6 col-lg-3 mb-4">
                   <ItemCard item={item} />

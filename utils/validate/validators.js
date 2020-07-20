@@ -13,8 +13,4 @@ exports.checkPhone = (phone) =>
 
 exports.checkPrice = (price) => parseInt(price) && parseInt(price) > 0;
 
-exports.checkDiscount = (discount, price) =>
-  discount === undefined ||
-  (parseInt(discount) &&
-    parseInt(discount) >= 0 &&
-    parseInt(discount) < parseInt(price));
+exports.checkDiscount = (discount, price) => discount >= 0 && discount < price;

@@ -38,7 +38,6 @@ const DashOrderList = ({ orders, numPerPage }) => {
               <li className={`page-item ${curPage <= 1 ? "disabled" : ""}`}>
                 <a
                   className="page-link"
-                  href="#"
                   aria-label="Previous"
                   onClick={() => {
                     if (curPage > 1) {
@@ -59,11 +58,7 @@ const DashOrderList = ({ orders, numPerPage }) => {
                   key={num}
                   className={`page-item ${num === curPage ? "active" : ""}`}
                 >
-                  <a
-                    className="page-link"
-                    href="#"
-                    onClick={() => setCurPage(num)}
-                  >
+                  <a className="page-link" onClick={() => setCurPage(num)}>
                     {num}
                   </a>
                 </li>
@@ -76,7 +71,6 @@ const DashOrderList = ({ orders, numPerPage }) => {
               >
                 <a
                   className="page-link"
-                  href="#"
                   aria-label="Next"
                   onClick={() => {
                     if (curPage * numPerPage < orders.length) {

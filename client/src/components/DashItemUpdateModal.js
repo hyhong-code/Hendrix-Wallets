@@ -21,42 +21,33 @@ const DashItemUpdateModal = ({ item, updateItem }) => {
     updateItem(item.id, formData);
   };
 
-  // const closeModal = () => {
-  //   setFormData({
-  //     name: "",
-  //     description: "",
-  //     price: "",
-  //     discount: "",
-  //   });
-  // };
-
   return (
     <div
-      class="modal fade"
+      className="modal fade"
       id={`dash-item-modal-${item.id}`}
       data-backdrop="static"
       data-keyboard="false"
-      tabindex="-1"
+      tabIndex="-1"
       role="dialog"
       aria-labelledby="staticBackdropLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title text-primary" id="staticBackdropLabel">
+      <div className="modal-dialog">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="modal-title text-primary" id="staticBackdropLabel">
               Update Item
             </h5>
             <button
               type="button"
-              class="close"
+              className="close"
               data-dismiss="modal"
               aria-label="Close"
             >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
+          <div className="modal-body">
             <img
               src={item.photo}
               alt={item.name}
@@ -119,17 +110,17 @@ const DashItemUpdateModal = ({ item, updateItem }) => {
               </div>
             </form>
           </div>
-          <div class="modal-footer">
+          <div className="modal-footer">
             <button
               type="button"
-              class="btn btn-secondary text-light"
+              className="btn btn-secondary text-light"
               data-dismiss="modal"
             >
               CLOSE
             </button>
             <button
               type="button"
-              class="btn btn-primary"
+              className="btn btn-primary"
               onClick={handleSubmit}
               data-dismiss="modal"
             >
