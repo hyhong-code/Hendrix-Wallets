@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const DashItemUpdateModal = ({ item }) => {
   const [formData, setFormData] = useState({
@@ -14,10 +14,19 @@ const DashItemUpdateModal = ({ item }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const closeModal = () => {
+    setFormData({
+      name: "",
+      description: "",
+      price: "",
+      discount: "",
+    });
+  };
+
   return (
     <div
       class="modal fade"
-      id="dash-item-modal"
+      id={`dash-item-modal-${item.id}`}
       data-backdrop="static"
       data-keyboard="false"
       tabindex="-1"
@@ -28,7 +37,7 @@ const DashItemUpdateModal = ({ item }) => {
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">
+            <h5 class="modal-title text-primary" id="staticBackdropLabel">
               Update Item
             </h5>
             <button
@@ -45,7 +54,7 @@ const DashItemUpdateModal = ({ item }) => {
               src={item.photo}
               alt={item.name}
               width="300"
-              className="img-fluid rounded d-block mx-auto"
+              className="img-fluid rounded d-block mx-auto dash-modal-img"
             />
             <hr className="border-secondary" />
             <form className="ml-4">
@@ -106,13 +115,14 @@ const DashItemUpdateModal = ({ item }) => {
           <div class="modal-footer">
             <button
               type="button"
-              class="btn btn-secondary"
+              class="btn btn-secondary text-light"
+              onClick={closeModal}
               data-dismiss="modal"
             >
-              Close
+              CLOSE
             </button>
             <button type="button" class="btn btn-primary">
-              Understood
+              UPDATE
             </button>
           </div>
         </div>

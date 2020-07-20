@@ -39,6 +39,41 @@ exports.createItem = async (req, res, next) => {
   }
 };
 
+// @desc    Update an item
+// @route   PATCH /api/category/:categoryId
+// @access  Private Admin role
+exports.updateItem = async (req, res, next) => {
+  const { name, description, price, discount } = req.body;
+  const { isValid, errors } = checkItem(name, description, price, discount);
+  if (!isValid) return sendError(res, 400, errors);
+  try {
+    const item = await pool.query(
+      `UPDATE items SET,
+       name = $1,
+       description = $2,
+       price = $3,
+       discount = $4
+       WHERE id = $5 RETURNING * ;`,
+      [name, description, price, discount, req.params.itemId]
+    );
+
+    const category = await pool.query(
+      "SELECT * FROM item_categories WHERE id = $1 ;",
+      [item.rows[0].category_id]
+    );
+
+    item.rows[0].category_name = category.rows[0].name;
+    item.rows[0].category_description = category.rows[0].description;
+
+    res.status(201).json({ item: item.rows[0] });
+  } catch (error) {
+    console.error(error);
+    if (error.code === "23505" && error.constraint === "items_name_key") {
+      sendError(res, 400, { message: "Item name already exists" });
+    }
+  }
+};
+
 // @desc    Get all items
 // @route   GET /api/item
 // @access  Public

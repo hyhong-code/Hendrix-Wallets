@@ -7,7 +7,7 @@ const DashItem = ({ item }) => {
       <li
         className="list-group-item dash-item"
         data-toggle="modal"
-        data-target="#dash-item-modal"
+        data-target={`#dash-item-modal-${item.id}`}
       >
         <div className="row">
           <div className="col-4 col-lg-2">{item.name}</div>
