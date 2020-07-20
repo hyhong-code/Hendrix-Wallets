@@ -80,7 +80,10 @@ const Signup = ({ history, signup, createToast, adminAuthenticated }) => {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="name">NAME</label>
+                      <label htmlFor="name">FULL NAME</label>
+                      <small className="text-muted ml-2">
+                        (Firstname Lastname)
+                      </small>
                       <input
                         type="text"
                         className="form-control"
