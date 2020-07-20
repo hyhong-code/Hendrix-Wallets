@@ -43,18 +43,27 @@ exports.createItem = async (req, res, next) => {
 // @route   PATCH /api/category/:categoryId
 // @access  Private Admin role
 exports.updateItem = async (req, res, next) => {
-  const { name, description, price, discount } = req.body;
+  const { name, description, price } = req.body;
+  let { discount } = req.body;
+  if (parseInt(discount) === 0) discount = undefined;
   const { isValid, errors } = checkItem(name, description, price, discount);
   if (!isValid) return sendError(res, 400, errors);
+
   try {
     const item = await pool.query(
-      `UPDATE items SET,
+      `UPDATE items SET
        name = $1,
        description = $2,
        price = $3,
-       discount = $4
+       discount = COALESCE($4, discount)
        WHERE id = $5 RETURNING * ;`,
-      [name, description, price, discount, req.params.itemId]
+      [
+        name,
+        description,
+        price,
+        parseInt(discount) === 0 ? null : discount,
+        req.params.itemId,
+      ]
     );
 
     const category = await pool.query(

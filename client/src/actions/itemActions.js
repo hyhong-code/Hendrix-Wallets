@@ -1,12 +1,11 @@
 import axios from "axios";
 
-import { ITEMS_FETCHED, ITEMS_ERROR, CLEAR_ITEMS } from "./types";
+import { ITEMS_FETCHED, ITEMS_ERROR, CLEAR_ITEMS, ITEM_UPDATED } from "./types";
+import { createToast } from "./toastActions";
 
 export const getItems = (formData) => async (dispatch) => {
   try {
     let params = [];
-
-    console.log(formData);
     if (formData) {
       Object.keys(formData).forEach((key) => {
         if (formData[key]) {
@@ -26,4 +25,28 @@ export const getItems = (formData) => async (dispatch) => {
 
 export const clearItems = () => (dispatch) => {
   dispatch({ type: CLEAR_ITEMS });
+};
+
+const config = {
+  headers: {
+    "Content-Type": "application/json",
+  },
+};
+
+export const updateItem = (itemId, formData) => async (dispatch) => {
+  try {
+    const res = await axios.patch(`/api/item/${itemId}`, formData, config);
+    dispatch({
+      type: ITEM_UPDATED,
+      payload: res.data.item,
+    });
+    console.log(res.data);
+  } catch (error) {
+    // console.error(error.response);
+    if (error.response && error.response.data.errors) {
+      dispatch(
+        createToast(Object.values(error.response.data.errors).join(", "))
+      );
+    }
+  }
 };

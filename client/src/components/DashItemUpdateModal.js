@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { connect } from "react-redux";
 
-const DashItemUpdateModal = ({ item }) => {
+import { updateItem } from "../actions/itemActions";
+
+const DashItemUpdateModal = ({ item, updateItem }) => {
   const [formData, setFormData] = useState({
     name: item.name || "",
     description: item.description || "",
@@ -14,14 +17,18 @@ const DashItemUpdateModal = ({ item }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const closeModal = () => {
-    setFormData({
-      name: "",
-      description: "",
-      price: "",
-      discount: "",
-    });
+  const handleSubmit = () => {
+    updateItem(item.id, formData);
   };
+
+  // const closeModal = () => {
+  //   setFormData({
+  //     name: "",
+  //     description: "",
+  //     price: "",
+  //     discount: "",
+  //   });
+  // };
 
   return (
     <div
@@ -116,12 +123,16 @@ const DashItemUpdateModal = ({ item }) => {
             <button
               type="button"
               class="btn btn-secondary text-light"
-              onClick={closeModal}
               data-dismiss="modal"
             >
               CLOSE
             </button>
-            <button type="button" class="btn btn-primary">
+            <button
+              type="button"
+              class="btn btn-primary"
+              onClick={handleSubmit}
+              data-dismiss="modal"
+            >
               UPDATE
             </button>
           </div>
@@ -131,4 +142,4 @@ const DashItemUpdateModal = ({ item }) => {
   );
 };
 
-export default DashItemUpdateModal;
+export default connect(null, { updateItem })(DashItemUpdateModal);
