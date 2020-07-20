@@ -308,6 +308,23 @@ body {
 
       .carousel {
         margin-bottom: 1rem;
+
+        .carousel-caption {
+          padding-bottom: 1rem;
+
+          h5 {
+            font-size: 1rem;
+          }
+
+          p {
+            font-size: 0.8rem;
+            line-height: 1rem;
+          }
+
+          a {
+            padding: 0.1rem 0.2rem;
+          }
+        }
       }
     }
 
