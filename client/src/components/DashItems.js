@@ -14,9 +14,8 @@ const INITIAL_FORM_STATE = {
   limit: "",
 };
 
-const DashItems = ({ categories, getItems, clearItems }) => {
+const DashItems = ({ categories, items, getItems, clearItems }) => {
   const [formData, setFormData] = useState(INITIAL_FORM_STATE);
-
   const [numPerPage, setNumPerPage] = useState(10);
 
   const handleChange = (evt) => {
@@ -186,10 +185,11 @@ const DashItems = ({ categories, getItems, clearItems }) => {
           </div>
         </form>
       </div>
+      {items && <DashItemList items={items} numPerPage={numPerPage} />}
     </div>
   );
 };
 
-const mapStateToProps = ({ categories }) => ({ categories });
+const mapStateToProps = ({ categories, items }) => ({ categories, items });
 
 export default connect(mapStateToProps, { getItems })(DashItems);

@@ -1,31 +1,31 @@
 import React, { useState } from "react";
 
-import OrderListItem from "./OrderListItem";
+import DashItem from "./DashItem";
 
-const DashItemList = ({ orders, numPerPage }) => {
+const DashItemList = ({ items, numPerPage }) => {
   const [curPage, setCurPage] = useState(1);
   return (
     <div className="card">
       <div className="card-body">
         <div className="row orderlist-head">
-          <div className="col-6 d-none d-lg-block p-0 ">
-            <strong>Order No.</strong>
+          <div className="col-2">
+            <strong>Item Name</strong>
           </div>
-          <div className="col-5 col-lg-2 p-0 ">
-            <strong>Order Date</strong>
+          <div className="col-2">
+            <strong>Category</strong>
           </div>
-          <div className="col-4 col-lg-2  p-0">
-            <strong>Total</strong>
+          <div className="col-3">
+            <strong>Price</strong>
           </div>
-          <div className="col-3 col-lg-2  p-0">
-            <strong>Status</strong>
+          <div className="col-5">
+            <strong>Description</strong>
           </div>
         </div>
         <ul className="list-group list-group-flush">
-          {orders
+          {items
             .slice((curPage - 1) * numPerPage, curPage * numPerPage)
-            .map((order) => (
-              <OrderListItem key={order.id} order={order} />
+            .map((item) => (
+              <DashItem key={item.id} item={item} />
             ))}
         </ul>
         <hr className="border-secondary" />
@@ -50,9 +50,9 @@ const DashItemList = ({ orders, numPerPage }) => {
                 </a>
               </li>
             }
-            {!!orders.length &&
+            {!!items.length &&
               Array.from(
-                Array(Math.ceil(orders.length / numPerPage)),
+                Array(Math.ceil(items.length / numPerPage)),
                 (_, x) => x + 1
               ).map((num) => (
                 <li
@@ -71,7 +71,7 @@ const DashItemList = ({ orders, numPerPage }) => {
             {
               <li
                 className={`page-item ${
-                  curPage * numPerPage >= orders.length ? "disabled" : ""
+                  curPage * numPerPage >= items.length ? "disabled" : ""
                 }`}
               >
                 <a
@@ -79,7 +79,7 @@ const DashItemList = ({ orders, numPerPage }) => {
                   href="#"
                   aria-label="Next"
                   onClick={() => {
-                    if (curPage * numPerPage < orders.length) {
+                    if (curPage * numPerPage < items.length) {
                       setCurPage(curPage + 1);
                     }
                   }}
