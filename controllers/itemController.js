@@ -43,7 +43,9 @@ exports.createItem = async (req, res, next) => {
 // @route   PATCH /api/category/:categoryId
 // @access  Private Admin role
 exports.updateItem = async (req, res, next) => {
-  const { name, description, price, discount } = req.body;
+  const { name, description, price } = req.body;
+  let { discount } = req.body;
+  if (discount === "") discount = 0;
   const { isValid, errors } = checkItem(name, description, price, discount);
   if (!isValid) return sendError(res, 400, errors);
 

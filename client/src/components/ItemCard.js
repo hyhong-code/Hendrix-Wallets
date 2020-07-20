@@ -29,7 +29,7 @@ const ItemCard = ({ item, addItemToCart, isAuthenticated }) => {
           {pricing()}
           <p className="card-text mb-1 text-primary">{item.name}</p>
           <div className="d-flex justify-content-end">
-            <a href="#!" className="btn btn-sm btn-outline-primary ">
+            <a className="btn btn-sm btn-outline-primary ">
               <i className="fas fa-info-circle"></i>
             </a>
             {isAuthenticated ? (
