@@ -7,17 +7,17 @@ const DashItemList = ({ items, numPerPage }) => {
   return (
     <div className="card">
       <div className="card-body">
-        <div className="row orderlist-head">
-          <div className="col-2">
+        <div className="row item-list-head">
+          <div className="col-4 col-lg-2">
             <strong>Item Name</strong>
           </div>
-          <div className="col-2">
+          <div className="col-4 col-lg-2">
             <strong>Category</strong>
           </div>
-          <div className="col-3">
+          <div className="col-4 col-lg-3">
             <strong>Price</strong>
           </div>
-          <div className="col-5">
+          <div className="d-none d-lg-block col-5">
             <strong>Description</strong>
           </div>
         </div>

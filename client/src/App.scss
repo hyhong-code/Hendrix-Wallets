@@ -758,4 +758,28 @@ body {
       }
     }
   }
+
+  .tab-items {
+    .card {
+      @include card-shadow();
+    }
+
+    .item-list-head {
+      border-bottom: 2px solid $color-secondary;
+      padding-top: 1rem;
+      padding-bottom: 0.5rem;
+      color: $color-primary;
+    }
+  }
+
+  .dash-item {
+    padding: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+
+    &:hover {
+      background-color: lighten($color-secondary, 15%);
+    }
+  }
 }

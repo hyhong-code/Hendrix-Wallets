@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
-import { getItems } from "../actions/itemActions";
+import { getItems, clearItems } from "../actions/itemActions";
 import DashItemList from "./DashItemList";
 
 const INITIAL_FORM_STATE = {
@@ -46,7 +46,7 @@ const DashItems = ({ categories, items, getItems, clearItems }) => {
   };
   return (
     <div
-      class="tab-pane fade"
+      class="tab-pane fade tab-items"
       id="v-pills-items"
       role="tabpanel"
       aria-labelledby="v-pills-items-tab"
@@ -85,7 +85,9 @@ const DashItems = ({ categories, items, getItems, clearItems }) => {
                   Price Less Then
                 </option>
                 {Array.from(Array(500), (_, i) => i + 1).map((value) => (
-                  <option value={value}>${value}</option>
+                  <option key={value} value={value}>
+                    ${value}
+                  </option>
                 ))}
               </select>
             </div>
@@ -192,4 +194,4 @@ const DashItems = ({ categories, items, getItems, clearItems }) => {
 
 const mapStateToProps = ({ categories, items }) => ({ categories, items });
 
-export default connect(mapStateToProps, { getItems })(DashItems);
+export default connect(mapStateToProps, { getItems, clearItems })(DashItems);
