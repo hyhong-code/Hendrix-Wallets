@@ -781,5 +781,9 @@ body {
     &:hover {
       background-color: lighten($color-secondary, 15%);
     }
+
+    .discounted {
+      text-decoration: line-through;
+    }
   }
 }
