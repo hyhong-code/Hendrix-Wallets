@@ -1,6 +1,6 @@
 import React from "react";
 
-import OrderInfoModal from "../components/OrderInfoModal";
+import OrderInfoModal from "./orderComponents/OrderInfoModal";
 
 const SubtotalPanel = ({ cart }) => {
   return (

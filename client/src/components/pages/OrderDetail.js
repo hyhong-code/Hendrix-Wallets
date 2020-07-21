@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { getOrderDetail } from "../../actions/orderActions";
-import OrderDetailItem from "../OrderDetailItem";
-import OrderSummaryPanel from "../OrderSummaryPanel";
+import OrderDetailItem from "../orderComponents/OrderDetailItem";
+import OrderSummaryPanel from "../orderComponents/OrderSummaryPanel";
 
 const OrderDetail = ({
   match,

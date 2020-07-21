@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import OrderListItem from "../OrderListItem";
+import OrderListItem from "../orderComponents/OrderListItem";
 
 const DashOrderList = ({ orders, numPerPage }) => {
   const [curPage, setCurPage] = useState(1);

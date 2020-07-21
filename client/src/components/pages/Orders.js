@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { getOrders } from "../../actions/orderActions";
-import OrderListItem from "../OrderListItem";
+import OrderListItem from "../orderComponents/OrderListItem";
 
 const Orders = ({ orders, getOrders }) => {
   useEffect(() => {

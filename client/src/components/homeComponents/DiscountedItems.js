@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import ItemCard from "./ItemCard";
+import ItemCard from "../ItemCard";
 
 const DiscountedItems = ({ items }) => {
   return (

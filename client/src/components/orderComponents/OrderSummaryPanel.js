@@ -1,8 +1,12 @@
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
 
-import { cancelOrder, shipOrder, deliverOrder } from "../actions/orderActions";
-import Stripe from "./Stripe";
+import {
+  cancelOrder,
+  shipOrder,
+  deliverOrder,
+} from "../../actions/orderActions";
+import Stripe from "../Stripe";
 
 const subtotal = (items) =>
   Math.round(

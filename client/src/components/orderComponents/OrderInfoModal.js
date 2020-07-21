@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import { createOrder } from "../actions/orderActions";
+import { createOrder } from "../../actions/orderActions";
 
 const OrderInfoModal = ({ history, user, cart, createOrder }) => {
   const [formData, setFormData] = useState({

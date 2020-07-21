@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
 
-import HomeBanner from "../HomeBanner";
-import Showcase from "../Showcase";
-import DiscountedItems from "../DiscountedItems";
-import About from "../About";
+import HomeBanner from "../homeComponents/HomeBanner";
+import Showcase from "../homeComponents/Showcase";
+import DiscountedItems from "../homeComponents/DiscountedItems";
+import About from "../homeComponents/About";
 
 const Home = () => {
   return (
