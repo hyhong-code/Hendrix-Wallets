@@ -2,8 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import CheckoutItem from "../CheckoutItem";
-import SubtotalPanel from "../SubtotalPanel";
+import CheckoutItem from "../checkoutComponents/CheckoutItem";
+import SubtotalPanel from "../checkoutComponents/SubtotalPanel";
 
 const Checkout = ({ cart }) => {
   return (

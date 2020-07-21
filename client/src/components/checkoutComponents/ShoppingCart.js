@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 
 import CartItem from "./CartItem";
-import Tooltip from "./widgets/Tooltip";
+import Tooltip from "../widgets/Tooltip";
 
 const ShoppingCart = ({ history, cart }) => {
   const [show, setShow] = useState(false);
