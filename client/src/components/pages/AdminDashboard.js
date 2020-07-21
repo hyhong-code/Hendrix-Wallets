@@ -1,12 +1,12 @@
 import React from "react";
 
-import DashControlPanel from "../DashControlPanel";
-import DashSummary from "../DashSummary";
-import DashOrders from "../DashOrders";
-import DashItems from "../DashItems";
-import DashCategories from "../DashCategories";
-import DashUsers from "../DashUsers";
-import DashStock from "../DashStock";
+import DashControlPanel from "../dashboard/DashControlPanel";
+import DashSummary from "../dashboard/DashSummary";
+import DashOrders from "../dashboard/DashOrders";
+import DashItems from "../dashboard/DashItems";
+import DashCategories from "../dashboard/DashCategories";
+import DashUsers from "../dashboard/DashUsers";
+import DashStock from "../dashboard/DashStock";
 
 const AdminDashboard = () => {
   return (

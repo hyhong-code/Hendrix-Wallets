@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
-import { updateItem } from "../actions/itemActions";
+import { updateItem } from "../../actions/itemActions";
 
 const DashItemUpdateModal = ({ item, updateItem }) => {
   const [formData, setFormData] = useState({

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
-import { getAllOrders, clearOrder } from "../actions/orderActions";
+import { getAllOrders, clearOrder } from "../../actions/orderActions";
 import DashOrderList from "./DashOrderList";
 
 const INITIAL_FORM_STATE = {
