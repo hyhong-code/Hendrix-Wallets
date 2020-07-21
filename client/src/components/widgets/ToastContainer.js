@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import Toast from "../Toast";
+import Toast from "./Toast";
 import { clearToast } from "../../actions/toastActions";
 
 const ToastContainer = ({ toasts, clearToast }) => {

@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { connect } from "react-redux";
 
 import { addItemToCart } from "../actions/cartActions";
-import Tooltip from "../components/Tooltip";
+import Tooltip from "./widgets/Tooltip";
 
 const ItemCard = ({ item, addItemToCart, isAuthenticated }) => {
   const pricing = () =>

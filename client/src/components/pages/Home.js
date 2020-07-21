@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-import HomeBanner from "../layout/HomeBanner";
+import HomeBanner from "../HomeBanner";
 import Showcase from "../Showcase";
 import DiscountedItems from "../DiscountedItems";
 import About from "../About";

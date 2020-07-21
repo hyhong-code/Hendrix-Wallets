@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import CollectionCard from "./CollectionCard";
 import Carousel from "./Carousel";
-import Spinner from "./layout/Spinner";
+import Spinner from "./widgets/Spinner";
 
 const Showcase = ({ categories }) => {
   return (
