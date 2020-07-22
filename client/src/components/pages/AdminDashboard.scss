@@ -109,4 +109,17 @@
       text-decoration: line-through;
     }
   }
+
+  .dash-categories {
+    .card {
+      @include card-shadow();
+      overflow: hidden;
+    }
+
+    .category-img {
+      object-fit: cover;
+      max-width: 200px;
+      height: 150px;
+    }
+  }
 }
