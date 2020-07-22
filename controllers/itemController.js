@@ -17,7 +17,12 @@ const S3_BUCKET = process.env.Bucket;
 // @access  Admin role
 exports.createItem = async (req, res, next) => {
   const { fileName, fileType, name, description, price, discount } = req.body;
-  const { isValid, errors } = checkItem(name, description, price, discount);
+  const { isValid, errors } = checkItem(
+    name,
+    description,
+    price,
+    parseInt(discount) || 0
+  );
   if (!isValid) return sendError(res, 400, errors);
 
   if (!(fileName && fileType) || !fileType.startsWith("image")) {
@@ -58,10 +63,18 @@ exports.createItem = async (req, res, next) => {
           message: `Category with id ${req.params.categoryId} not found.`,
         });
       }
+
       const item = await pool.query(
         `INSERT INTO items(category_id, name, description, price, discount, photo)
          VALUES($1, $2, $3, $4, COALESCE($5, 0), $6) RETURNING * ;`,
-        [req.params.categoryId, name, description, price, discount, url]
+        [
+          req.params.categoryId,
+          name,
+          description,
+          parseInt(price),
+          parseInt(discount) || 0,
+          url,
+        ]
       );
 
       item.rows[0].category_name = category.rows[0].name;
@@ -152,8 +165,6 @@ exports.getItems = async (req, res, next) => {
   if (price_MT) {
     price += `AND price > ${price_MT * 100} `;
   }
-
-  console.log(name, description, category, price, orderBy, limit);
 
   try {
     const items = await pool.query(

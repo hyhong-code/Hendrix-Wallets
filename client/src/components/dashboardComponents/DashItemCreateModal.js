@@ -1,18 +1,24 @@
 import React, { useState, Fragment } from "react";
 import { connect } from "react-redux";
 
-const DashItemCreateModal = ({ item }) => {
-  const [formData, setFormData] = useState({
-    name: item.name || "",
-    description: item.description || "",
-    price: item.price || "",
-    discount: item.discount || "",
-  });
+import { createItem } from "../../actions/itemActions";
+import { createToast } from "../../actions/toastActions";
+
+const INITIAL_FORM = {
+  name: "",
+  description: "",
+  price: "",
+  discount: "",
+  categoryId: "",
+};
+
+const DashItemCreateModal = ({ categories, createItem, createToast }) => {
+  const [formData, setFormData] = useState(INITIAL_FORM);
 
   const [file, setFile] = useState("");
   const [fileName, setFileName] = useState("Select Producct Image");
 
-  const { name, description, price, discount } = formData;
+  const { name, description, price, discount, categoryId } = formData;
 
   const handleChange = (evt) => {
     const { name, value } = evt.target;
@@ -22,6 +28,18 @@ const DashItemCreateModal = ({ item }) => {
   const handleFile = (evt) => {
     setFile(evt.target.files[0]);
     setFileName(evt.target.files[0].name);
+  };
+
+  const handleSubmit = async () => {
+    if (!categoryId) {
+      createToast("Please select a category");
+    } else {
+      if (await createItem(formData, file)) {
+        setFile("");
+        setFileName("");
+        setFormData(INITIAL_FORM);
+      }
+    }
   };
 
   return (
@@ -71,8 +89,24 @@ const DashItemCreateModal = ({ item }) => {
                   {fileName}
                 </label>
               </div>
-              <hr className="border-secondary my-2" />
+              <hr className="border-secondary my-3" />
+
               <form>
+                <select
+                  name="categoryId"
+                  value={categoryId}
+                  name="categoryId"
+                  onChange={handleChange}
+                  className="custom-select custom-select-sm"
+                >
+                  <option value="">Select Product Category</option>
+
+                  {categories &&
+                    categories.map((category) => (
+                      <option value={category.id}>{category.name}</option>
+                    ))}
+                </select>
+
                 <div className="form-group mb-1 text-primary">
                   <label className="mb-1" htmlFor="name">
                     Item Name
@@ -142,7 +176,7 @@ const DashItemCreateModal = ({ item }) => {
               <button
                 type="button"
                 className="btn btn-primary btn-sm"
-                // onClick={handleSubmit}
+                onClick={handleSubmit}
                 data-dismiss="modal"
               >
                 CREATE
@@ -155,4 +189,8 @@ const DashItemCreateModal = ({ item }) => {
   );
 };
 
-export default connect(null)(DashItemCreateModal);
+const mapStateToProps = ({ categories }) => ({ categories });
+
+export default connect(mapStateToProps, { createItem, createToast })(
+  DashItemCreateModal
+);

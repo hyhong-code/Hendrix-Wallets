@@ -1,6 +1,12 @@
 import axios from "axios";
 
-import { ITEMS_FETCHED, ITEMS_ERROR, CLEAR_ITEMS, ITEM_UPDATED } from "./types";
+import {
+  ITEMS_FETCHED,
+  ITEMS_ERROR,
+  CLEAR_ITEMS,
+  ITEM_UPDATED,
+  ITEM_CREATED,
+} from "./types";
 import { createToast } from "./toastActions";
 
 export const getItems = (formData) => async (dispatch) => {
@@ -38,6 +44,44 @@ export const updateItem = (itemId, formData) => async (dispatch) => {
     dispatch({
       type: ITEM_UPDATED,
       payload: res.data.item,
+    });
+  } catch (error) {
+    // console.error(error.response);
+    if (error.response && error.response.data.errors) {
+      dispatch(
+        createToast(Object.values(error.response.data.errors).join(", "))
+      );
+    }
+  }
+};
+
+export const createItem = (formData, file) => async (dispatch) => {
+  const folderName = "hendrix/item";
+  const fileName = formData.name;
+  const fileType = file.type;
+
+  try {
+    const res = await axios.post(`/api/category/${formData.categoryId}/item`, {
+      ...formData,
+      fileName: `${folderName}/${fileName}.jpg`,
+      fileType,
+    });
+
+    const { signedRequest, url, item } = res.data;
+
+    await fetch(signedRequest, {
+      method: "PUT",
+      headers: {
+        "Content-Type": fileType,
+      },
+      body: file,
+    });
+
+    console.log(item);
+
+    dispatch({
+      type: ITEM_CREATED,
+      payload: item,
     });
   } catch (error) {
     // console.error(error.response);

@@ -5,6 +5,7 @@ export const ITEMS_FETCHED = "ITEMS_FETCHED";
 export const ITEMS_ERROR = "ITEMS_ERROR";
 export const CLEAR_ITEMS = "CLEAR_ITEMS";
 export const ITEM_UPDATED = "ITEM_UPDATED";
+export const ITEM_CREATED = "ITEM_CREATED";
 
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAILED = "LOGIN_FAILED";
