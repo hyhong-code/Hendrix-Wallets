@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 
 import DashCategoryCard from "./DashCategoryCard";
@@ -26,25 +26,9 @@ const DashCategories = ({ categories, items }) => {
           ))}
       </div>
       <div className={`row ${showControl ? "d-block" : "d-none"}`}>
-        <div className="col-8 offset-2">
+        <div className="col-md-8 offset-md-2">
           <div className="card card-body">
             <form>
-              <div className="form-group">
-                <div className="custom-file">
-                  <input
-                    type="file"
-                    className="custom-file-input"
-                    id="category-file"
-                  />
-                  <label
-                    type="file"
-                    className="custom-file-label"
-                    for="#category-file"
-                  >
-                    Category Cover
-                  </label>
-                </div>
-              </div>
               <div class="form-group">
                 <label for="exampleInputEmail1">Category Name</label>
                 <input
@@ -60,6 +44,25 @@ const DashCategories = ({ categories, items }) => {
                   class="form-control"
                   id="exampleInputPassword1"
                 ></textarea>
+              </div>
+              <div className="form-group">
+                <div className="custom-file">
+                  <input
+                    type="file"
+                    className="custom-file-input"
+                    id="category-file"
+                  />
+                  <label
+                    type="file"
+                    className="custom-file-label"
+                    for="#category-file"
+                  >
+                    Category Cover
+                  </label>
+                  <small className="text-muted">
+                    * A cover photo is required.
+                  </small>
+                </div>
               </div>
 
               <div className="d-flex">
