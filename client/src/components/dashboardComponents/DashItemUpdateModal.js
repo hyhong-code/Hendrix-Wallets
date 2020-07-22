@@ -32,7 +32,7 @@ const DashItemUpdateModal = ({ item, updateItem }) => {
       aria-labelledby="staticBackdropLabel"
       aria-hidden="true"
     >
-      <div className="modal-dialog">
+      <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title text-primary" id="staticBackdropLabel">
@@ -51,37 +51,40 @@ const DashItemUpdateModal = ({ item, updateItem }) => {
             <img
               src={item.photo}
               alt={item.name}
-              width="300"
-              className="img-fluid rounded d-block mx-auto dash-modal-img"
+              className="rounded d-block mx-auto dash-modal-img"
             />
-            <hr className="border-secondary" />
-            <form className="ml-4">
-              <div className="form-group">
-                <label htmlFor="name">Item Name</label>
+            <hr className="border-secondary my-2" />
+            <form>
+              <div className="form-group mb-1 text-primary">
+                <label className="mb-1" htmlFor="name">
+                  Item Name
+                </label>
                 <input
                   id="name"
                   type="text"
                   name="name"
                   value={name}
                   placeholder="Name"
-                  className="form-control"
+                  className="form-control form-control-sm"
                   onChange={handleChange}
                 />
               </div>
-              <div className="form-group">
-                <label htmlFor="description">Description</label>
+              <div className="form-group mb-1 text-primary">
+                <label className="mb-1" htmlFor="description">
+                  Description
+                </label>
                 <textarea
                   id="description"
                   type="text"
                   name="description"
                   value={description}
                   placeholder="Description"
-                  className="form-control"
+                  className="form-control form-control-sm"
                   onChange={handleChange}
                 ></textarea>
               </div>
-              <div className="form-group">
-                <label htmlFor="price">
+              <div className="form-group mb-1 text-primary">
+                <label className="mb-1" htmlFor="price">
                   Price <small className="text-muted"> (in cents)</small>
                 </label>
                 <input
@@ -90,12 +93,12 @@ const DashItemUpdateModal = ({ item, updateItem }) => {
                   name="price"
                   value={price}
                   placeholder="Price"
-                  className="form-control"
+                  className="form-control form-control-sm"
                   onChange={handleChange}
                 />
               </div>
-              <div className="form-group">
-                <label htmlFor="price">
+              <div className="form-group mb-1 text-primary">
+                <label className="mb-1" htmlFor="price">
                   Discount <small className="text-muted"> (in cents)</small>
                 </label>
                 <input
@@ -104,7 +107,7 @@ const DashItemUpdateModal = ({ item, updateItem }) => {
                   name="discount"
                   value={discount}
                   placeholder="Discount"
-                  className="form-control"
+                  className="form-control form-control-sm"
                   onChange={handleChange}
                 />
               </div>
@@ -113,14 +116,14 @@ const DashItemUpdateModal = ({ item, updateItem }) => {
           <div className="modal-footer">
             <button
               type="button"
-              className="btn btn-secondary text-light"
+              className="btn btn-secondary text-light btn-sm"
               data-dismiss="modal"
             >
               CLOSE
             </button>
             <button
               type="button"
-              className="btn btn-primary"
+              className="btn btn-primary btn-sm"
               onClick={handleSubmit}
               data-dismiss="modal"
             >

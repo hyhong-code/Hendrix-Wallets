@@ -1,6 +1,9 @@
 #admin-dashboard {
   min-height: 85vh;
   position: relative;
+  .page-link {
+    cursor: pointer;
+  }
 
   .control-panel {
     @include card-shadow();
@@ -72,6 +75,16 @@
       padding-top: 1rem;
       padding-bottom: 0.5rem;
       color: $color-primary;
+    }
+
+    .dash-modal-img {
+      object-fit: cover;
+      width: 200px;
+      height: 150px;
+    }
+
+    label {
+      font-size: 0.8rem;
     }
   }
 
