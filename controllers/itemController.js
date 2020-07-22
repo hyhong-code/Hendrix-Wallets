@@ -1,42 +1,80 @@
+const aws = require("aws-sdk");
+
 const pool = require("../config/postgres");
 const sendError = require("../utils/sendError");
 const { checkItem } = require("../utils/validate/validateControl");
 const nullifyEmptyStr = require("../utils/nullifyEmptyStr");
 
+aws.config.update({
+  region: "us-west-2",
+  accessKeyId: process.env.AWSAccessKeyId,
+  secretAccessKey: process.env.secretAccessKey,
+});
+const S3_BUCKET = process.env.Bucket;
+
 // @desc    Create a item
 // @route   POST /api/category/:categoryId/item
 // @access  Admin role
 exports.createItem = async (req, res, next) => {
-  const { name, description, price, discount } = req.body;
+  const { fileName, fileType, name, description, price, discount } = req.body;
   const { isValid, errors } = checkItem(name, description, price, discount);
   if (!isValid) return sendError(res, 400, errors);
-  try {
-    const category = await pool.query(
-      "SELECT * FROM item_categories WHERE id = $1 ;",
-      [req.params.categoryId]
-    );
 
-    if (!category.rows.length) {
-      return sendError(res, 404, {
-        message: `Category with id ${req.params.categoryId} not found.`,
-      });
-    }
-    const item = await pool.query(
-      `INSERT INTO items(category_id, name, description, price, discount)
-       VALUES($1, $2, $3, $4, COALESCE($5, 0)) RETURNING * ;`,
-      [req.params.categoryId, name, description, price, discount]
-    );
-
-    item.rows[0].category_name = category.rows[0].name;
-    item.rows[0].category_description = category.rows[0].description;
-
-    res.status(201).json({ item: item.rows[0] });
-  } catch (error) {
-    console.error(error);
-    if (error.code === "23505" && error.constraint === "items_name_key") {
-      sendError(res, 400, { message: "Item name already exists" });
-    }
+  if (!(fileName && fileType) || !fileType.startsWith("image")) {
+    return sendError(res, 400, {
+      message: "Please upload a valid image file for the product",
+    });
   }
+
+  const s3 = new aws.S3();
+  const s3Params = {
+    Bucket: S3_BUCKET,
+    Key: fileName,
+    Expires: 500,
+    ContentType: fileType,
+    ACL: "public-read",
+  };
+
+  s3.getSignedUrl("putObject", s3Params, async (err, data) => {
+    if (err) {
+      console.error(err);
+      return sendError(res);
+    }
+    const returnData = {
+      signedRequest: data,
+      url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`,
+    };
+
+    const { signedRequest, url } = returnData;
+
+    try {
+      const category = await pool.query(
+        "SELECT * FROM item_categories WHERE id = $1 ;",
+        [req.params.categoryId]
+      );
+
+      if (!category.rows.length) {
+        return sendError(res, 404, {
+          message: `Category with id ${req.params.categoryId} not found.`,
+        });
+      }
+      const item = await pool.query(
+        `INSERT INTO items(category_id, name, description, price, discount, photo)
+         VALUES($1, $2, $3, $4, COALESCE($5, 0), $6) RETURNING * ;`,
+        [req.params.categoryId, name, description, price, discount, url]
+      );
+
+      item.rows[0].category_name = category.rows[0].name;
+      item.rows[0].category_description = category.rows[0].description;
+
+      res.status(201).json({ signedRequest, url, item: item.rows[0] });
+    } catch (error) {
+      console.error(error);
+      if (error.code === "23505" && error.constraint === "items_name_key") {
+        sendError(res, 400, { message: "Item name already exists" });
+      }
+    }
+  });
 };
 
 // @desc    Update an item
