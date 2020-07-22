@@ -8,17 +8,10 @@ const DashItemList = ({ items, numPerPage }) => {
   return (
     <div className="card">
       <div className="card-body">
-        <DashItemCreateModal
-          item={{
-            name: "helo",
-            description: "wow",
-            price: "1200",
-            discount: "299",
-          }}
-        />
+        <DashItemCreateModal />
         <div className="row item-list-head">
           <div className="col-4 col-lg-2">
-            <strong>Item Name</strong>
+            <strong>Name</strong>
           </div>
           <div className="col-4 col-lg-2">
             <strong>Category</strong>

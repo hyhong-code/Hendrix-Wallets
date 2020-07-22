@@ -14,7 +14,7 @@ const DashItem = ({ item }) => {
           <div className="col-4 col-lg-2">{item.category_name}</div>
           <div className="col-4  col-lg-3">
             {item.discount > 0 ? (
-              <div className="">
+              <div>
                 <small className="d-none d-md-inline discounted text-muted mr-1">{`$${
                   item.price / 100
                 }`}</small>
@@ -24,10 +24,10 @@ const DashItem = ({ item }) => {
               <span>{`$${item.price / 100}`}</span>
             )}
           </div>
-          <div className="d-none d-lg-block col-5">{`${item.description.slice(
+          <small className="d-none d-lg-block col-5">{`${item.description.slice(
             0,
             30
-          )}...`}</div>
+          )}...`}</small>
         </div>
       </li>
       <DashItemUpdateModal item={item} />
