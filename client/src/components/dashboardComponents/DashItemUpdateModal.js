@@ -82,7 +82,7 @@ const DashItemUpdateModal = ({ item, updateItem }) => {
               </div>
               <div className="form-group">
                 <label htmlFor="price">
-                  Price <small className="text-muted"> in cents</small>
+                  Price <small className="text-muted"> (in cents)</small>
                 </label>
                 <input
                   id="price"
@@ -96,7 +96,7 @@ const DashItemUpdateModal = ({ item, updateItem }) => {
               </div>
               <div className="form-group">
                 <label htmlFor="price">
-                  Discount <small className="text-muted"> in centes</small>
+                  Discount <small className="text-muted"> (in cents)</small>
                 </label>
                 <input
                   id="discount"
