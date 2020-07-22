@@ -1,0 +1,145 @@
+#home {
+  min-height: 85vh;
+
+  .home-banner {
+    height: 30rem;
+    background: linear-gradient(
+        rgba($color-secondary, 0.5),
+        rgba($color-secondary, 0.9)
+      ),
+      url(../../assets/home.jpeg) no-repeat center center/cover;
+
+    p.lead {
+      font-size: 2rem;
+    }
+  }
+
+  .showcase {
+    position: relative;
+  }
+
+  .carousel {
+    .carousel-inner {
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .carousel-overlay {
+      @include overlay(#000, 0.5);
+    }
+  }
+
+  .collection-card {
+    cursor: pointer;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+
+    .collection-img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+
+    &::before {
+      @include overlay(#000, 0.3);
+    }
+
+    .badge {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      opacity: 0.9;
+      background-color: darken($color-primary, 10%);
+      color: $color-light;
+      font-size: 1rem;
+    }
+  }
+
+  .discount {
+    .discount-text {
+      text-decoration: line-through;
+      font-size: 0.8rem;
+    }
+
+    .card {
+      img {
+        width: 100%;
+        height: 10rem;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #home {
+    .home-banner {
+      height: 20rem;
+
+      h1 {
+        font-size: 3rem;
+
+        text-align: center;
+      }
+      p.lead {
+        font-size: 2rem;
+        text-align: center;
+      }
+    }
+
+    .showcase {
+      padding: 3rem 0;
+
+      .carousel {
+        margin-bottom: 1rem;
+
+        .carousel-caption {
+          padding-bottom: 1rem;
+
+          h5 {
+            font-size: 1rem;
+          }
+
+          p {
+            font-size: 0.8rem;
+            line-height: 1rem;
+          }
+
+          a {
+            padding: 0.1rem 0.2rem;
+          }
+        }
+      }
+    }
+
+    .discount {
+      padding: 3rem 0;
+
+      .card {
+        .card-body {
+          padding: 0.5rem;
+        }
+        img {
+          width: 100%;
+          height: 7rem;
+          object-fit: cover;
+        }
+      }
+    }
+
+    .about {
+      padding: 3rem 0;
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  #home {
+    .home-banner {
+      p.lead {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}

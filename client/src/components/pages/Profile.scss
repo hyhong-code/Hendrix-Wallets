@@ -1,0 +1,55 @@
+#profile {
+  min-height: 85vh;
+  overflow-x: hidden;
+
+  .card.card-body {
+    @include card-shadow();
+    padding: 4rem 5rem;
+    img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid $color-secondary;
+    }
+  }
+
+  .border-bottom {
+    border-color: $color-secondary !important;
+  }
+
+  .text-prompt {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: $color-primary;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #profile {
+    h1.display-4 {
+      font-size: 3rem;
+    }
+    .card.card-body {
+      padding: 3rem 2rem;
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  #profile {
+    .card.card-body {
+      padding: 2rem 1rem;
+
+      img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    .text-prompt {
+      font-size: 0.8rem;
+    }
+  }
+}

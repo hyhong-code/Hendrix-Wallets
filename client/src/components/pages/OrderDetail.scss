@@ -1,0 +1,84 @@
+#order-detail {
+  min-height: 85vh;
+  h1.display-4 {
+    text-transform: uppercase;
+  }
+
+  p.lead {
+    font-size: 1rem;
+  }
+
+  .order-summary-panel {
+    @include card-shadow();
+
+    .cancel-btn {
+      padding-left: 2.15rem;
+      padding-right: 2.15rem;
+    }
+  }
+
+  .order-detail-item {
+    @include card-shadow();
+    .order-detail-item-img {
+      object-fit: cover;
+      width: 100%;
+      height: 9rem;
+    }
+
+    .text-price {
+      font-size: 1.1rem;
+      .text-normal-price {
+        text-decoration: line-through;
+      }
+    }
+  }
+
+  .progress {
+    height: 1.2rem;
+  }
+
+  .order-progress {
+    width: 25%;
+    font-weight: 600;
+  }
+
+  .order-progress-canceled {
+    @extend .order-progress;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #order-detail {
+    padding: 3rem 0;
+
+    h1.display-4 {
+      font-size: 3rem;
+    }
+
+    p.lead {
+      font-size: 0.8rem;
+    }
+
+    .order-detail-item {
+      .col-6 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      h5.card-title {
+        font-size: 1rem;
+        margin-bottom: 0.2rem;
+
+        span:last-child {
+          font-size: 0.8rem;
+        }
+      }
+
+      p.card-text {
+        font-size: 0.8rem;
+      }
+    }
+  }
+}

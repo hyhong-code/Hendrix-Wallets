@@ -1,0 +1,22 @@
+#signup {
+  min-height: 85vh;
+
+  h1.display-4 {
+    span {
+      border-bottom: 3px solid $color-secondary;
+    }
+  }
+
+  form {
+    @include card-shadow();
+
+    .form-group {
+      margin-bottom: 1.3rem;
+      label {
+        color: $color-primary;
+        border-bottom: 2px solid $color-secondary;
+        margin-bottom: 0.7rem;
+      }
+    }
+  }
+}

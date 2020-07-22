@@ -1,0 +1,92 @@
+#admin-dashboard {
+  min-height: 85vh;
+  position: relative;
+
+  .control-panel {
+    @include card-shadow();
+    h1 {
+      color: $color-primary;
+      font-size: 1.2rem;
+      text-align: center;
+    }
+
+    .nav-link {
+      margin-top: 0.3rem;
+      margin-bottom: 0.3rem;
+    }
+  }
+
+  .tab-orders {
+    height: 100%;
+
+    select,
+    input {
+      margin: 0;
+      height: 2rem;
+    }
+
+    .orderlist-head {
+      padding: 0.5rem 1rem;
+      color: $color-primary;
+      border-bottom: 2px solid $color-secondary;
+      margin-bottom: 1rem;
+    }
+
+    .card {
+      @include card-shadow();
+
+      img {
+        object-fit: cover;
+        width: 100%;
+        height: 9rem;
+      }
+    }
+
+    .orderlist-item {
+      padding: 0.2rem 0;
+
+      a {
+        text-decoration: none;
+
+        display: block;
+        height: 100%;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        transition: all 0.2s ease-out;
+
+        &:hover {
+          background-color: lighten($color-secondary, 15%);
+          color: $color-dark;
+        }
+      }
+    }
+  }
+
+  .tab-items {
+    .card {
+      @include card-shadow();
+    }
+
+    .item-list-head {
+      border-bottom: 2px solid $color-secondary;
+      padding-top: 1rem;
+      padding-bottom: 0.5rem;
+      color: $color-primary;
+    }
+  }
+
+  .dash-item {
+    padding: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+
+    &:hover {
+      background-color: lighten($color-secondary, 15%);
+    }
+
+    .discounted {
+      text-decoration: line-through;
+    }
+  }
+}

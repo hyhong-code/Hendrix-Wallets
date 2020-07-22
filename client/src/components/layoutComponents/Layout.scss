@@ -1,0 +1,107 @@
+.topbar {
+  .social-icon {
+    font-size: 1.2rem;
+  }
+
+  .text-contact {
+    font-size: 0.85rem;
+  }
+}
+
+.navbar {
+  text-transform: uppercase;
+  .navbar-brand {
+    .logo {
+      width: 35px;
+    }
+
+    font-size: 1.5rem;
+    font-weight: 300;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+  }
+
+  .dropdown-menu {
+    position: relative;
+  }
+
+  .badge {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease-out;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  .cart-dropdown {
+    .list-group {
+      min-height: 15rem;
+      max-height: 25rem;
+      width: 15rem;
+      overflow: scroll;
+    }
+
+    .list-group-item {
+      padding: 0.2rem;
+
+      .cart-item-action-arr {
+        cursor: pointer;
+        display: inline-block;
+        transition: all 0.2s ease-out;
+
+        &:hover {
+          color: $color-secondary;
+          transform: scale(1.2);
+        }
+      }
+
+      .item-name {
+        font-size: 1rem;
+      }
+    }
+
+    img {
+      object-fit: cover;
+      width: 60px;
+      height: 60px;
+      border-radius: 3px;
+    }
+  }
+
+  img.profile-pic {
+    object-fit: cover;
+    width: 45px;
+    height: 45px;
+    border: 2px solid $color-secondary;
+  }
+
+  .signin {
+    &:hover {
+      background-color: lighten($color-secondary, 5%);
+      color: white;
+    }
+  }
+
+  .logout {
+    @extend .signin;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  form {
+    .form-control {
+      display: inline-block;
+      width: 10rem;
+      height: 2rem;
+      font-size: 0.9rem;
+    }
+  }
+}
