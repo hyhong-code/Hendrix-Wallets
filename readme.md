@@ -35,40 +35,40 @@ _Currently working on admin facing CMS to manage products and orders_
 
 ### LANDING PAGE
 
-<img src="./_reademe_img/home.png" width="85%">
+<img src="./readme_img/home.png" width="85%">
 
 ### PRODUCTS PAGE
 
-<img src="./_reademe_img/items.png" width="85%">
+<img src="./readme_img/items.png" width="85%">
 
 ### CHECKOUT PAGE
 
-<img src="./_reademe_img/checkout.png" width="85%">
+<img src="./readme_img/checkout.png" width="85%">
 
 ### STRIPE INTEGRATION
 
-<img src="./_reademe_img/stripe.png" width="85%">
+<img src="./readme_img/stripe.png" width="85%">
 
 ### CUSTOMER ORDER LIST
 
-<img src="./_reademe_img/orderList.png" width="85%">
+<img src="./readme_img/orderList.png" width="85%">
 
 ### CUSTOMER PROFILE
 
-<img src="./_reademe_img/profile.png" width="85%">
+<img src="./readme_img/profile.png" width="85%">
 
 ### CUSTOMER SIGNUP
 
-<img src="./_reademe_img/signup.png" width="85%">
+<img src="./readme_img/signup.png" width="85%">
 
 ### ADMIN ORDER MANAGEMENT
 
-<img src="./_reademe_img/admin_order.png" width="85%">
+<img src="./readme_img/admin_order.png" width="85%">
 
 ### ADMIN PRODUCT MANAGEMENT
 
-<img src="./_reademe_img/admin_item.png" width="85%">
+<img src="./readme_img/admin_item.png" width="85%">
 
 ### ADMIN PRODUCT MANAGEMENT - UPDATE ITEMS
 
-<img src="./_reademe_img/admin_item_update.png" width="85%">
+<img src="./readme_img/admin_item_update.png" width="85%">
