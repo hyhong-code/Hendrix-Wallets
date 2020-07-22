@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -7,18 +7,18 @@ import { getItems } from "./actions/itemActions";
 import { loadUser } from "./actions/authActions";
 import { getCart } from "./actions/cartActions";
 import { getOrders } from "./actions/orderActions";
-import GuestRoute from "./routes/GuestRoute";
-import UserRoute from "./routes/UserRoute";
-import AdminRoute from "./routes/AdminRoute";
+import GuestRoute from "./routing/GuestRoute";
+import UserRoute from "./routing/UserRoute";
+import AdminRoute from "./routing/AdminRoute";
 import AdminDashboard from "./components/pages/AdminDashboard";
 import AdminOrderDetail from "./components/pages/AdminOrderDetail";
 import ScrollToTop from "./components/widgets/ScrollToTop";
 import Refresh from "./components/widgets/Refresh";
 import ToastContainer from "./components/widgets/ToastContainer";
-import Navbar from "./components/layout/Navbar";
-import Topbar from "./components/layout/Topbar";
+import Navbar from "./components/layoutComponents/Navbar";
+import Topbar from "./components/layoutComponents/Topbar";
 import Home from "./components/pages/Home";
-import Footer from "./components/layout/Footer";
+import Footer from "./components/layoutComponents/Footer";
 import ItemList from "./components/pages/ItemList";
 import Checkout from "./components/pages/Checkout";
 import Profile from "./components/pages/Profile";
@@ -38,18 +38,24 @@ const App = ({
   getCart,
   getOrders,
 }) => {
-  useEffect(() => {
+  const fetchResourse = useCallback(() => {
     loadUser();
     getCategories();
     getItems();
-    // eslint-disable-next-line
   }, []);
 
-  useEffect(() => {
+  const fetchUserResource = useCallback(() => {
     getCart();
     getOrders();
-    // eslint-disable-next-line
   }, [isAuthenticated]);
+
+  useEffect(() => {
+    fetchResourse();
+  }, [fetchResourse]);
+
+  useEffect(() => {
+    fetchUserResource();
+  }, [fetchUserResource]);
 
   return (
     <BrowserRouter>

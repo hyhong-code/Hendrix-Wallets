@@ -36,82 +36,6 @@ body {
   padding-bottom: 5rem;
 }
 
-.loading-spinner {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 2.5rem;
-  height: 2.5rem;
-  margin-left: -1.25rem;
-  margin-top: -1.25rem;
-}
-
-.toast-container {
-  position: fixed;
-  top: 7rem;
-  right: 3rem;
-  width: 17rem;
-  height: 20rem;
-  overflow-y: scroll;
-  z-index: 11;
-
-  .alert {
-    padding: 0.5rem 0.7rem;
-    opacity: 0.9;
-
-    .close-btn {
-      cursor: pointer;
-      font-size: 1.5rem;
-      line-height: 0.75;
-    }
-
-    .header {
-      font-size: 1rem;
-    }
-
-    .toast-text {
-      font-size: 0.9rem;
-      line-height: 1.4;
-    }
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .toast-container {
-    top: 5rem;
-    right: 1rem;
-    width: 15rem;
-    height: 12rem;
-    overflow-y: scroll;
-    z-index: 10000;
-
-    .alert {
-      padding: 0.3rem 0.5rem;
-      opacity: 0.9;
-
-      .close-btn {
-        cursor: pointer;
-        font-size: 1.5rem;
-        line-height: 0.75;
-      }
-
-      .header {
-        font-size: 1rem;
-      }
-
-      .toast-text {
-        font-size: 0.9rem;
-        line-height: 1.4;
-      }
-    }
-  }
-}
-
-#refresh {
-  height: 85vh;
-  position: relative;
-}
-
 @import "./components/layoutComponents/Layout.scss";
 
 @import "./components/pages/Home.scss";
@@ -129,3 +53,5 @@ body {
 @import "./components/pages/profile.scss";
 
 @import "./components/pages/AdminDashboard.scss";
+
+@import "./components/widgets/Widgets.scss";
