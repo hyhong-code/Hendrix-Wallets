@@ -3,10 +3,7 @@
 
   .home-banner {
     height: 30rem;
-    background: linear-gradient(
-        rgba($color-secondary, 0.5),
-        rgba($color-secondary, 0.9)
-      ),
+    background: linear-gradient(rgba($color-dark, 0.7), rgba($color-dark, 0.9)),
       url(../../assets/home.jpeg) no-repeat center center/cover;
 
     p.lead {

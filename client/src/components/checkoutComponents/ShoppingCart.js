@@ -66,7 +66,7 @@ const ShoppingCart = ({ history, cart }) => {
             {cart && cart.cartItems.length ? (
               <button
                 onClick={handleCheckout}
-                className="mt-1 btn btn-secondary btn-block text-white"
+                className="mt-1 btn btn-primary btn-block text-white"
               >
                 CHECK OUT
               </button>

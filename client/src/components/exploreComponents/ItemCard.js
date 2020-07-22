@@ -29,13 +29,13 @@ const ItemCard = ({ item, addItemToCart, isAuthenticated }) => {
           {pricing()}
           <p className="card-text mb-1 text-primary">{item.name}</p>
           <div className="d-flex justify-content-end">
-            <a className="btn btn-sm btn-outline-primary ">
+            <a className="btn btn-sm btn-outline-secondary text-secondary">
               <i className="fas fa-info-circle"></i>
             </a>
             {isAuthenticated ? (
               <button
                 onClick={() => addItemToCart(item.id)}
-                className="btn btn-sm btn-outline-secondary ml-2"
+                className="btn btn-sm btn-outline-primary ml-2"
               >
                 <i className="fas fa-cart-plus"></i>
               </button>
@@ -46,7 +46,7 @@ const ItemCard = ({ item, addItemToCart, isAuthenticated }) => {
                 tooltip="Please login first"
               >
                 <button
-                  className="btn btn-sm btn-outline-secondary ml-2 disabled"
+                  className="btn btn-sm btn-outline-primary ml-2 disabled"
                   data-tip="Please log in first"
                 >
                   <i className="fas fa-cart-plus"></i>

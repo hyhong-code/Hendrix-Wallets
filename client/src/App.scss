@@ -1,7 +1,7 @@
-$color-primary: #484848;
-$color-secondary: #787878;
-$color-dark: #1e1e1e;
-$color-light: #fefdff;
+$color-primary: #663300;
+$color-secondary: #b6a999;
+$color-dark: #171002;
+$color-light: #fff9ed;
 
 $theme-colors: (
   "primary": $color-primary,
@@ -15,6 +15,11 @@ $theme-colors: (
 
 body {
   font-family: "sora", sans-serif;
+}
+
+a,
+button {
+  outline: none !important;
 }
 
 @mixin overlay($color, $transparency) {
