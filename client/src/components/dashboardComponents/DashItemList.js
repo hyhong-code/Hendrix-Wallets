@@ -1,12 +1,21 @@
 import React, { useState } from "react";
 
 import DashItem from "./DashItem";
+import DashItemCreateModal from "./DashItemCreateModal";
 
 const DashItemList = ({ items, numPerPage }) => {
   const [curPage, setCurPage] = useState(1);
   return (
     <div className="card">
       <div className="card-body">
+        <DashItemCreateModal
+          item={{
+            name: "helo",
+            description: "wow",
+            price: "1200",
+            discount: "299",
+          }}
+        />
         <div className="row item-list-head">
           <div className="col-4 col-lg-2">
             <strong>Item Name</strong>
