@@ -2,8 +2,8 @@ import React from "react";
 import StripeCheckout from "react-stripe-checkout";
 import { connect } from "react-redux";
 
-import logo from "../assets/logo.png";
-import { payForOrder } from "../actions/orderActions";
+import Logo from "../../assets/logo.png";
+import { payForOrder } from "../../actions/orderActions";
 
 class Stripe extends React.Component {
   onToken = async (token) => {
@@ -18,7 +18,7 @@ class Stripe extends React.Component {
         currency="USD"
         name="HENDRIX WALLETS"
         description="PERN E-COMMERCE PROJECT"
-        image={logo}
+        image={Logo}
         amount={parseInt(this.props.order.final_price)}
         email={this.props.order.email}
         closed={this.onClosed}

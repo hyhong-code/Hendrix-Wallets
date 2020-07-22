@@ -6,7 +6,7 @@ import {
   shipOrder,
   deliverOrder,
 } from "../../actions/orderActions";
-import Stripe from "../Stripe";
+import Stripe from "./Stripe";
 
 const subtotal = (items) =>
   Math.round(

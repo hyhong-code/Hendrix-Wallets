@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { connect } from "react-redux";
 
-import { updateProfile } from "../actions/profileAction";
+import { updateProfile } from "../../actions/profileAction";
 import ProfilePicUpdate from "./ProfilePicUpdate";
 
 const UpdateProfileModal = ({ user, updateProfile }) => {

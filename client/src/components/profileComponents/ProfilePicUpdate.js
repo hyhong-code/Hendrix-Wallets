@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
-import { updateProfilePic } from "../actions/profileAction";
+import { updateProfilePic } from "../../actions/profileAction";
 
 const ProfilePicUpdate = ({ updateProfilePic }) => {
   const [file, setFile] = useState("");

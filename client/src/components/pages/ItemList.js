@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import ItemCard from "../ItemCard";
-import ItemFilter from "../ItemFilter";
+import ItemCard from "../exploreComponents/ItemCard";
+import ItemFilter from "../exploreComponents/ItemFilter";
 
 const ItemList = ({ match, categories, items }) => {
   const [checkedboxes, setCheckedboxes] = useState([]);

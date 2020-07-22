@@ -5,8 +5,8 @@ import { connect } from "react-redux";
 import { logout } from "../../actions/authActions";
 import logo from "../../assets/logo.png";
 import ShoppingCart from "../checkoutComponents/ShoppingCart";
-import Avartar from "../Avartar";
-import SearchForm from "../SearchForm";
+import Avartar from "./Avartar";
+import SearchForm from "./SearchForm";
 
 const Navbar = ({
   auth: { isAuthenticated, user },
