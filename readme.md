@@ -1,6 +1,6 @@
 # PERN FRULL-STACK E-COMMERCE PLATFORM
 
-### Main technolodges: Node/Express, PostgreSQL, React, Redux, Sass, Bootstrap, Stripe
+### Main technolodges: Nodejs/Express, PostgreSQL, React, Redux, Sass, Bootstrap, Stripe
 
 [Live demo](https://hendrix-wallets.herokuapp.com/)
 
@@ -35,40 +35,40 @@ _Currently working on admin facing CMS to manage products and orders_
 
 ### LANDING PAGE
 
-<img src="./showcase/home.png" width="85%">
+<img src="./_reademe_img/home.png" width="85%">
 
 ### PRODUCTS PAGE
 
-<img src="./showcase/items.png" width="85%">
+<img src="./_reademe_img/items.png" width="85%">
 
 ### CHECKOUT PAGE
 
-<img src="./showcase/checkout.png" width="85%">
+<img src="./_reademe_img/checkout.png" width="85%">
 
 ### STRIPE INTEGRATION
 
-<img src="./showcase/stripe.png" width="85%">
+<img src="./_reademe_img/stripe.png" width="85%">
 
 ### CUSTOMER ORDER LIST
 
-<img src="./showcase/orderList.png" width="85%">
+<img src="./_reademe_img/orderList.png" width="85%">
 
 ### CUSTOMER PROFILE
 
-<img src="./showcase/profile.png" width="85%">
+<img src="./_reademe_img/profile.png" width="85%">
 
 ### CUSTOMER SIGNUP
 
-<img src="./showcase/signup.png" width="85%">
+<img src="./_reademe_img/signup.png" width="85%">
 
 ### ADMIN ORDER MANAGEMENT
 
-<img src="./showcase/admin_order.png" width="85%">
+<img src="./_reademe_img/admin_order.png" width="85%">
 
 ### ADMIN PRODUCT MANAGEMENT
 
-<img src="./showcase/admin_item.png" width="85%">
+<img src="./_reademe_img/admin_item.png" width="85%">
 
 ### ADMIN PRODUCT MANAGEMENT - UPDATE ITEMS
 
-<img src="./showcase/admin_item_update.png" width="85%">
+<img src="./_reademe_img/admin_item_update.png" width="85%">
