@@ -12,39 +12,38 @@ _Currently working on admin facing CMS to manage products and orders_
 
 **Current Features:**
 
-- Customer authentication: login / signup
-- Update customer profile info / profile image
-- Browse / filter / search products
-- Add products to cart / Delete items from cart
-- Checkout and create an order
-- Pay for an order with card
-- Cancel an order
-- Moniter order status
-- Admin Order Management System
+**Customer Facing Features:**
+- A customer is able to login or signup
+- A customer is able to update his/her profile info / profile image
+- A customer is able to browse / filter / search products
+- A customer is able to add products to cart / delete products from cart
+- A customer is able to place an order
+- A customer is able to pay for an order with credit card
+- A customer is able to cancel an order
+- A customer is able to moniter order status
+
+**Admin Dashboard Features:**
+- An admin is able to login through a dedicated login route
+- An admin is able to search from and filter customers' orders
+- An admin is able to change an order's status to shipped, and delivered
+- An admin is able to search from and filter all product items
+- An admin is able to update a product item's information
 
 ---
 
 ## SCREENSHOTS:
 
-### HOME PAGE
+### LANDING PAGE
 
 <img src="./showcase/home.png" width="85%">
 
-### ITEMS PAGE
+### PRODUCTS PAGE
 
 <img src="./showcase/items.png" width="85%">
-
-### CART COMPONENT
-
-<img src="./showcase/cart.png" width="30%">
 
 ### CHECKOUT PAGE
 
 <img src="./showcase/checkout.png" width="85%">
-
-### ORDER SUMMARY PAGE
-
-<img src="./showcase/orderSummary.png" width="85%">
 
 ### STRIPE INTEGRATION
 
@@ -64,8 +63,12 @@ _Currently working on admin facing CMS to manage products and orders_
 
 ### ADMIN ORDER MANAGEMENT
 
-<img src="./showcase/admin.png" width="85%">
+<img src="./showcase/admin_order.png" width="85%">
 
-### ADMIN ORDER SHIPPING / DELIVERY
+### ADMIN PRODUCT MANAGEMENT
 
-<img src="./showcase/ship-delivery.png" width="85%">
+<img src="./showcase/admin_item.png" width="85%">
+
+### ADMIN PRODUCT MANAGEMENT - UPDATE ITEMS
+
+<img src="./showcase/admin_item_update.png" width="85%">

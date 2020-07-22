@@ -19,6 +19,11 @@ const Navbar = ({
     setCollapse((prev) => !prev);
   };
 
+  const handleLogout = () => {
+    logout();
+    setCollapse((prev) => !prev);
+  };
+
   const authLinks = () => (
     <Fragment>
       <ShoppingCart />
@@ -122,16 +127,28 @@ const Navbar = ({
             ) : !isAuthenticated && !adminAuthenticated ? (
               guestLinks()
             ) : (
-              <li className="nav-item">
-                <NavLink
-                  exact
-                  to="/admin/dashboard"
-                  className="nav-link"
-                  onClick={() => setCollapse((prev) => !prev)}
-                >
-                  DASHBOARD
-                </NavLink>
-              </li>
+              <Fragment>
+                <li className="nav-item">
+                  <NavLink
+                    exact
+                    to="/admin/dashboard"
+                    className="nav-link"
+                    onClick={() => setCollapse((prev) => !prev)}
+                  >
+                    <i className="fas fa-user-cog"></i> DASHBOARD
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    exact
+                    to="/admin"
+                    className="nav-link"
+                    onClick={handleLogout}
+                  >
+                    Logout <i className="fas fa-sign-out-alt"></i>
+                  </NavLink>
+                </li>
+              </Fragment>
             )}
           </ul>
         </div>

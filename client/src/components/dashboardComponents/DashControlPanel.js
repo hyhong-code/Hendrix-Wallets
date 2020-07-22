@@ -3,7 +3,9 @@ import React from "react";
 const DashControlPanel = () => {
   return (
     <div className="card card-body p-4 control-panel">
-      <h1>DASHBOARD</h1>
+      <h1>
+        <i className="fas fa-users-cog"></i> DASHBOARD
+      </h1>
       <hr className="mb-4" />
       <div
         className="nav flex-column nav-pills"
