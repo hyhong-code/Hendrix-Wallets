@@ -178,5 +178,15 @@
         font-size: 1.5rem;
       }
     }
+
+    .showcase {
+      padding: 3rem 0;
+
+      .carousel {
+        .carousel-item {
+          height: 15rem;
+        }
+      }
+    }
   }
 }

@@ -118,8 +118,18 @@
 
     .category-img {
       object-fit: cover;
-      max-width: 200px;
+      width: 200px;
       height: 150px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #admin-dashboard {
+    .dash-categories {
+      .category-img {
+        border-radius: 5px;
+      }
     }
   }
 }
