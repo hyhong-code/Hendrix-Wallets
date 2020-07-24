@@ -1,4 +1,4 @@
-# PERN FRULL-STACK E-COMMERCE PLATFORM
+# FULL-STACK E-COMMERCE PLATFORM
 
 ### Main technolodges: Nodejs/Express, PostgreSQL, React, Redux, Sass, Bootstrap, Stripe
 
