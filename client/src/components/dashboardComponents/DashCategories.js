@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 
 import DashCategoryCard from "./DashCategoryCard";
+import DashCategoryCreatePanel from "./DashCategoryCreatePanel";
 
 const DashCategories = ({ categories, items }) => {
   const [showControl, setShowControl] = useState(false);
@@ -27,51 +28,7 @@ const DashCategories = ({ categories, items }) => {
       </div>
       <div className={`row ${showControl ? "d-block" : "d-none"}`}>
         <div className="col-md-8 offset-md-2">
-          <div className="card card-body">
-            <form>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Category Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                />
-              </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Description</label>
-                <textarea
-                  class="form-control"
-                  id="exampleInputPassword1"
-                ></textarea>
-              </div>
-              <div className="form-group">
-                <div className="custom-file">
-                  <input
-                    type="file"
-                    className="custom-file-input"
-                    id="category-file"
-                  />
-                  <label
-                    type="file"
-                    className="custom-file-label"
-                    for="#category-file"
-                  >
-                    Category Cover
-                  </label>
-                  <small className="text-muted">
-                    * A cover photo is required.
-                  </small>
-                </div>
-              </div>
-
-              <div className="d-flex">
-                <button type="ADD" class="btn btn-primary ml-auto">
-                  Submit
-                </button>
-              </div>
-            </form>
-          </div>
+          <DashCategoryCreatePanel />
         </div>
       </div>
     </div>
