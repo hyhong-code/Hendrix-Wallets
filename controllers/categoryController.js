@@ -16,6 +16,7 @@ const S3_BUCKET = process.env.Bucket;
 // @route   POST /api/category
 // @access  Admin role
 exports.createCategory = async (req, res, next) => {
+  console.log(req.body);
   const { fileName, fileType, name, description } = req.body;
   const { isValid, errors } = checkCategory(name, description);
   if (!isValid) return sendError(res, 400, errors);

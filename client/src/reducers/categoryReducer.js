@@ -1,4 +1,8 @@
-import { CATEGORIES_FETCHED, CATEGORIES_ERROR } from "../actions/types";
+import {
+  CATEGORIES_FETCHED,
+  CATEGORIES_ERROR,
+  CATEGORY_CREATED,
+} from "../actions/types";
 
 const INITIAL_STATE = null;
 
@@ -9,6 +13,8 @@ export default (state = INITIAL_STATE, action) => {
       return payload;
     case CATEGORIES_ERROR:
       return INITIAL_STATE;
+    case CATEGORY_CREATED:
+      return [payload, ...state];
     default:
       return state;
   }

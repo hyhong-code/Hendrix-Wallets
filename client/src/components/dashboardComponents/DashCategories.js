@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
+import { createCategory } from "../../actions/categoryActions";
+import { createToast } from "../../actions/toastActions";
 import DashCategoryCard from "./DashCategoryCard";
 import DashCategoryCreatePanel from "./DashCategoryCreatePanel";
 
-const DashCategories = ({ categories, items }) => {
+const DashCategories = ({ categories, items, createCategory, createToast }) => {
   const [showControl, setShowControl] = useState(false);
   return (
     <div
@@ -17,7 +19,7 @@ const DashCategories = ({ categories, items }) => {
         className="btn btn-outline-dark btn-sm mb-2"
         onClick={() => setShowControl((prev) => !prev)}
       >
-        ADD CATEGORY
+        {showControl ? "BACK" : "ADD CATEGORY"}
       </button>
       <div className={`${showControl ? "d-none" : "d-block"}`}>
         {categories &&
@@ -28,7 +30,11 @@ const DashCategories = ({ categories, items }) => {
       </div>
       <div className={`row ${showControl ? "d-block" : "d-none"}`}>
         <div className="col-md-8 offset-md-2">
-          <DashCategoryCreatePanel />
+          <DashCategoryCreatePanel
+            createCategory={createCategory}
+            createToast={createToast}
+            setShowControl={setShowControl}
+          />
         </div>
       </div>
     </div>
@@ -37,4 +43,6 @@ const DashCategories = ({ categories, items }) => {
 
 const mapStateToProps = ({ categories, items }) => ({ categories, items });
 
-export default connect(mapStateToProps)(DashCategories);
+export default connect(mapStateToProps, { createCategory, createToast })(
+  DashCategories
+);

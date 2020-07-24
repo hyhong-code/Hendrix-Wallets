@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 
-const DashCategoryCreatePanel = () => {
+const DashCategoryCreatePanel = ({
+  createCategory,
+  createToast,
+  setShowControl,
+}) => {
   const [file, setFile] = useState("");
   const [fileName, setFileName] = useState("Upload a cover image");
   const [formData, setFormData] = useState({
@@ -14,8 +18,24 @@ const DashCategoryCreatePanel = () => {
   };
 
   const handleChange = (evt) => {
-    const { name, description } = evt.target;
-    setFormData((prev) => ({ ...prev, [name]: description }));
+    const { name, value } = evt.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (evt) => {
+    evt.preventDefault();
+    if (!file || !file.type.startsWith("image")) {
+      return createToast("Cover must be a valid image");
+    }
+    if (await createCategory(formData, file)) {
+      setFormData({
+        name: "",
+        description: "",
+      });
+      setFile("");
+      setFileName("Upload a cover image");
+      setShowControl(false);
+    }
   };
 
   const { name, description } = formData;
@@ -24,7 +44,7 @@ const DashCategoryCreatePanel = () => {
     <div className="card card-body">
       <form>
         <div class="form-group">
-          <label for="categoryName">{fileName}</label>
+          <label for="categoryName">Category Name</label>
           <input
             type="text"
             class="form-control"
@@ -35,7 +55,7 @@ const DashCategoryCreatePanel = () => {
           />
         </div>
         <div class="form-group">
-          <label for="categoryDescription">Description</label>
+          <label for="categoryDescription">Category Description</label>
           <textarea
             class="form-control"
             id="categoryDescription"
@@ -57,14 +77,18 @@ const DashCategoryCreatePanel = () => {
               className="custom-file-label"
               for="#category-file"
             >
-              Category Cover
+              {fileName}
             </label>
             <small className="text-muted">* A cover photo is required.</small>
           </div>
         </div>
 
         <div className="d-flex">
-          <button type="ADD" class="btn btn-primary ml-auto">
+          <button
+            type="ADD"
+            class="btn btn-primary ml-auto"
+            onClick={handleSubmit}
+          >
             Submit
           </button>
         </div>
