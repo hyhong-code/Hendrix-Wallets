@@ -26,8 +26,10 @@ _Currently working on admin facing CMS to manage products and orders_
 - An admin is able to login through a dedicated login route
 - An admin is able to search from and filter customers' orders
 - An admin is able to change an order's status to shipped, and delivered
-- An admin is able to search from and filter all product items
-- An admin is able to update a product item's information
+- An admin is able to create a new collection
+- An admin is able to search from and filter through all products
+- An admin is able to create new products for a collection
+- An admin is able to update products' information and price/discount
 
 ---
 
@@ -64,6 +66,14 @@ _Currently working on admin facing CMS to manage products and orders_
 ### ADMIN ORDER MANAGEMENT
 
 <img src="./readme_img/admin_order.png" width="85%">
+
+### ADMIN COLLECTION MANAGEMENT
+
+<img src="./readme_img/admin_category.png" width="85%">
+
+### ADMIN COLLECTION MANAGEMENT - ADD COLLECTION
+
+<img src="./readme_img/admin_cateogry_add.png" width="85%">
 
 ### ADMIN PRODUCT MANAGEMENT
 

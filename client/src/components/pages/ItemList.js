@@ -1,14 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
+import { getCategories } from "../../actions/categoryActions";
+import { getItems } from "../../actions/itemActions";
 import ItemCard from "../exploreComponents/ItemCard";
 import ItemFilter from "../exploreComponents/ItemFilter";
 
-const ItemList = ({ match, categories, items }) => {
+const ItemList = ({ match, categories, items, getItems, getCategories }) => {
   const [checkedboxes, setCheckedboxes] = useState([]);
   const [discountOnly, setDiscountOnly] = useState(false);
   const [searchText, setSearchText] = useState("");
+
+  const fetchResource = useCallback(() => {
+    getCategories();
+    getItems();
+  }, [getCategories, getItems]);
+
+  useEffect(() => {
+    fetchResource();
+  }, [fetchResource]);
 
   useEffect(() => {
     if (
@@ -110,4 +121,4 @@ const ItemList = ({ match, categories, items }) => {
 
 const mapStateToProps = ({ categories, items }) => ({ categories, items });
 
-export default connect(mapStateToProps)(ItemList);
+export default connect(mapStateToProps, { getItems, getCategories })(ItemList);

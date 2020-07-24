@@ -8,7 +8,9 @@ const DashUsers = () => {
       role="tabpanel"
       aria-labelledby="v-pills-users-tab"
     >
-      <h1>Users</h1>
+      <p className="lead">
+        USER <small className="text-muted">(in construction)</small>
+      </p>
     </div>
   );
 };

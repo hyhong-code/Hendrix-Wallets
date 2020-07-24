@@ -67,7 +67,7 @@ export const createItem = (formData, file) => async (dispatch) => {
       fileType,
     });
 
-    const { signedRequest, url, item } = res.data;
+    const { signedRequest, item } = res.data;
 
     await fetch(signedRequest, {
       method: "PUT",

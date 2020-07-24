@@ -8,7 +8,9 @@ const DashStock = () => {
       role="tabpanel"
       aria-labelledby="v-pills-stock-tab"
     >
-      <h1>Stock</h1>
+      <p className="lead">
+        STOCK <small className="text-muted">(in construction)</small>
+      </p>
     </div>
   );
 };

@@ -43,21 +43,21 @@ const DashCategoryCreatePanel = ({
   return (
     <div className="card card-body">
       <form>
-        <div class="form-group">
-          <label for="categoryName">Category Name</label>
+        <div className="form-group">
+          <label htmlFor="categoryName">Category Name</label>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             id="categoryName"
             name="name"
             value={name}
             onChange={handleChange}
           />
         </div>
-        <div class="form-group">
-          <label for="categoryDescription">Category Description</label>
+        <div className="form-group">
+          <label htmlFor="categoryDescription">Category Description</label>
           <textarea
-            class="form-control"
+            className="form-control"
             id="categoryDescription"
             name="description"
             value={description}
@@ -75,7 +75,7 @@ const DashCategoryCreatePanel = ({
             <label
               type="file"
               className="custom-file-label"
-              for="#category-file"
+              htmlFor="#category-file"
             >
               {fileName}
             </label>
@@ -86,7 +86,7 @@ const DashCategoryCreatePanel = ({
         <div className="d-flex">
           <button
             type="ADD"
-            class="btn btn-primary ml-auto"
+            className="btn btn-primary ml-auto"
             onClick={handleSubmit}
           >
             Submit

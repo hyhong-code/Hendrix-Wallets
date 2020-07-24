@@ -46,7 +46,7 @@ const DashItemCreateModal = ({ categories, createItem, createToast }) => {
     <Fragment>
       <button
         type="button"
-        class="btn btn-outline-primary btn-sm"
+        className="btn btn-outline-primary btn-sm"
         data-toggle="modal"
         data-target="#dashItemCreateModal"
       >
@@ -78,14 +78,17 @@ const DashItemCreateModal = ({ categories, createItem, createToast }) => {
               </button>
             </div>
             <div className="modal-body">
-              <div class="custom-file">
+              <div className="custom-file">
                 <input
                   type="file"
-                  class="custom-file-input"
+                  className="custom-file-input"
                   id="newProductImgUpload"
                   onChange={handleFile}
                 />
-                <label class="custom-file-label" for="newProductImgUpload">
+                <label
+                  className="custom-file-label"
+                  htmlFor="newProductImgUpload"
+                >
                   {fileName}
                 </label>
               </div>
@@ -95,7 +98,6 @@ const DashItemCreateModal = ({ categories, createItem, createToast }) => {
                 <select
                   name="categoryId"
                   value={categoryId}
-                  name="categoryId"
                   onChange={handleChange}
                   className="custom-select custom-select-sm"
                 >
@@ -103,7 +105,9 @@ const DashItemCreateModal = ({ categories, createItem, createToast }) => {
 
                   {categories &&
                     categories.map((category) => (
-                      <option value={category.id}>{category.name}</option>
+                      <option key={category.id} value={category.id}>
+                        {category.name}
+                      </option>
                     ))}
                 </select>
 

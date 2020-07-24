@@ -39,7 +39,7 @@ export const createCategory = (formData, file) => async (dispatch) => {
       config
     );
 
-    const { signedRequest, url, category } = res.data;
+    const { signedRequest, category } = res.data;
 
     await fetch(signedRequest, {
       method: "PUT",

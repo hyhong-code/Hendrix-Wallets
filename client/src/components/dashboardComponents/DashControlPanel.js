@@ -1,6 +1,24 @@
-import React from "react";
+import React, { useCallback } from "react";
+import { connect } from "react-redux";
 
-const DashControlPanel = () => {
+import { getItems } from "../../actions/itemActions";
+import { getCategories } from "../../actions/categoryActions";
+import { getAllOrders } from "../../actions/orderActions";
+
+const DashControlPanel = ({ getCategories, getItems, getAllOrders }) => {
+  const fetchResource = useCallback(() => {
+    getCategories();
+    getItems();
+  }, [getItems, getCategories]);
+
+  const fetchItems = useCallback(() => {
+    getItems();
+  }, [getItems]);
+
+  const fetchAllOrders = useCallback(() => {
+    getAllOrders();
+  }, [getAllOrders]);
+
   return (
     <div className="card card-body p-4 control-panel">
       <h1>
@@ -32,6 +50,7 @@ const DashControlPanel = () => {
           role="tab"
           aria-controls="v-pills-orders"
           aria-selected="false"
+          onClick={fetchAllOrders}
         >
           ORDERS
         </a>
@@ -43,6 +62,7 @@ const DashControlPanel = () => {
           role="tab"
           aria-controls="v-pills-items"
           aria-selected="false"
+          onClick={fetchItems}
         >
           ITEMS
         </a>
@@ -54,8 +74,9 @@ const DashControlPanel = () => {
           role="tab"
           aria-controls="v-pills-categories"
           aria-selected="false"
+          onClick={fetchResource}
         >
-          CATEGORIES
+          COLLECTIONS
         </a>
         <a
           className="nav-link"
@@ -84,4 +105,6 @@ const DashControlPanel = () => {
   );
 };
 
-export default DashControlPanel;
+export default connect(null, { getCategories, getItems, getAllOrders })(
+  DashControlPanel
+);
