@@ -119,13 +119,16 @@ export const clearOrder = () => (dispatch) => {
 };
 
 export const getAllOrders = (formData) => async (dispatch) => {
+  console.log("dfjlsdjsklf");
   try {
     let params = [];
-    Object.keys(formData).forEach((key) => {
-      if (formData[key]) {
-        params.push(`${key}=${formData[key]}`);
-      }
-    });
+    if (formData) {
+      Object.keys(formData).forEach((key) => {
+        if (formData[key]) {
+          params.push(`${key}=${formData[key]}`);
+        }
+      });
+    }
     params = params.length ? params.join("&") : "";
     const res = await axios.get(`/api/order/all?${params}`);
     dispatch({
