@@ -21,9 +21,11 @@ const Showcase = ({ categories }) => {
               </h3>
               <div className="row">
                 {categories &&
-                  categories.map((category) => (
-                    <CollectionCard key={category.id} category={category} />
-                  ))}
+                  categories
+                    .slice(0, 4)
+                    .map((category) => (
+                      <CollectionCard key={category.id} category={category} />
+                    ))}
               </div>
               <Link to="/items/all" className="btn btn-primary btn-block mt-4">
                 EXPLORE ALL

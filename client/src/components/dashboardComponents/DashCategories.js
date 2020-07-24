@@ -1,9 +1,12 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 
+import { createCategory } from "../../actions/categoryActions";
+import { createToast } from "../../actions/toastActions";
 import DashCategoryCard from "./DashCategoryCard";
+import DashCategoryCreatePanel from "./DashCategoryCreatePanel";
 
-const DashCategories = ({ categories, items }) => {
+const DashCategories = ({ categories, items, createCategory, createToast }) => {
   const [showControl, setShowControl] = useState(false);
   return (
     <div
@@ -16,7 +19,7 @@ const DashCategories = ({ categories, items }) => {
         className="btn btn-outline-dark btn-sm mb-2"
         onClick={() => setShowControl((prev) => !prev)}
       >
-        ADD CATEGORY
+        {showControl ? "BACK" : "ADD CATEGORY"}
       </button>
       <div className={`${showControl ? "d-none" : "d-block"}`}>
         {categories &&
@@ -26,49 +29,12 @@ const DashCategories = ({ categories, items }) => {
           ))}
       </div>
       <div className={`row ${showControl ? "d-block" : "d-none"}`}>
-        <div className="col-8 offset-2">
-          <div className="card card-body">
-            <form>
-              <div className="form-group">
-                <div className="custom-file">
-                  <input
-                    type="file"
-                    className="custom-file-input"
-                    id="category-file"
-                  />
-                  <label
-                    type="file"
-                    className="custom-file-label"
-                    for="#category-file"
-                  >
-                    Category Cover
-                  </label>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Category Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                />
-              </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Description</label>
-                <textarea
-                  class="form-control"
-                  id="exampleInputPassword1"
-                ></textarea>
-              </div>
-
-              <div className="d-flex">
-                <button type="ADD" class="btn btn-primary ml-auto">
-                  Submit
-                </button>
-              </div>
-            </form>
-          </div>
+        <div className="col-md-8 offset-md-2">
+          <DashCategoryCreatePanel
+            createCategory={createCategory}
+            createToast={createToast}
+            setShowControl={setShowControl}
+          />
         </div>
       </div>
     </div>
@@ -77,4 +43,6 @@ const DashCategories = ({ categories, items }) => {
 
 const mapStateToProps = ({ categories, items }) => ({ categories, items });
 
-export default connect(mapStateToProps)(DashCategories);
+export default connect(mapStateToProps, { createCategory, createToast })(
+  DashCategories
+);

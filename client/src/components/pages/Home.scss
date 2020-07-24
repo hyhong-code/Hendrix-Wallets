@@ -16,13 +16,37 @@
   }
 
   .carousel {
+    width: 100%;
+
     .carousel-inner {
       border-radius: 8px;
       overflow: hidden;
     }
 
+    .carousel-item {
+      height: 23.5rem;
+
+      .carousel-overlay {
+        @include overlay(#000, 0.5);
+      }
+
+      img {
+        object-fit: cover;
+        height: 100% !important;
+        width: 100% !important;
+      }
+    }
+
     .carousel-overlay {
       @include overlay(#000, 0.5);
+    }
+
+    img {
+      display: block;
+      margin: 0 auto;
+      object-fit: cover;
+      height: 100% !important;
+      width: 100% !important;
     }
   }
 
@@ -69,6 +93,18 @@
   }
 }
 
+@media screen and (max-width: 992px) {
+  #home {
+    .showcase {
+      .carousel {
+        .carousel-item {
+          height: 22rem;
+        }
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 768px) {
   #home {
     .home-banner {
@@ -90,6 +126,10 @@
 
       .carousel {
         margin-bottom: 1rem;
+
+        .carousel-item {
+          height: 18rem;
+        }
 
         .carousel-caption {
           padding-bottom: 1rem;
@@ -136,6 +176,16 @@
     .home-banner {
       p.lead {
         font-size: 1.5rem;
+      }
+    }
+
+    .showcase {
+      padding: 3rem 0;
+
+      .carousel {
+        .carousel-item {
+          height: 15rem;
+        }
       }
     }
   }
