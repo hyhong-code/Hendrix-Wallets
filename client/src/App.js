@@ -2,8 +2,6 @@ import React, { useCallback, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { getCategories } from "./actions/categoryActions";
-import { getItems } from "./actions/itemActions";
 import { loadUser } from "./actions/authActions";
 import { getCart } from "./actions/cartActions";
 import { getOrders } from "./actions/orderActions";
@@ -29,19 +27,9 @@ import Login from "./components/pages/Login";
 import AdminLogin from "./components/pages/AdminLogin";
 import "./App.scss";
 
-const App = ({
-  isAuthenticated,
-  toasts,
-  getCategories,
-  getItems,
-  loadUser,
-  getCart,
-  getOrders,
-}) => {
-  const fetchResourse = useCallback(() => {
+const App = ({ isAuthenticated, toasts, loadUser, getCart, getOrders }) => {
+  const authenticateUser = useCallback(() => {
     loadUser();
-    getCategories();
-    getItems();
   }, []);
 
   const fetchUserResource = useCallback(() => {
@@ -50,8 +38,8 @@ const App = ({
   }, [isAuthenticated]);
 
   useEffect(() => {
-    fetchResourse();
-  }, [fetchResourse]);
+    authenticateUser();
+  }, [authenticateUser]);
 
   useEffect(() => {
     fetchUserResource();
@@ -92,8 +80,6 @@ const mapStateToProps = ({ auth: { isAuthenticated }, toasts }) => ({
 });
 
 export default connect(mapStateToProps, {
-  getCategories,
-  getItems,
   loadUser,
   getCart,
   getOrders,

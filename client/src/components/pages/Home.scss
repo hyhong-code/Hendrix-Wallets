@@ -93,12 +93,24 @@
   }
 }
 
+@media screen and (min-width: 1200px) {
+  #home {
+    .showcase {
+      .carousel {
+        .carousel-item {
+          height: 26rem;
+        }
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 992px) {
   #home {
     .showcase {
       .carousel {
         .carousel-item {
-          height: 22rem;
+          height: 20rem;
         }
       }
     }
@@ -184,7 +196,7 @@
 
       .carousel {
         .carousel-item {
-          height: 15rem;
+          height: 17rem;
         }
       }
     }
