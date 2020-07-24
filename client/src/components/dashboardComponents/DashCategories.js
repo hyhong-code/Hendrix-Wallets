@@ -21,7 +21,7 @@ const DashCategories = ({ categories, items, createCategory, createToast }) => {
         className="btn btn-outline-dark btn-sm mb-2"
         onClick={() => setShowControl((prev) => !prev)}
       >
-        {showControl ? "BACK" : "ADD CATEGORY"}
+        {showControl ? "BACK" : "ADD COLLECTION"}
       </button>
       <div className={`${showControl ? "d-none" : "d-block"}`}>
         {categories &&

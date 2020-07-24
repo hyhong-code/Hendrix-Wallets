@@ -8,7 +8,9 @@ const DashSummary = () => {
       role="tabpanel"
       aria-labelledby="v-pills-summary-tab"
     >
-      <h1>Summary</h1>
+      <p className="lead">
+        SUMMARY <small className="text-muted">(in construction)</small>
+      </p>
     </div>
   );
 };

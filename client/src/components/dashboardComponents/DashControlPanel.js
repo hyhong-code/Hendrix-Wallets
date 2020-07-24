@@ -76,7 +76,7 @@ const DashControlPanel = ({ getCategories, getItems, getAllOrders }) => {
           aria-selected="false"
           onClick={fetchResource}
         >
-          CATEGORIES
+          COLLECTIONS
         </a>
         <a
           className="nav-link"
