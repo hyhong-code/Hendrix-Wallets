@@ -12,7 +12,7 @@ const Home = ({ getCategories, getItems }) => {
   const fetchResources = useCallback(() => {
     getCategories();
     getItems();
-  });
+  }, [getCategories, getItems]);
 
   useEffect(() => {
     fetchResources();

@@ -119,7 +119,6 @@ export const clearOrder = () => (dispatch) => {
 };
 
 export const getAllOrders = (formData) => async (dispatch) => {
-  console.log("dfjlsdjsklf");
   try {
     let params = [];
     if (formData) {

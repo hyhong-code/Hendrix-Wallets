@@ -27,7 +27,11 @@ const DashCategories = ({ categories, items, createCategory, createToast }) => {
         {categories &&
           items &&
           categories.map((category) => (
-            <DashCategoryCard category={category} items={items} />
+            <DashCategoryCard
+              key={category.id}
+              category={category}
+              items={items}
+            />
           ))}
       </div>
       <div className={`row ${showControl ? "d-block" : "d-none"}`}>

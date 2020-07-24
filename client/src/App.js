@@ -30,12 +30,12 @@ import "./App.scss";
 const App = ({ isAuthenticated, toasts, loadUser, getCart, getOrders }) => {
   const authenticateUser = useCallback(() => {
     loadUser();
-  }, []);
+  }, [loadUser]);
 
   const fetchUserResource = useCallback(() => {
     getCart();
     getOrders();
-  }, [isAuthenticated]);
+  }, [getCart, getOrders]);
 
   useEffect(() => {
     authenticateUser();
@@ -43,7 +43,7 @@ const App = ({ isAuthenticated, toasts, loadUser, getCart, getOrders }) => {
 
   useEffect(() => {
     fetchUserResource();
-  }, [fetchUserResource]);
+  }, [isAuthenticated, fetchUserResource]);
 
   return (
     <BrowserRouter>

@@ -15,10 +15,6 @@ const Navbar = ({
 }) => {
   const [collapse, setCollapse] = useState(false);
 
-  const closeNav = () => {
-    setCollapse((prev) => !prev);
-  };
-
   const handleLogout = () => {
     logout();
     setCollapse((prev) => !prev);
