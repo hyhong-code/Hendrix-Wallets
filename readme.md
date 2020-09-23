@@ -1,84 +1,104 @@
-# FULL-STACK E-COMMERCE PLATFORM
+# Hendrix Wallets
 
-### Main technolodges: Nodejs/Express, PostgreSQL, React, Redux, Sass, Bootstrap, Stripe
+### An e-commerce platform for selling wallets.
 
-[Live demo](https://hendrix-wallets.herokuapp.com/)
+#### Built with React, Sass, Bootstrap, Node.js, PostgreSQL, Socket.IO, Stripe, AWS(S3).
 
-**Customer facing MVP is complete**
+## Implemented User stories:
 
-_Currently working on admin facing CMS to manage products and orders_
+#### As a customers, I want to...
 
----
+- Browse / Filter / Search through all wallets for sale.
+- Log in or sign up with an email.
+- Update my profile info and profile image.
+- Add wallets in to my shopping cart / delete wallets from my shopping cart.
+- Place an order.
+- Pay for the order with credit card.
+- Cancel an order.
+- Moniter order status.
 
-**Current Features:**
+#### As an admin, I want to...
 
-**Customer Facing Features:**
-- A customer is able to login or signup
-- A customer is able to update his/her profile info / profile image
-- A customer is able to browse / filter / search products
-- A customer is able to add products to cart / delete products from cart
-- A customer is able to place an order
-- A customer is able to pay for an order with credit card
-- A customer is able to cancel an order
-- A customer is able to moniter order status
+- Manage the platform from an admin dashboard.
+- Browse / Filter / Search through customers' orders
+- Change an order's status to shipped, or delivered.
+- Update wallets' information and price/discount
+- Create new wallets for a collection
+- Create a new collection.
 
-**Admin Dashboard Features:**
-- An admin is able to login through a dedicated login route
-- An admin is able to search from and filter customers' orders
-- An admin is able to change an order's status to shipped, and delivered
-- An admin is able to create a new collection
-- An admin is able to search from and filter through all products
-- An admin is able to create new products for a collection
-- An admin is able to update products' information and price/discount
+## Live Demo
 
----
+[Deployed app on Heroku](https://hendrix-wallets.herokuapp.com/)
 
-## SCREENSHOTS:
+## Screenshot Previews
 
-### LANDING PAGE
+#### LANDING PAGE
 
 <img src="./readme_img/home.png" width="85%">
 
-### PRODUCTS PAGE
+#### PRODUCTS PAGE
 
 <img src="./readme_img/items.png" width="85%">
 
-### CHECKOUT PAGE
+#### CHECKOUT PAGE
 
 <img src="./readme_img/checkout.png" width="85%">
 
-### STRIPE INTEGRATION
+#### STRIPE INTEGRATION
 
 <img src="./readme_img/stripe.png" width="85%">
 
-### CUSTOMER ORDER LIST
+#### CUSTOMER ORDER LIST
 
 <img src="./readme_img/orderList.png" width="85%">
 
-### CUSTOMER PROFILE
+#### CUSTOMER PROFILE
 
 <img src="./readme_img/profile.png" width="85%">
 
-### CUSTOMER SIGNUP
+#### CUSTOMER SIGNUP
 
 <img src="./readme_img/signup.png" width="85%">
 
-### ADMIN ORDER MANAGEMENT
+#### ADMIN ORDER MANAGEMENT
 
 <img src="./readme_img/admin_order.png" width="85%">
 
-### ADMIN COLLECTION MANAGEMENT
+#### ADMIN COLLECTION MANAGEMENT
 
 <img src="./readme_img/admin_category.png" width="85%">
 
-### ADMIN COLLECTION MANAGEMENT - ADD COLLECTION
+#### ADMIN COLLECTION MANAGEMENT - ADD COLLECTION
 
 <img src="./readme_img/admin_cateogry_add.png" width="85%">
 
-### ADMIN PRODUCT MANAGEMENT
+#### ADMIN PRODUCT MANAGEMENT
 
 <img src="./readme_img/admin_item.png" width="85%">
 
-### ADMIN PRODUCT MANAGEMENT - UPDATE ITEMS
+#### ADMIN PRODUCT MANAGEMENT - UPDATE ITEMS
 
 <img src="./readme_img/admin_item_update.png" width="85%">
+
+## Installation
+
+Use NPM:
+
+```bash
+npm i # install nodejs express app dependencies
+cd client && npm i # install React app dependencies
+```
+
+## Usage
+
+```bash
+npm run dev # starts up the nodejs server on port 5000, react app on port 3000
+```
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
